@@ -6,3 +6,4 @@ book/_build/
 input/**
 !input/README.md
 !input/*/
+book/**/_frontmatter_raw.md

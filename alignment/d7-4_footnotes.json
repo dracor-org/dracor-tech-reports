@@ -1,0 +1,47 @@
+[
+{
+"file": "3-2.md",
+"old": "One can try to replace the commit ID 3215fde",
+"new": "One can try to replace the commit hash 3215fde"
+},
+{
+"file": "3-2.md",
+"old": "a8ec727c13b3a8d43da298b77ac989572c5c20a4 of v.1.0.2, but,",
+"new": "a8ec727c13b3a8d43da298b77ac989572c5c20a4 of version 1.0.2, but,"
+},
+{
+"file": "3-2.md",
+"old": "The changes to the API following the major version v0.88.0 to v1.0.0 and beyond are described in this chapter. The latest pre-release version as of this writing is version 1.1.0-beta.8.",
+"new": "The changes from version 0.88.0 to 1.0.0 and beyond are described in this chapter. The latest pre-release version as of this writing is version 1.1.0-beta.8. The version of the DraCor API deployed on the production server at the time of writing of this report is 1.0.2. Release: <https://github.com/dracor-org/dracor-api/releases/tag/v1.0.2> The version can be retrieved via the API endpoint /api/v1/info. The DraCor API version number is output as DraCor API Feature service_version."
+},
+{
+"file": "3-2.md",
+"old": "`api.xqm` module[^7]",
+"new": "`api.xqm` module"
+},
+{
+"file": "3-2.md",
+"old": "[^7]: The version of the DraCor API deployed on the production server at the time of writing of this report is 1.0.2. Release: <https://github.com/dracor-org/dracor-api/releases/tag/v1.0.2> The version can be retrieved via the API endpoint /api/v1/info. The DraCor API version number is output as DraCor API Feature service_version. The current development version is 1.1.0-beta.8 <https://github.com/dracor-org/dracor-api/releases/tag/v1.1.0-beta.8>. References to the API code in this report are based on this version. The version of the api.xqm module can be accessed on GitHub at <https://github.com/dracor-org/dracor-api/blob/a8ec727c13b3a8d43da298b77ac989572c5c20a4/modules/api.xqm>.\n",
+"new": ""
+},
+{
+"file": "3-2.md",
+"old": "on the changes introduced with v1.0.0.",
+"new": "on the changes introduced with 1.0.0."
+},
+{
+"file": "3-2.md",
+"old": "[^12]: See also the Release note of API v1.0.0 <",
+"new": "[^12]: See also the release notes for DraCor API 1.0.0 <"
+},
+{
+"file": "3-2.md",
+"old": "[^38]: The work on the v1.1.0 release is still ongoing. There have been some pre-releases that list some of the key enhancement, e.g. see release notes at <https://github.com/dracor-org/dracor-api/releases/tag/v1.1.0-beta.8>",
+"new": "[^38]: The work on the 1.1.0 release is still ongoing. There have been some pre-releases that list some of the key enhancement, e.g. see release notes at <https://github.com/dracor-org/dracor-api/releases/tag/v1.1.0-beta.8>. For the final added features see the release notes of version 1.1.0, a draft can be accessed at <https://github.com/dracor-org/dracor-api/releases/tag/untagged-ef9a152d71f78ea9043a>."
+},
+{
+"file": "3-3.md",
+"old": "[^44]: Since API v1 the table",
+"new": "[^44]: Since API 1.0.0 the table"
+}
+]

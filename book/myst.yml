@@ -5,7 +5,6 @@ project:
   description: Executable editions of the CLS INFRA WP7 reports documenting DraCor
   authors: []   # TODO: per-report authors from the originals
   license: CC-BY-4.0   # TODO: confirm against Zenodo records
-  github: ""          # TODO: set once a remote exists
   jupyter: true       # code cells are executed at build time (python3 kernel)
   toc:
     - file: index.md
@@ -18,9 +17,21 @@ project:
     - title: "D7.3 On Versioning Living and Programmable Corpora"
       children:
         - file: reports/d7-3/index.md
-    - title: "D7.4 Implementation of Programmable Corpora"
+    - file: reports/d7-4/index.md
       children:
-        - file: reports/d7-4/index.md
+        - file: reports/d7-4/0.md
+        - file: reports/d7-4/1.md
+        - file: reports/d7-4/2.md
+        - file: reports/d7-4/3.md
+          children:
+            - file: reports/d7-4/3-1.md
+            - file: reports/d7-4/3-2.md
+            - file: reports/d7-4/3-3.md
+            - file: reports/d7-4/3-4.md
+            - file: reports/d7-4/3-5.md
+            - file: reports/d7-4/3-6.md
+        - file: reports/d7-4/4.md
+        - file: reports/d7-4/5.md
 site:
   template: book-theme
   options:
