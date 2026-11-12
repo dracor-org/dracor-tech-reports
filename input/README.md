@@ -20,5 +20,5 @@ The original download name is kept; a suffix states what the file is:
 | File (original download name) | Received | Status |
 |---|---|---|
 | `d7-1/CLSINFRA_D7.1_Report-Programmable-Corpora_Sec01–06.{docx,md}` | 2026-11-12 | pre-final draft (verified against Zenodo PDF) |
-| `d7-3/CLSINFRA_D7.3_Report.{docx,md}` | 2026-11-12 | pre-final draft (per Ingo) |
+| `d7-3/CLSINFRA_D7.3_Report.{docx,md}` | 2026-11-12 | submission version 2024-02-27; body text matches Zenodo PDF (verified) |
 | `d7-4/EU-Upload von CLSINFRA_D7.4_Report-Implementation-Programmable-Corpora.{docx,md}` | 2026-11-12 | submission version 2025-04-30 (verified against Zenodo PDF, which is the 2025-07-10 publication version) |
