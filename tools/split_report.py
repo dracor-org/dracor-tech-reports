@@ -45,8 +45,8 @@ def slug(title):
     m = re.match(r"^(\d+(?:\.\d+)*)\.?\s", title)
     if m:
         return m.group(1).replace(".", "-")
-    s = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
-    return s[:40]
+    # unnumbered chapters (e.g. "Excursus: ...", "References"): first word
+    return re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-").split("-")[0]
 
 
 def main():

@@ -15,7 +15,8 @@ rm -rf "$out/media"
 ( cd "$out" && pandoc "$tmp/marked.docx" -t gfm --wrap=none \
     --lua-filter="$OLDPWD/tools/gdocs_cleanup.lua" \
     --extract-media=. -o "$tmp/full.md" )
-.venv/bin/python -I tools/split_report.py "$tmp/full.md" "$out" --split-sections "$@"
+pages=$(.venv/bin/python -I tools/split_report.py "$tmp/full.md" "$out" --split-sections "$@")
+echo "$pages"
 rm -rf "$tmp"
 # re-apply the recorded manual alignment with the published PDF
 for e in alignment/"$id"_*.json; do
@@ -23,3 +24,5 @@ for e in alignment/"$id"_*.json; do
   echo "applying $e"
   .venv/bin/python -I tools/apply_edits.py "$e" "$out"
 done
+# renumber footnotes consecutively (MyST shows labels as numbers)
+.venv/bin/python -I tools/renumber_footnotes.py "$out" $pages

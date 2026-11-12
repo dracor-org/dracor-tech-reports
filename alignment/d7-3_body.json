@@ -1,0 +1,18 @@
+[
+{
+"file": "excursus.md",
+"old": "the initial source of the data of the corpus: *LINA*",
+"new": "the initial source of the data of corpus: *LINA*"
+},
+{
+"file": "3.md",
+"old": "[^13]: The glossary of the Git documentation",
+"new": "[^13]: The glossary iof the Git documentation"
+},
+{
+"file": "4.md",
+"old": "The following code snippet shows such a manifest with several corpora added:\n",
+"new": "The following code snippet shows such a manifest with several corpora added:[^manifest]\n\n[^manifest]: For an explanation of the manifest see <https://github.com/ingoboerner/stable-dracor/blob/df31c4e6b42d0e8c6ba294efe4d26aa473719ab2/notebooks/02_intro.ipynb>\n",
+"note": "In the source this footnote reference sits inside the code block (after the closing brace), where pandoc drops it; moved to the sentence introducing the code"
+}
+]

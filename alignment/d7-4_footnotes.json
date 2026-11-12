@@ -43,5 +43,11 @@
 "file": "3-3.md",
 "old": "[^44]: Since API v1 the table",
 "new": "[^44]: Since API 1.0.0 the table"
+},
+{
+"file": "3-4.md",
+"old": "## 3.4.1 Introduction\n",
+"new": "[^dtsnb]: This chapter is available as an executable Jupyter notebook in a slightly adapted form as “Distributed Text Services (DTS) in DraCor” at <https://github.com/dracor-org/dracor-notebooks/blob/main/dts/dts.ipynb>.\n\n## 3.4.1 Introduction[^dtsnb]\n",
+"note": "PDF attaches this footnote (no. 94) to the chapter heading 3.4; the page title cannot carry a footnote, so it is attached to 3.4.1"
 }
 ]

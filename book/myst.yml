@@ -14,9 +14,15 @@ project:
     - title: "D7.2 API Libraries for R and Python"
       children:
         - file: reports/d7-2/index.md
-    - title: "D7.3 On Versioning Living and Programmable Corpora"
+    - file: reports/d7-3/index.md
       children:
-        - file: reports/d7-3/index.md
+        - file: reports/d7-3/0.md
+        - file: reports/d7-3/1.md
+        - file: reports/d7-3/2.md
+        - file: reports/d7-3/3.md
+        - file: reports/d7-3/excursus.md
+        - file: reports/d7-3/4.md
+        - file: reports/d7-3/5.md
     - file: reports/d7-4/index.md
       children:
         - file: reports/d7-4/0.md
