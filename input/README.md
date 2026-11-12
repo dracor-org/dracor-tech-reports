@@ -12,9 +12,13 @@ Contents are **git-ignored** (only this README is tracked) until we've decided w
 | `misc/` | Anything unsorted — Claude will identify it |
 
 ## Naming convention
-Files whose name ends in `_GDRIVE-PREFINAL-DRAFT` were downloaded from Google Drive and are **not** the version published on Zenodo (they still contain TODOs and placeholders). The original download name is kept before the suffix. The final Word masters (which produced the Zenodo PDFs) are still being located; when found, add the suffix `_FINAL-MASTER`.
+The original download name is kept; a suffix states what the file is:
+- `_GDRIVE-PREFINAL-DRAFT`: Google Drive download, a draft **before** the published version (still has TODOs/placeholders).
+- `_GDRIVE-SUBMISSION-VERSION`: Google Drive download matching the version submitted to the EU; the Zenodo PDF is a slightly revised later version.
+- `_FINAL-MASTER`: the file that produced the Zenodo PDF. The final masters are still being located.
 
 | File (original download name) | Received | Status |
 |---|---|---|
 | `d7-1/CLSINFRA_D7.1_Report-Programmable-Corpora_Sec01–06.{docx,md}` | 2026-11-12 | pre-final draft (verified against Zenodo PDF) |
 | `d7-3/CLSINFRA_D7.3_Report.{docx,md}` | 2026-11-12 | pre-final draft (per Ingo) |
+| `d7-4/EU-Upload von CLSINFRA_D7.4_Report-Implementation-Programmable-Corpora.{docx,md}` | 2026-11-12 | submission version 2025-04-30 (verified against Zenodo PDF, which is the 2025-07-10 publication version) |
