@@ -40,5 +40,3 @@ project:
         - file: reports/d7-4/5.md
 site:
   template: book-theme
-  options:
-    folders: true
