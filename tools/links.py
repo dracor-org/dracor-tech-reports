@@ -1,4 +1,6 @@
-"""Keep DOI links as plain links in MyST.
+"""Keep links as published: same visible text, plain links.
+
+1. DOI links
 
 mystmd turns every link to doi.org into a citation (rendered as "Author (Year)"
 and collected in a reference list), which changes the published text. There is
@@ -10,8 +12,16 @@ link *targets* only; the visible text stays "https://doi.org/...".
   [text](https://doi.org/X)    -> [text](https://hdl.handle.net/X)
   bare https://doi.org/X       -> [https://doi.org/X](https://hdl.handle.net/X)
 
+2. URLs written out in the text
+mystmd replaces the text of a link whose text is the bare URL with a short
+form for GitHub and Wikipedia ("report/github_utils.py",
+"dracor-org/dracor-api#120", the article title) and shows percent-encoded
+URLs decoded. Here the link text is written out as the full URL, pre-formatted with
+the same invisible line-break hints (U+200B) mystmd adds to long URLs, so the
+page looks as usual but shows the URL as printed in the report.
+
 Code (fenced, indented, inline) is not touched. Idempotent.
-Usage: python tools/doi_links.py FILE.md ...
+Usage: python tools/links.py FILE.md ...
 """
 import re
 import sys
@@ -23,6 +33,29 @@ AUTOLINK = re.compile(r"<" + DOI + r">")
 TARGET = re.compile(r"\]\(" + DOI + r"\)")
 BARE = re.compile(r"(?<![<\[/])(?<!\]\()\b" + DOI + END)
 CODE = re.compile(r"(`[^`\n]*`)")
+SHORTENED = r"https?://(?:[a-z]+\.)?(?:github\.com|wikipedia\.org)/[^\s<>()\[\]]+?"
+ANY = r"https?://[^\s<>()\[\]]+?"
+URL_AUTOLINK = re.compile(r"<(https?://[^\s<>]+)>")    # all written-out URLs
+URL_SELF = re.compile(r"\[(" + ANY + r")\]\((\1)\)")
+URL_BARE = re.compile(r"(?<![<\[/(\w])(" + SHORTENED + r")" + END)
+
+
+def fmt(url):
+    """mystmd's formatLinkText: zero-width spaces as line-break hints."""
+    parts = url.split("//")
+    parts = [re.sub(r"([=&])", "\u200b\\1\u200b", re.sub(r"([/~.,\-_?#%])", "\u200b\\1", p)) for p in parts]
+    out = "//\u200b".join(parts)
+    out = re.sub("\u200b(.{1,2})$", r"\1", out)
+    return re.sub(r"([_*\[\]`<>])", r"\\\1", out)  # markdown escapes
+
+
+def protect(seg):
+    seg = URL_AUTOLINK.sub(lambda m: f"[{fmt(m.group(1))}](<{m.group(1)}>)", seg)
+    seg = URL_SELF.sub(lambda m: f"[{fmt(m.group(1))}]({m.group(1)})", seg)
+    parts = re.split(r"(\[[^\]]*\]\([^)]*\))", seg)
+    for i in range(0, len(parts), 2):
+        parts[i] = URL_BARE.sub(lambda m: f"[{fmt(m.group(1))}]({m.group(1)})", parts[i])
+    return "".join(parts)
 
 
 def fix_text(seg):
@@ -44,7 +77,7 @@ def fix(text):
             out.append(ln)
             continue
         segs = CODE.split(ln)
-        out.append("".join(s if i % 2 else fix_text(s) for i, s in enumerate(segs)))
+        out.append("".join(s if i % 2 else protect(fix_text(s)) for i, s in enumerate(segs)))
     return "\n".join(out)
 
 
@@ -56,4 +89,4 @@ for f in sys.argv[1:]:
     if new != t:
         n += 1
         p.write_text(new, encoding="utf8")
-print(f"doi links: {n} files changed")
+print(f"links: {n} files changed")

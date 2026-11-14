@@ -10,14 +10,14 @@ In addition to this report, this Deliverable D7.1 includes a technical prototype
 The main access points to the different components of the DraCor system are:
 
 (clsinfra-d71-about-this-deliverable-p3)=
-- Code and Data on GitHub: <https://github.com/dracor-org>
+- Code and Data on GitHub: [https://​github​.com​/dracor​-org](<https://github.com/dracor-org>)
 
-- DraCor Front-end: <https://dracor.org/>
+- DraCor Front-end: [https://​dracor​.org/](<https://dracor.org/>)
 
-- DraCor API: <https://dracor.org/doc/api>
+- DraCor API: [https://​dracor​.org​/doc​/api](<https://dracor.org/doc/api>)
 
 (clsinfra-d71-about-this-deliverable-p4)=
-Numerous scholars participate in the development of DraCor and in the curation of the corpora (the latter is not part of this Deliverable). For an overview, see <https://dracor.org/doc/credits>.
+Numerous scholars participate in the development of DraCor and in the curation of the corpora (the latter is not part of this Deliverable). For an overview, see [https://​dracor​.org​/doc​/credits](<https://dracor.org/doc/credits>).
 
 (clsinfra-d71-about-this-deliverable-p5)=
 For the DraCor platform as a whole, these persons are responsible:

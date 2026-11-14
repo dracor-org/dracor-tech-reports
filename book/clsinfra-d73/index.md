@@ -22,7 +22,7 @@ This is an HTML edition of CLS INFRA Deliverable D7.3 in the state archived on Z
 It was converted from the Google Docs source and aligned with the published PDF, including its typos.
 Page numbers, the table of contents and the lists of figures and tables are not reproduced.
 The executable version of the analyses in chapter 3 that accompanies the report is available at
-<https://github.com/dh-network/clsinfra-d73>.
+[https://​github​.com​/dh​-network​/clsinfra​-d73](<https://github.com/dh-network/clsinfra-d73>).
 Please cite the Zenodo record.
 :::
 

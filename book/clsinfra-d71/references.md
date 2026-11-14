@@ -7,7 +7,7 @@ label: clsinfra-d71-references
 Almas, Bridget, Hugh Cayless, Thibault Clérice, Vincent Jolivet, Pietro Maria Liuzzo, Jonathan Robie, Matteo Romanello, and Ian Scott. “Distributed Text Services (DTS): A Community-Built API to Publish and Consume Text Collections as Linked Data.” *Journal of the Text Encoding Initiative* (2023). [https://doi.org/10.4000/jtei.4352](https://hdl.handle.net/10.4000/jtei.4352).
 
 (clsinfra-d71-references-p2)=
-Bastian, Mathieu, Sebastien Heymann, and Mathieu Jacomy. “Gephi: An Open Source Software for Exploring and Manipulating Networks.” *International AAAI Conference on Weblogs and Social Media*. 2009. <https://gephi.org/publications/gephi-bastian-feb09.pdf>.
+Bastian, Mathieu, Sebastien Heymann, and Mathieu Jacomy. “Gephi: An Open Source Software for Exploring and Manipulating Networks.” *International AAAI Conference on Weblogs and Social Media*. 2009. [https://​gephi​.org​/publications​/gephi​-bastian​-feb09​.pdf](<https://gephi.org/publications/gephi-bastian-feb09.pdf>).
 
 (clsinfra-d71-references-p3)=
 Börner, Ingo, Peer Trilcke, Carsten Milling, Frank Fischer, and Henny Sluyter-Gäthje. “Dockerizing DraCor. A Container-Based Approach to Reproducibility in Computational Literary Studies.” In *DH2023. Book of Abstracts*. Graz, \[submitted\].
@@ -28,7 +28,7 @@ Chiarcos, Christian, John McCrae, Philipp Cimiano, and Christiane Fellbaum. “T
 Ďurčo, Matej, Vera Maria Charvat, Ingo Börner, Michał Mrugalski, and Carolin Odebrecht. “CLS INFRA D6.1: Inventory of Existing Data Sources and Formats.” Zenodo, 2022. [https://doi.org/10.5281/zenodo.7520287](https://hdl.handle.net/10.5281/zenodo.7520287).
 
 (clsinfra-d71-references-p9)=
-Fielding, Roy Thomas. *Architectural Styles and the Design of Network-Based Software Architectures*. University of California, 2000. <https://www.ics.uci.edu/~fielding/pubs/dissertation/fielding_dissertation.pdf>.
+Fielding, Roy Thomas. *Architectural Styles and the Design of Network-Based Software Architectures*. University of California, 2000. [https://​www​.ics​.uci​.edu​/​~fielding​/pubs​/dissertation​/fielding​\_dissertation​.pdf](<https://www.ics.uci.edu/~fielding/pubs/dissertation/fielding_dissertation.pdf>).
 
 (clsinfra-d71-references-p10)=
 Fischer, Frank, Ingo Börner, Mathias Göbel, Angelika Hechtl, Christopher Kittel, Carsten Milling, and Peer Trilcke. “Programmable Corpora: Introducing DraCor, an Infrastructure for the Research on European Drama.” In *DH2019. Book of Abstracts*. Utrecht, 2019. [https://doi.org/10.5281/ZENODO.4284002](https://hdl.handle.net/10.5281/ZENODO.4284002).
@@ -70,7 +70,7 @@ Montani, Ines, Matthew Honnibal, Sofie Van Landeghem, Adriane Boyd, Henning Pete
 Moretti, Franco. *Distant Reading*. London, New York: Verso, 2013.
 
 (clsinfra-d71-references-p23)=
-———. *Network Theory, Plot Analysis*. Stanford Literary Lab. 2011. <https://litlab.stanford.edu/LiteraryLabPamphlet2.pdf>
+———. *Network Theory, Plot Analysis*. Stanford Literary Lab. 2011. [https://​litlab​.stanford​.edu​/LiteraryLabPamphlet2​.pdf](<https://litlab.stanford.edu/LiteraryLabPamphlet2.pdf>)
 
 (clsinfra-d71-references-p24)=
 Mrugalski, Michał, Carolin Odebrecht, Vera Charvat, Ingo Börner, and Matej Durco. “CLS INFRA D5.1. Review of the Data Landscape.” Zenodo. 2022. [https://doi.org/10.5281/zenodo.6861022](https://hdl.handle.net/10.5281/zenodo.6861022).
@@ -115,16 +115,16 @@ Tavolato, Paul, and Karl Vincena. “A Prototyping Methodology and Its Tool.” 
 Trilcke, Peer. “Social Network Analysis (SNA) als Methode einer textempirischen Literaturwissenschaft.” *Empirie in Der Literaturwissenschaft*, ed. by Philip Ajouri, Katja Mellmann, and Christoph Rauen. Münster: Mentis, 2013: 201–47.
 
 (clsinfra-d71-references-p38)=
-Trilcke, Peer, Frank Fischer, Mathias Göbel, Dario Kampkaspar, and Christoph Kittel. “Network Dynamics, Plot Analysis: Approaching the Progressive Structuration of Literary Texts.” *DH2017. Book of Abstracts*. Montreal, 2017: 437–41. <https://dh2017.adho.org/abstracts/071/071.pdf>.
+Trilcke, Peer, Frank Fischer, Mathias Göbel, Dario Kampkaspar, and Christoph Kittel. “Network Dynamics, Plot Analysis: Approaching the Progressive Structuration of Literary Texts.” *DH2017. Book of Abstracts*. Montreal, 2017: 437–41. [https://​dh2017​.adho​.org​/abstracts​/071​/071​.pdf](<https://dh2017.adho.org/abstracts/071/071.pdf>).
 
 (clsinfra-d71-references-p39)=
 Trilcke, Peer, Christopher Kittel, Nils Reiter, Daria Maximova, and Frank Fischer. “Opening the Stage – A Quantitative Look at Stage Directions in German Drama.” In *DH2020. Book of Abstracts*, ed. by Laura Estill and Jennifer Guiliano, 2020. [https://dh2020.adho.org/wp-content/uploads/2020/07/337\\\_OpeningtheStageAQuantitativeLookatStageDirectionsinGermanDrama.html](https://dh2020.adho.org/wp-content/uploads/2020/07/337/_OpeningtheStageAQuantitativeLookatStageDirectionsinGermanDrama.html).
 
 (clsinfra-d71-references-p40)=
-Trilcke, Peer, Evgeniya Ustinova, Ingo Börner, Frank Fischer, and Carsten Milling. “Detecting Small Worlds in a Corpus of Thousands of Theatre Plays. A DraCor Study in Comparative Literary Network Analysis.” *Computational Drama Analysis: Achievements and Opportunities*, ed. by Melanie Andresen, Nils Reiter, Benjamin Krautter, and Janis Pagel, \[27 pages\]. Berlin: De Gruyter, \[in press\]. Preprint \[Conference Version, Cologne 2022\]: <https://github.com/dracor-org/small-world-paper/raw/conference-version/Detecting_Small_World_Networks__in_a_Huge_Multilingual_Corpus_of_Theater_Plays.pdf>.
+Trilcke, Peer, Evgeniya Ustinova, Ingo Börner, Frank Fischer, and Carsten Milling. “Detecting Small Worlds in a Corpus of Thousands of Theatre Plays. A DraCor Study in Comparative Literary Network Analysis.” *Computational Drama Analysis: Achievements and Opportunities*, ed. by Melanie Andresen, Nils Reiter, Benjamin Krautter, and Janis Pagel, \[27 pages\]. Berlin: De Gruyter, \[in press\]. Preprint \[Conference Version, Cologne 2022\]: [https://​github​.com​/dracor​-org​/small​-world​-paper​/raw​/conference​-version​/Detecting​\_Small​\_World​\_Networks​\_​\_in​\_a​\_Huge​\_Multilingual​\_Corpus​\_of​\_Theater​\_Plays​.pdf](<https://github.com/dracor-org/small-world-paper/raw/conference-version/Detecting_Small_World_Networks__in_a_Huge_Multilingual_Corpus_of_Theater_Plays.pdf>).
 
 (clsinfra-d71-references-p41)=
-Wendell, Inna. *A Statistical Analysis of Genre Dynamics: Evolution of the Russian Five-Act Comedy in Verse in the Eighteenth and Nineteenth Centuries*. UCLA, 2021. <https://escholarship.org/uc/item/9rr5k9p7>.
+Wendell, Inna. *A Statistical Analysis of Genre Dynamics: Evolution of the Russian Five-Act Comedy in Verse in the Eighteenth and Nineteenth Centuries*. UCLA, 2021. [https://​escholarship​.org​/uc​/item​/9rr5k9p7](<https://escholarship.org/uc/item/9rr5k9p7>).
 
 (clsinfra-d71-references-p42)=
 Wiedmer, Nathalie, Janis Pagel, and Nils Reiter. “Romeo, Freund Des Mercutio: Semi-Automatische Extraktion von Beziehungen zwischen Dramatischen Figuren.” *DHd2020. Book of Abstracts*. Paderborn, 2020: 194–200. [https://doi.org/10.5281/zenodo.4621778](https://hdl.handle.net/10.5281/zenodo.4621778).

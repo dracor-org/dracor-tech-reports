@@ -10,14 +10,14 @@ This Deliverable D7.2 was prepared as part of Work Package 7 in the CLS INFRA pr
 **R library “rdacor”**
 
 (clsinfra-d72-about-this-deliverable-p3)=
-- <https://cran.r-project.org/package=rdracor>
+- [https://​cran​.r​-project​.org​/package​=​rdracor](<https://cran.r-project.org/package=rdracor>)
 
-- <https://github.com/dracor-org/rdracor>
+- [https://​github​.com​/dracor​-org​/rdracor](<https://github.com/dracor-org/rdracor>)
 
 (clsinfra-d72-about-this-deliverable-p4)=
 **Python library “pydracor”**
 
 (clsinfra-d72-about-this-deliverable-p5)=
-- <https://pypi.org/project/pydracor>
+- [https://​pypi​.org​/project​/pydracor](<https://pypi.org/project/pydracor>)
 
-- <https://github.com/dracor-org/pydracor>
+- [https://​github​.com​/dracor​-org​/pydracor](<https://github.com/dracor-org/pydracor>)
