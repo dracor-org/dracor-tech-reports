@@ -15,11 +15,11 @@ The archived PDFs remain the version of record; please cite the Zenodo records.
 
 ## Status
 
-- **v0.9.0:** all four reports converted automatically from their original sources and checked against the published PDFs (text, footnote numbering, figures). **Not yet reviewed.**
-- **v1.0.0** (after review): faithful editions of the reports as published at the end of CLS INFRA.
-- **Afterwards:** the content will be updated to the current state of DraCor (current API, MCP access, etc.) and may be restructured into topic-based documentation. Tutorial-style code goes to [dracor-notebooks](https://github.com/dracor-org/dracor-notebooks) rather than being duplicated here. The v1 tag preserves the state of the reports for reference.
+- **0.9.0:** all four reports converted automatically from their original sources and checked against the published PDFs (text, footnote numbering, figures). **Not yet reviewed.**
+- **1.0.0** (after review): faithful editions of the reports as published at the end of CLS INFRA.
+- **Afterwards:** the content will be updated to the current state of DraCor (current API, MCP access, etc.) and may be restructured into topic-based documentation. Tutorial-style code goes to [dracor-notebooks](https://github.com/dracor-org/dracor-notebooks) rather than being duplicated here. The 1.0.0 tag preserves the state of the reports for reference.
 
-## What the v1 editions contain
+## What the 1.0 editions contain
 
 - The full text of each report, with its footnotes (numbered as in the PDF), figures, tables and code, as published, including typos.
 - Code is shown with its original output as of the report date; it is not re-executed.
