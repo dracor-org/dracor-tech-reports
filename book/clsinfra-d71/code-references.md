@@ -34,7 +34,7 @@ label: clsinfra-d71-code-references
 \<10\> [https://​github​.com​/dracor​-org​/dracor​-api​/blob​/3215fde0c34cc51a51386728775cbb3c058ae06f​/modules​/api​.xqm​#L65​-L87](<https://github.com/dracor-org/dracor-api/blob/3215fde0c34cc51a51386728775cbb3c058ae06f/modules/api.xqm#L65-L87>)
 
 (clsinfra-d71-code-references-p11)=
-\<11\> fhttps://github.com/dracor-org/dracor-api/blob/3215fde0c34cc51a51386728775cbb3c058ae06f/modules/api.xqm#L163-L190
+\<11\> [https://​github​.com​/dracor​-org​/dracor​-api​/blob​/3215fde0c34cc51a51386728775cbb3c058ae06f​/modules​/api​.xqm​#L163​-L190](https://github.com/dracor-org/dracor-api/blob/3215fde0c34cc51a51386728775cbb3c058ae06f/modules/api.xqm#L163-L190)
 
 (clsinfra-d71-code-references-p12)=
 \<12 [https://​github​.com​/dracor​-org​/dracor​-api​/blob​/3215fde0c34cc51a51386728775cbb3c058ae06f​/modules​/api​.xqm​#L143​-L161](<https://github.com/dracor-org/dracor-api/blob/3215fde0c34cc51a51386728775cbb3c058ae06f/modules/api.xqm#L143-L161>)

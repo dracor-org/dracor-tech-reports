@@ -1,5 +1,22 @@
 [
-  {"file": "references.md",
-   "old": "Revzina, Olga G., and Isaak I. Revzin. “Semiotičeskij Éksperiment Na Scene (Narušenie Postulata Normal’подо Obščenija Как Dramaturgi-Českij Priem).” *Trudy Po Znakovym Sistesnam* 5 (1971): 232–55.",
-   "new": "Revzina, Olga G., and Isaak I. Revzin. “Nekotorye Matematicheskie Metody Analiza Dramaturgicheskogo Postroeniia.” *Tochnye Metody v Issledovaniakh Kul’tury i Iskusstva (Materialy k Simpoziumy)*, ed. by Nauchnyi sovet po kibernetike AN SSSR, Vserossiiskoe teatral’noe obshchestvo, and NII Kul’tury Minesterstva RSFSR. Moscow, 1971. Vol. 2: 291–300."}
+ {
+  "file": "references.md",
+  "old": "Revzina, Olga G., and Isaak I. Revzin. “Semiotičeskij Éksperiment Na Scene (Narušenie Postulata Normal’подо Obščenija Как Dramaturgi-Českij Priem).” *Trudy Po Znakovym Sistesnam* 5 (1971): 232–55.",
+  "new": "Revzina, Olga G., and Isaak I. Revzin. “Nekotorye Matematicheskie Metody Analiza Dramaturgicheskogo Postroeniia.” *Tochnye Metody v Issledovaniakh Kul’tury i Iskusstva (Materialy k Simpoziumy)*, ed. by Nauchnyi sovet po kibernetike AN SSSR, Vserossiiskoe teatral’noe obshchestvo, and NII Kul’tury Minesterstva RSFSR. Moscow, 1971. Vol. 2: 291–300."
+ },
+ {
+  "file": "6.md",
+  "old": "While the structuring of API development by aligning the documentation of API functionalities and data returned in API responses with domain-specific ontologies",
+  "new": "While the structuring of API development by aligning, on the one hand, the documentation of API functionalities and data returned in API responses with, on the other hand, domain-specific ontologies"
+ },
+ {
+  "file": "6-1.md",
+  "old": "See code on GitHub: <https://github.com/ingoboerner/folger-shakespeare-openapi>. The re-documentation",
+  "new": "See code on GitHub: <https://github.com/ingoboerner/folger-shakespeare-openapi>. A fork of this repository is available at <https://github.com/dh-network/folger-shakespeare-openapi>. The re-documentation"
+ },
+ {
+  "file": "code-references.md",
+  "old": "\\<11\\> fhttps://",
+  "new": "\\<11\\> https://"
+ }
 ]

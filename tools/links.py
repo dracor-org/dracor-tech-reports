@@ -40,8 +40,15 @@ URL_SELF = re.compile(r"\[(" + ANY + r")\]\((\1)\)")
 URL_BARE = re.compile(r"(?<![<\[/(\w])(" + SHORTENED + r")" + END)
 
 
+PANDOC_ESCAPES = {"%5B": "[", "%5D": "]", "%7B": "{", "%7D": "}", "%7C": "|", "%5E": "^", "%60": "`"}
+
+
 def fmt(url):
-    """mystmd's formatLinkText: zero-width spaces as line-break hints."""
+    """mystmd's formatLinkText: zero-width spaces as line-break hints.
+
+    Characters that pandoc percent-encodes when it writes a URL ([ ] { } | ^ `)
+    are shown as printed in the report; other encodings (e.g. %C3%A4) stay."""
+    url = re.sub(r"%(5B|5D|7B|7D|7C|5E|60)", lambda m: PANDOC_ESCAPES["%" + m.group(1)], url, flags=re.I)
     parts = url.split("//")
     parts = [re.sub(r"([=&])", "\u200b\\1\u200b", re.sub(r"([/~.,\-_?#%])", "\u200b\\1", p)) for p in parts]
     out = "//\u200b".join(parts)

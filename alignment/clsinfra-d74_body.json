@@ -1,237 +1,262 @@
 [
-{
-"file": "1.md",
-"old": "Central is DraCorAPI v 1.0,",
-"new": "Central is the DraCorAPI version 1.0,"
-},
-{
-"file": "1.md",
-"old": "lightweight markup that can be converted automatically,",
-"new": "lightweight markup that facilitates conversion to XML,"
-},
-{
-"file": "2.md",
-"old": "in the DraCor plattform, and in detail discussed by",
-"new": "in the DraCor plattform, and discussed in detail by"
-},
-{
-"file": "2.md",
-"old": "following divergent standards and often are inaccessible",
-"new": "following divergent standards and often inaccessible"
-},
-{
-"file": "2.md",
-"old": "generally documented the status of the concept of “Programmable Corpora” developed in the course of the development of the DraCor prototype and conducted",
-"new": "offered a general discussion of the concept of Programmable Corpora and its development within the DraCor prototype, and conducted"
-},
-{
-"file": "2.md",
-"old": "made it possible for both seasoned and novice researchers to run",
-"new": "showed both seasoned and novice researchers how to run"
-},
-{
-"file": "2.md",
-"old": "user-friendly front end with a front that,",
-"new": "user-friendly front end with a frontend that,"
-},
-{
-"file": "2.md",
-"old": "one-click downloads of for example the TEI file",
-"new": "one-click downloads of e.g. the TEI file"
-},
-{
-"file": "3-2.md",
-"old": "TEI+XML, and PLAINTEXT, making",
-"new": "TEI+XML, and plain text (TXT), making"
-},
-{
-"file": "3-2.md",
-"old": "since API version v1[^10] typically structured as:\n\n    /{base-url}/api",
-"new": "since API version 1.0.0[^10] typically structured as:\n\n    {base-url}/api"
-},
-{
-"file": "3-2.md",
-"old": "from the “legacy” API v0 to the stable v1 of the DraCor API",
-"new": "from the “legacy” API 0.x to the stable release of the DraCor API"
-},
-{
-"file": "3-2.md",
-"old": "### Changes introduced with API Version 1",
-"new": "### Changes introduced with API version 1"
-},
-{
-"file": "3-2.md",
-"old": "#### Introducing the version number to all paths",
-"new": "#### Introducing a version prefix to all paths"
-},
-{
-"file": "3-2.md",
-"old": "The “legacy” API v0 can still be actively used",
-"new": "The “legacy” API can still be actively used"
-},
-{
-"file": "3-2.md",
-"old": "Currently, not explicitly including the version in the request URL results in the legacy API v0 being used as a fallback. This behaviour is implemented to provide ongoing support for older tools that still use the old API. This means",
-"new": "The URLs without a version prefix used before the stable release are currently redirected to their /v0 equivalents to support older tools still using the legacy API. This means"
-},
-{
-"file": "3-2.md",
-"old": "Preferably v1 should be used from hence on. We can not guarantee",
-"new": "Version 1 should be used from hence on. The legacy version 0 must not be used for new applications or research. It is only still around to support legacy applications that can not be updated to the new API version. We can not guarantee"
-},
-{
-"file": "3-2.md",
-"old": "With v1 the term \"cast\"",
-"new": "With version 1 the term \"cast\""
-},
-{
-"file": "3-2.md",
-"old": "The now valid request URL to get",
-"new": "The now valid URL to get"
-},
-{
-"file": "3-2.md",
-"old": "and to get the data as CSV a request must be sent to",
-"new": "and the data as CSV is available under"
-},
-{
-"file": "3-2.md",
-"old": "requested from the v1 endpoint as",
-"new": "requested from the version 1 endpoint as"
-},
-{
-"file": "3-2.md",
-"old": "When requesting via the v1 API from",
-"new": "When requesting via the version 1 API from"
-},
-{
-"file": "3-2.md",
-"old": "properties has been standardized.",
-"new": "properties has been unified."
-},
-{
-"file": "3-2.md",
-"old": "reflect the major change of v1:",
-"new": "reflect the major change of version 1:"
-},
-{
-"file": "3-2.md",
-"old": "Requesting the data from the v1 API at",
-"new": "Requesting the data from the DraCor API 1.0 at"
-},
-{
-"file": "3-2.md",
-"old": "The change introduced with API v1 removes",
-"new": "The change introduced with API 1.0 removes"
-},
-{
-"file": "3-2.md",
-"old": "With switching to major API v1. the deprecated",
-"new": "With switching to major API 1.0 the deprecated"
-},
-{
-"file": "3-2.md",
-"old": "### Enhancements introduced to the API with v1",
-"new": "### Enhancements introduced to the API with version 1"
-},
-{
-"file": "3-2.md",
-"old": "endpoint, introduced in API v1, was designed",
-"new": "endpoint, introduced in API 1.0, was designed"
-},
-{
-"file": "3-2.md",
-"old": "in the release notes of v1, this endpoint",
-"new": "in the release notes of 1.0.0, this endpoint"
-},
-{
-"file": "3-2.md",
-"old": "In the context of Version v1.0.0, the original",
-"new": "In the context of version 1.0.0, the original"
-},
-{
-"file": "3-2.md",
-"old": "### Minor fixes and enhancements since v1.0.0\n\nSince the release of v1.0.0,",
-"new": "### Minor fixes and enhancements since version 1.0.0\n\nSince the release of version 1.0.0,"
-},
-{
-"file": "3-2.md",
-"old": "Since v1.0.1[^32] the API",
-"new": "Since version 1.0.1[^32] the API"
-},
-{
-"file": "3-2.md",
-"old": "The latest stable release, v1.0.2[^37],",
-"new": "The latest stable release, 1.0.2[^37],"
-},
-{
-"file": "3-2.md",
-"old": "the upcoming v1.1.0 release. This next major version",
-"new": "the upcoming 1.1.0 release. This next minor version"
-},
-{
-"file": "3-2.md",
-"old": "### Planned additions and changes to the API v1.1.0[^38]\n\nDraCor API v1.1.0 will",
-"new": "### Planned additions and changes to the API 1.1.0[^38]\n\nDraCor API 1.1.0 will"
-},
-{
-"file": "3-2.md",
-"old": "now includes the GitHub hash of the version",
-"new": "now includes the Git commit hash of the version"
-},
-{
-"file": "3-3.md",
-"old": "the transition from version v0 to stable version v1 of the API",
-"new": "the transition from version 0.x to stable version 1.0.0 of the API"
-},
-{
-"file": "3-3.md",
-"old": "This version (v1) of the DraCor API Ontology",
-"new": "This version (1.0.0) of the DraCor API Ontology"
-},
-{
-"file": "3-3.md",
-"old": "with the v1 release of the API.",
-"new": "with the 1.0.0 release of the API."
-},
-{
-"file": "3-4.md",
-"old": "title: \"3.4 From Silos to Synergies: Implementing",
-"new": "title: \"3.4 Implementing"
-},
-{
-"file": "3-4.md",
-"old": "in most Linked Data Application this type",
-"new": "in most Linked Data applications this type"
-},
-{
-"file": "3-4.md",
-"old": "Linked Data aware client request RDF",
-"new": "Linked Data aware client requests RDF"
-},
-{
-"file": "3-4.md",
-"old": "providing the nav, the client API includes",
-"new": "providing the nav, the API includes"
-},
-{
-"file": "3-4.md",
-"old": "- `numberOfSegments`: Feature P37",
-"new": "- `numOfSegments`: Feature P37"
-},
-{
-"file": "3-6.md",
-"old": "(such as lemmatisation,",
-"new": "(such as lemmatization,"
-},
-{
-"file": "4.md",
-"old": "**Released DraCor API v1.0**",
-"new": "**Released DraCor API 1.0**"
-},
-{
-"file": "3-3.md",
-"old": "up-to-date with API version `v1.0.0-beta.1.`",
-"new": "up-to-date with API version `1.0.0-beta.1`."
-}
+ {
+  "file": "1.md",
+  "old": "Central is DraCorAPI v 1.0,",
+  "new": "Central is the DraCorAPI version 1.0,"
+ },
+ {
+  "file": "1.md",
+  "old": "lightweight markup that can be converted automatically,",
+  "new": "lightweight markup that facilitates conversion to XML,"
+ },
+ {
+  "file": "2.md",
+  "old": "in the DraCor plattform, and in detail discussed by",
+  "new": "in the DraCor plattform, and discussed in detail by"
+ },
+ {
+  "file": "2.md",
+  "old": "following divergent standards and often are inaccessible",
+  "new": "following divergent standards and often inaccessible"
+ },
+ {
+  "file": "2.md",
+  "old": "generally documented the status of the concept of “Programmable Corpora” developed in the course of the development of the DraCor prototype and conducted",
+  "new": "offered a general discussion of the concept of Programmable Corpora and its development within the DraCor prototype, and conducted"
+ },
+ {
+  "file": "2.md",
+  "old": "made it possible for both seasoned and novice researchers to run",
+  "new": "showed both seasoned and novice researchers how to run"
+ },
+ {
+  "file": "2.md",
+  "old": "user-friendly front end with a front that,",
+  "new": "user-friendly front end with a frontend that,"
+ },
+ {
+  "file": "2.md",
+  "old": "one-click downloads of for example the TEI file",
+  "new": "one-click downloads of e.g. the TEI file"
+ },
+ {
+  "file": "3-2.md",
+  "old": "TEI+XML, and PLAINTEXT, making",
+  "new": "TEI+XML, and plain text (TXT), making"
+ },
+ {
+  "file": "3-2.md",
+  "old": "since API version v1[^10] typically structured as:\n\n    /{base-url}/api",
+  "new": "since API version 1.0.0[^10] typically structured as:\n\n    {base-url}/api"
+ },
+ {
+  "file": "3-2.md",
+  "old": "from the “legacy” API v0 to the stable v1 of the DraCor API",
+  "new": "from the “legacy” API 0.x to the stable release of the DraCor API"
+ },
+ {
+  "file": "3-2.md",
+  "old": "### Changes introduced with API Version 1",
+  "new": "### Changes introduced with API version 1"
+ },
+ {
+  "file": "3-2.md",
+  "old": "#### Introducing the version number to all paths",
+  "new": "#### Introducing a version prefix to all paths"
+ },
+ {
+  "file": "3-2.md",
+  "old": "The “legacy” API v0 can still be actively used",
+  "new": "The “legacy” API can still be actively used"
+ },
+ {
+  "file": "3-2.md",
+  "old": "Currently, not explicitly including the version in the request URL results in the legacy API v0 being used as a fallback. This behaviour is implemented to provide ongoing support for older tools that still use the old API. This means",
+  "new": "The URLs without a version prefix used before the stable release are currently redirected to their /v0 equivalents to support older tools still using the legacy API. This means"
+ },
+ {
+  "file": "3-2.md",
+  "old": "Preferably v1 should be used from hence on. We can not guarantee",
+  "new": "Version 1 should be used from hence on. The legacy version 0 must not be used for new applications or research. It is only still around to support legacy applications that can not be updated to the new API version. We can not guarantee"
+ },
+ {
+  "file": "3-2.md",
+  "old": "With v1 the term \"cast\"",
+  "new": "With version 1 the term \"cast\""
+ },
+ {
+  "file": "3-2.md",
+  "old": "The now valid request URL to get",
+  "new": "The now valid URL to get"
+ },
+ {
+  "file": "3-2.md",
+  "old": "and to get the data as CSV a request must be sent to",
+  "new": "and the data as CSV is available under"
+ },
+ {
+  "file": "3-2.md",
+  "old": "requested from the v1 endpoint as",
+  "new": "requested from the version 1 endpoint as"
+ },
+ {
+  "file": "3-2.md",
+  "old": "When requesting via the v1 API from",
+  "new": "When requesting via the version 1 API from"
+ },
+ {
+  "file": "3-2.md",
+  "old": "properties has been standardized.",
+  "new": "properties has been unified."
+ },
+ {
+  "file": "3-2.md",
+  "old": "reflect the major change of v1:",
+  "new": "reflect the major change of version 1:"
+ },
+ {
+  "file": "3-2.md",
+  "old": "Requesting the data from the v1 API at",
+  "new": "Requesting the data from the DraCor API 1.0 at"
+ },
+ {
+  "file": "3-2.md",
+  "old": "The change introduced with API v1 removes",
+  "new": "The change introduced with API 1.0 removes"
+ },
+ {
+  "file": "3-2.md",
+  "old": "With switching to major API v1. the deprecated",
+  "new": "With switching to major API 1.0 the deprecated"
+ },
+ {
+  "file": "3-2.md",
+  "old": "### Enhancements introduced to the API with v1",
+  "new": "### Enhancements introduced to the API with version 1"
+ },
+ {
+  "file": "3-2.md",
+  "old": "endpoint, introduced in API v1, was designed",
+  "new": "endpoint, introduced in API 1.0, was designed"
+ },
+ {
+  "file": "3-2.md",
+  "old": "in the release notes of v1, this endpoint",
+  "new": "in the release notes of 1.0.0, this endpoint"
+ },
+ {
+  "file": "3-2.md",
+  "old": "In the context of Version v1.0.0, the original",
+  "new": "In the context of version 1.0.0, the original"
+ },
+ {
+  "file": "3-2.md",
+  "old": "### Minor fixes and enhancements since v1.0.0\n\nSince the release of v1.0.0,",
+  "new": "### Minor fixes and enhancements since version 1.0.0\n\nSince the release of version 1.0.0,"
+ },
+ {
+  "file": "3-2.md",
+  "old": "Since v1.0.1[^32] the API",
+  "new": "Since version 1.0.1[^32] the API"
+ },
+ {
+  "file": "3-2.md",
+  "old": "The latest stable release, v1.0.2[^37],",
+  "new": "The latest stable release, 1.0.2[^37],"
+ },
+ {
+  "file": "3-2.md",
+  "old": "the upcoming v1.1.0 release. This next major version",
+  "new": "the upcoming 1.1.0 release. This next minor version"
+ },
+ {
+  "file": "3-2.md",
+  "old": "### Planned additions and changes to the API v1.1.0[^38]\n\nDraCor API v1.1.0 will",
+  "new": "### Planned additions and changes to the API 1.1.0[^38]\n\nDraCor API 1.1.0 will"
+ },
+ {
+  "file": "3-2.md",
+  "old": "now includes the GitHub hash of the version",
+  "new": "now includes the Git commit hash of the version"
+ },
+ {
+  "file": "3-3.md",
+  "old": "the transition from version v0 to stable version v1 of the API",
+  "new": "the transition from version 0.x to stable version 1.0.0 of the API"
+ },
+ {
+  "file": "3-3.md",
+  "old": "This version (v1) of the DraCor API Ontology",
+  "new": "This version (1.0.0) of the DraCor API Ontology"
+ },
+ {
+  "file": "3-3.md",
+  "old": "with the v1 release of the API.",
+  "new": "with the 1.0.0 release of the API."
+ },
+ {
+  "file": "3-4.md",
+  "old": "title: \"3.4 From Silos to Synergies: Implementing",
+  "new": "title: \"3.4 Implementing"
+ },
+ {
+  "file": "3-4.md",
+  "old": "in most Linked Data Application this type",
+  "new": "in most Linked Data applications this type"
+ },
+ {
+  "file": "3-4.md",
+  "old": "Linked Data aware client request RDF",
+  "new": "Linked Data aware client requests RDF"
+ },
+ {
+  "file": "3-4.md",
+  "old": "providing the nav, the client API includes",
+  "new": "providing the nav, the API includes"
+ },
+ {
+  "file": "3-4.md",
+  "old": "- `numberOfSegments`: Feature P37",
+  "new": "- `numOfSegments`: Feature P37"
+ },
+ {
+  "file": "3-6.md",
+  "old": "(such as lemmatisation,",
+  "new": "(such as lemmatization,"
+ },
+ {
+  "file": "4.md",
+  "old": "**Released DraCor API v1.0**",
+  "new": "**Released DraCor API 1.0**"
+ },
+ {
+  "file": "3-3.md",
+  "old": "up-to-date with API version `v1.0.0-beta.1.`",
+  "new": "up-to-date with API version `1.0.0-beta.1`."
+ },
+ {
+  "file": "2.md",
+  "old": "which are often prepared in isolated projects",
+  "new": "which are often prepared in the context of isolated projects"
+ },
+ {
+  "file": "3-4.md",
+  "old": "that are returned as part of `Collection` object",
+  "new": "that are returned as part of the `Collection` object"
+ },
+ {
+  "file": "3-4.md",
+  "old": "providing its identifier in query parameter",
+  "new": "providing its identifier in the query parameter"
+ },
+ {
+  "file": "2.md",
+  "old": "“Programmable Corpora”, introduced 2019 by Fischer et al.",
+  "new": "“Programmable Corpora”, introduced in 2019 by Fischer et al."
+ },
+ {
+  "file": "3-2.md",
+  "old": "culminated in the release of a stable Version 1 in December 2023",
+  "new": "culminated in the release of a stable version 1.0.0 in December 2023"
+ }
 ]
