@@ -72,7 +72,7 @@ Every deviation from the source is therefore recorded in `alignment/` and reappl
 
 ## Licence
 
-The text and figures of the reports are licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), as are the Zenodo records. The licence for the conversion scripts in `tools/` has not been decided yet.
+The text and figures of the reports are licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), as are the Zenodo records. The code (the conversion scripts in `tools/` and the build workflow) is licensed under the [MIT License](LICENSE).
 
 ## Acknowledgement
 
