@@ -1,0 +1,10 @@
+[
+ ".writtenYear",
+ "writtenYear",
+ "printYear",
+ "premiereYear",
+ "dramas.*.author.name",
+ "author.name",
+ "author.warning",
+ "play"
+]

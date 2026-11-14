@@ -20,6 +20,8 @@ rm -rf "$out/media"
 pages=$(.venv/bin/python -I tools/split_report.py "$tmp/full.md" "$out" ${START:+--start "$START"} --split-sections "$@")
 echo "$pages"
 rm -rf "$tmp"
+# highlights visible in the PDF (alignment/<id>.highlights.json) and table cell colours
+.venv/bin/python -I tools/highlights.py "$id" $(printf "$out/%s " $pages)
 # re-apply the recorded manual alignment with the published PDF
 for e in alignment/"$id"_*.json; do
   [ -e "$e" ] || continue

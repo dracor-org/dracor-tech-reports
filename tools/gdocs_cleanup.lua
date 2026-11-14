@@ -63,9 +63,18 @@ function Blocks(blocks)
   return merge(blocks)
 end
 
--- Google Docs highlight marks (leftover review highlights): keep text only
+-- highlights: kept as <span class="mark">; tools/highlights.py keeps only the
+-- ones visible in the published PDF (alignment/<id>.highlights.json) and
+-- removes leftover review highlights
 function Span(s)
-  if s.classes:includes("mark") then return s.content end
+  if s.classes:includes("mark") then
+    if not pandoc.utils.stringify(s.content):match("%S") then return s.content end
+    -- keep the inner formatting (bold, italics, code)
+    local out = pandoc.List({ pandoc.RawInline("html", '<span class="mark">') })
+    out:extend(s.content)
+    out:insert(pandoc.RawInline("html", "</span>"))
+    return out
+  end
 end
 
 local function strip_inlines(inls)
@@ -239,6 +248,20 @@ local function unmerge_rows(rows, ncols)
     end
     for _, cell in ipairs(row.cells) do
       fill_pending()
+      -- paragraphs in a cell -> one plain text (pipe tables need Plain);
+      -- several paragraphs are joined with a space
+      local all_text = #cell.contents > 0
+      for _, blk in ipairs(cell.contents) do
+        if blk.t ~= "Para" and blk.t ~= "Plain" then all_text = false end
+      end
+      if all_text then
+        local inl = pandoc.List()
+        for n, blk in ipairs(cell.contents) do
+          if n > 1 then inl:insert(pandoc.Space()) end
+          inl:extend(blk.content)
+        end
+        cell.contents = { pandoc.Plain(inl) }
+      end
       local rs, cs = cell.row_span, cell.col_span
       cell.row_span, cell.col_span = 1, 1
       cells:insert(cell)

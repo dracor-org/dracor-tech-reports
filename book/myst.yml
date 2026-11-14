@@ -75,3 +75,4 @@ site:
     logo_dark: _static/dracor-logo-dark.png
     logo_text: DraCor Technical Reports
     favicon: _static/favicon.png
+    style: _static/custom.css   # highlights (.mark)

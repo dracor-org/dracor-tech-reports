@@ -11,6 +11,7 @@ word/document.xml:
 
 Usage: python tools/docx_mark_code.py IN.docx OUT.docx
 """
+import re
 import shutil
 import sys
 import tempfile
@@ -63,6 +64,7 @@ def set_rstyle(r):
 
 
 BOLD_MARK = "\u2063"  # invisible separator, removed again by the Lua filter
+SHADE_MARK = "\u2064"  # invisible plus, marks shaded table cells
 
 
 def is_bold(r):
@@ -105,6 +107,23 @@ def main(src, dst):
                         ts[0].text = BOLD_MARK + (ts[0].text or "")
                         ts[-1].text = (ts[-1].text or "") + BOLD_MARK
                     n_inline += 1
+    # table cell shading: put an invisible marker "\u2064RRGGBB\u2064" at the start of
+    # each shaded cell; tools/highlights.py turns it into a cell background
+    n_shd = 0
+    for tc in tree.iter(q("tc")):
+        shd = tc.find("w:tcPr/w:shd", NS)
+        fill = (shd.get(q("fill")) or "").upper() if shd is not None else ""
+        if not re.fullmatch(r"[0-9A-F]{6}", fill) or fill == "FFFFFF":
+            continue
+        p = tc.find("w:p", NS)
+        if p is None:
+            continue
+        r = etree.Element(q("r"))
+        t = etree.SubElement(r, q("t"))
+        t.text = SHADE_MARK + fill + SHADE_MARK
+        ppr = p.find("w:pPr", NS)
+        p.insert(list(p).index(ppr) + 1 if ppr is not None else 0, r)
+        n_shd += 1
     tree.write(str(doc), xml_declaration=True, encoding="UTF-8", standalone=True)
     st = tmp / "word/styles.xml"
     sty = etree.parse(str(st))
@@ -117,7 +136,7 @@ def main(src, dst):
             if f.is_file():
                 z.write(f, f.relative_to(tmp).as_posix())
     shutil.rmtree(tmp)
-    print(f"code paragraphs: {n_para}, inline code runs: {n_inline}", file=sys.stderr)
+    print(f"code paragraphs: {n_para}, inline code runs: {n_inline}, shaded cells: {n_shd}", file=sys.stderr)
 
 
 if __name__ == "__main__":
