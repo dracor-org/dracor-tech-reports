@@ -54,7 +54,7 @@ The files in the first commit to the GerDraCor repository re-include the full te
 Fig. 3 shows the development of the number of plays included in the corpus versions of GerDraCor. It can be seen from the plot that in 2018 the corpus slowly begins to grow.
 
 :::{figure} ./media/image8.png
-Fig. 3 Development of the number of documents in all versions in GerDraCor
+*Fig. 3 Development of the number of documents in all versions in GerDraCor*
 :::
 
 (clsinfra-d73-a-living-corpus-growing-p2)=
@@ -82,21 +82,21 @@ The “growth” of the corpus – to a certain extent – also results from div
 Soon after the consolidation of the DLINA/TextGrid data the first Non-DLINA play was added. Corpus version “a0bf290a517092e3db27b5f37c30776f596565cd” dating from January 6, 2018 includes the play *Die Überschwemmung* by Franz Philipp Adolph Schouwärt[^23]. The play’s digital source data does not stem from the TextGrid Repository as in the case of the data from the DLINA project[^24], but is converted from Wikisource[^25]. The following plot Fig. 4 shows the distribution of sources used over time.
 
 :::{figure} ./media/image4.png
-Fig. 4: Development of the Distribution of the Digital Sources of GerDraCor
+*Fig. 4: Development of the Distribution of the Digital Sources of GerDraCor*
 :::
 
 (clsinfra-d73-a-living-corpus-growing-p6)=
 In the course of its existence, the GerDraCor corpus also expands in terms of the time period covered (see Fig. 5).
 
 :::{figure} ./media/image6.png
-Fig. 5: Development of the time range (“YearNormalized”) covered by GerDraCor
+*Fig. 5: Development of the time range (“YearNormalized”) covered by GerDraCor*
 :::
 
 (clsinfra-d73-a-living-corpus-growing-p7)=
 There is a second parameter that can be used to visualize the “growth” of a corpus – the sum of the file sizes of all TEI-XML documents in a corpus version. As expected, the overall size grows when adding plays to the corpus, but in 2017 it can also be observed that the overall size shrinks even though the number of plays stay the same. Still, plotting the size can be used to visualize changes when the overall number of documents stays the same, as happened in 2017, for example, when the total file sizes suddenly dropped. In this year no new plays were added to the corpus (see Tab. 1).
 
 :::{figure} ./media/image10.png
-Fig. 6: Development of the sum of all document sizes in all versions in GerDraCor
+*Fig. 6: Development of the sum of all document sizes in all versions in GerDraCor*
 :::
 
 (clsinfra-d73-a-living-corpus-growing-p8)=
@@ -106,7 +106,7 @@ We don't want to go into detail about what happened in 2017. What is more import
 Plotting the file size over a period of time is also useful to understand if and when a single file has been subject to modification. As an example we plot the file size of each version of the XML file of the play *Emilia Galotti* by Gotthold Ephraim Lessing[^26] in Fig. 7.
 
 :::{figure} ./media/image7.png
-Fig. 7: Development of file size of the play Emila Galotti over all versions in GerDraCor
+*Fig. 7: Development of file size of the play Emila Galotti over all versions in GerDraCor*
 :::
 
 (clsinfra-d73-a-living-corpus-growing-p10)=

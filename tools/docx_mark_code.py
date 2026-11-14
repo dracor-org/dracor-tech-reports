@@ -62,6 +62,14 @@ def set_rstyle(r):
     rs.set(q("val"), "VerbatimChar")
 
 
+BOLD_MARK = "\u2063"  # invisible separator, removed again by the Lua filter
+
+
+def is_bold(r):
+    b = r.find("w:rPr/w:b", NS)
+    return b is not None and b.get(q("val"), "1") not in ("0", "false")
+
+
 STYLES = f"""
 <w:style xmlns:w="{W}" w:type="paragraph" w:customStyle="1" w:styleId="SourceCode">
   <w:name w:val="Source Code"/></w:style>
@@ -79,7 +87,7 @@ def main(src, dst):
     n_para = n_inline = 0
     for p in tree.iter(q("p")):
         ppr_style = p.find("w:pPr/w:pStyle", NS)
-        if ppr_style is not None and ppr_style.get(q("val"), "").startswith(("Heading", "Title", "berschrift", "Titel", "Verzeichnis", "Abbildungsverzeichnis", "Caption")):
+        if ppr_style is not None and ppr_style.get(q("val"), "").startswith(("Heading", "Title", "berschrift", "Titel", "Verzeichnis", "Abbildungsverzeichnis")):
             continue
         runs = [r for r in p.iter(q("r")) if run_text(r).strip()]
         if not runs:
@@ -92,6 +100,10 @@ def main(src, dst):
             for r, m in zip(runs, mono):
                 if m:
                     set_rstyle(r)
+                    if is_bold(r):  # bold code: mark it, gdocs_cleanup.lua makes Strong(Code)
+                        ts = r.findall("w:t", NS)
+                        ts[0].text = BOLD_MARK + (ts[0].text or "")
+                        ts[-1].text = (ts[-1].text or "") + BOLD_MARK
                     n_inline += 1
     tree.write(str(doc), xml_declaration=True, encoding="UTF-8", standalone=True)
     st = tmp / "word/styles.xml"

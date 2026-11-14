@@ -1,0 +1,27 @@
+[
+ {
+  "file": "1.md",
+  "old": "implements Distributed Text Services (DTS) endpoints",
+  "new": "implements *Distributed Text Services* (DTS) endpoints"
+ },
+ {
+  "file": "1.md",
+  "old": "introduced: EzDrama streamlines",
+  "new": "introduced: *EzDrama* streamlines"
+ },
+ {
+  "file": "1.md",
+  "old": "and Who-is? semi-automates",
+  "new": "and *Who-is?* semi-automates"
+ },
+ {
+  "file": "1.md",
+  "old": "to the external tools Voyant Tools, CLARIN Language-Resource Switchboard, and Gephi Lite.",
+  "new": "to the external tools *Voyant Tools*, *CLARIN Language-Resource Switchboard*, and *Gephi Lite*."
+ },
+ {
+  "file": "3-4.md",
+  "old": "includes a property member which holds",
+  "new": "includes a property `member` which holds"
+ }
+]

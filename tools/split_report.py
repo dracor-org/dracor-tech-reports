@@ -65,7 +65,7 @@ def main():
     # <img> + italic "Fig..." caption paragraph -> MyST figure; other <img> -> markdown image
     src = re.sub(
         r'<img src="([^"]+)"[^>]*/>\s*\n\s*\n\*?(Fig\.?\s*\d+[^\n]*?)\*?[ \t]*\n',
-        lambda m: f":::{{figure}} {m.group(1)}\n{m.group(2).strip()}\n:::\n",
+        lambda m: f":::{{figure}} {m.group(1)}\n*{m.group(2).strip()}*\n:::\n",
         src,
     )
     src = re.sub(r'<img src="([^"]+)"[^>]*/>', r"![](\1)", src)
@@ -74,8 +74,8 @@ def main():
         r"\|\s*\|\s*\|\n\|[-:| ]+\|\n"
         r"\| !\[\]\(([^)]+)\) \| !\[\]\(([^)]+)\) \|\n"
         r"\| (Fig\.[^|\n]*?) \| (Fig\.[^|\n]*?) \|\n",
-        lambda m: f":::{{figure}} {m.group(1)}\n{m.group(3).strip()}\n:::\n\n"
-                  f":::{{figure}} {m.group(2)}\n{m.group(4).strip()}\n:::\n",
+        lambda m: f":::{{figure}} {m.group(1)}\n*{m.group(3).strip()}*\n:::\n\n"
+                  f":::{{figure}} {m.group(2)}\n*{m.group(4).strip()}*\n:::\n",
         src,
     )
     # pipe tables with an empty header and a bold first row: use that row as header
@@ -85,6 +85,10 @@ def main():
             return m.group(0)
         return "| " + " | ".join(c[2:-2] for c in cells) + " |\n" + m.group(1)
     src = re.sub(r"^\|(?:\s*\|)+\n(\|[-:| ]+\|\n)(\|.*\|)\n", promote, src, flags=re.M)
+    # captions are italic in the published reports (Word caption style is lost
+    # in the conversion): caption paragraphs of tables and code listings
+    src = re.sub(r"(?m)^((?:Tab|Fig)\.\s*\d+:[^\n]*?)[ \t]*$",
+                 lambda m: m.group(0) if m.group(1).endswith("*") else f"*{m.group(1)}*", src)
     lines = escape_md(src.splitlines())
 
     # collect footnote definitions (possibly multi-line, indented continuation)

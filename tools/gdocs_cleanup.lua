@@ -85,8 +85,22 @@ function Header(h)
   return h
 end
 
+-- links: drop the underline Google Docs adds, but keep bold (D7.4 marks the
+-- changed parts of example URLs in bold)
+local function strip_underline(inls)
+  local res = pandoc.List()
+  for _, i in ipairs(inls) do
+    if i.t == "Underline" then
+      res:extend(strip_underline(i.content))
+    else
+      res:insert(i)
+    end
+  end
+  return res
+end
+
 function Link(l)
-  l.content = strip_inlines(l.content)
+  l.content = strip_underline(l.content)
   return l
 end
 
@@ -97,7 +111,9 @@ function Span(s)
   return span_mark(s)
 end
 
--- merge adjacent inline code (Word splits monospace runs)
+-- merge adjacent inline code (Word splits monospace runs); bold code was
+-- marked with U+2063 by docx_mark_code.py and becomes Strong(Code)
+local BOLD = "\u{2063}"
 function Inlines(inls)
   local res = pandoc.List()
   for _, i in ipairs(inls) do
@@ -108,7 +124,26 @@ function Inlines(inls)
       res:insert(i)
     end
   end
-  return res
+  for k, i in ipairs(res) do
+    if i.t == "Code" and i.text:find(BOLD, 1, true) then
+      local bold = i.text:sub(1, #BOLD) == BOLD and i.text:sub(-#BOLD) == BOLD
+      i.text = i.text:gsub(BOLD, "")
+      if bold then res[k] = pandoc.Strong({ i }) end
+    elseif i.t == "Str" and i.text:find(BOLD, 1, true) then
+      i.text = i.text:gsub(BOLD, "")
+    end
+  end
+  -- adjacent bold pieces (e.g. bold text + bold code) -> one Strong
+  local merged = pandoc.List()
+  for _, i in ipairs(res) do
+    local prev = merged[#merged]
+    if i.t == "Strong" and prev and prev.t == "Strong" then
+      prev.content:extend(i.content)
+    else
+      merged:insert(i)
+    end
+  end
+  return merged
 end
 
 -- Section labels and internal links.

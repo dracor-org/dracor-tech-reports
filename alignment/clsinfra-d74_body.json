@@ -232,7 +232,7 @@
  {
   "file": "3-3.md",
   "old": "up-to-date with API version `v1.0.0-beta.1.`",
-  "new": "up-to-date with API version `1.0.0-beta.1`."
+  "new": "up-to-date with API version 1.0.0-beta.1."
  },
  {
   "file": "2.md",
@@ -258,5 +258,15 @@
   "file": "3-2.md",
   "old": "culminated in the release of a stable Version 1 in December 2023",
   "new": "culminated in the release of a stable version 1.0.0 in December 2023"
+ },
+ {
+  "file": "3-2.md",
+  "old": "redirected to their /v0 equivalents",
+  "new": "redirected to their `/v0` equivalents"
+ },
+ {
+  "file": "3-2.md",
+  "old": "returned by the api/v1/corpora/{corpusname}/plays/{playname} endpoint.",
+  "new": "returned by the `api/v1/corpora/{corpusname}/plays/{playname}` endpoint."
  }
 ]
