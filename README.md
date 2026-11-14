@@ -13,11 +13,14 @@ Together, the reports document the DraCor system (corpora, API, front end, metri
 
 The archived PDFs remain the version of record; please cite the Zenodo records.
 
-## Status
+## Status and roadmap
 
-- **0.9.0:** all four reports converted automatically from their original sources and checked against the published PDFs (text, footnote numbering, figures). **Not yet reviewed.**
-- **1.0.0** (after review): faithful editions of the reports as published at the end of CLS INFRA.
-- **Afterwards:** the content will be updated to the current state of DraCor (current API, MCP access, etc.) and may be restructured into topic-based documentation. Tutorial-style code goes to [dracor-notebooks](https://github.com/dracor-org/dracor-notebooks) rather than being duplicated here. The 1.0.0 tag preserves the state of the reports for reference.
+The work proceeds in phases. Each phase has a [milestone](https://github.com/dracor-org/dracor-tech-reports/milestones); the issues document how the reports are turned into current documentation.
+
+1. **0.9.0** (current): all four reports converted automatically from their original sources and checked against the published PDFs (text, footnote numbering, figures). **Not yet reviewed.**
+2. **[1.0.0 Reviewed edition](https://github.com/dracor-org/dracor-tech-reports/milestone/1):** faithful editions of the reports as published at the end of CLS INFRA, after review. Only corrections towards the published text; no additions. Archived on Zenodo as a citable snapshot.
+3. **[1.x Enhanced reports](https://github.com/dracor-org/dracor-tech-reports/milestone/2):** the report texts stay unchanged; clearly marked editorial notes and links are added: cross-references between the reports, links to executable material (e.g. [dracor-notebooks](https://github.com/dracor-org/dracor-notebooks), ExploreCor, the DraCor Textbook) and notes where DraCor has changed since a report was written.
+4. **[2.0.0 Current documentation](https://github.com/dracor-org/dracor-tech-reports/milestone/3):** topic-based documentation of the current DraCor system, built from the report content and kept up to date with DraCor releases. Tutorial-style code goes to notebooks rather than being duplicated. The report editions remain available unchanged as an archive.
 
 ## What the 1.0 editions contain
 
