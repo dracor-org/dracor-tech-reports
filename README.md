@@ -43,7 +43,7 @@ cd book
 ## Repository layout
 
 ```
-book/          the Jupyter Book: myst.yml, start page, reports/d7-N/ (one page per chapter or section)
+book/          the Jupyter Book: myst.yml, start page, clsinfra-d7N/ (one folder per report, one page per chapter or section)
 tools/         conversion scripts (docx -> MyST)
 alignment/     recorded corrections that align the converted text with the published PDFs
 input/         drop zone for the original sources (not part of the repository)

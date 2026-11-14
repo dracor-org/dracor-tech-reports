@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
-# Convert a Google-Docs-exported report (.docx) into MyST pages under book/reports/<id>/
+# Convert a Google-Docs/Word report (.docx) into MyST pages under book/<id>/
+# <id> = project + deliverable, e.g. clsinfra-d71; it is also the URL path, the
+# prefix of all labels (clsinfra-d71-5-3-3-2, …-p4) and of alignment/<id>_*.json
 # Usage: tools/convert_report.sh <id> <input.docx> [chapters to split at level 2...]
-# Example: tools/convert_report.sh d7-4 "input/d7-4/....docx" 3
+# Example: tools/convert_report.sh clsinfra-d74 "input/d7-4/....docx" 3
 # Re-running overwrites the generated pages (not index.md); the recorded alignment
 # with the Zenodo PDF (alignment/<id>_*.json) is re-applied automatically.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 id="$1"; src="$2"; shift 2
-out="book/reports/$id"
+out="book/$id"
 tmp="$(mktemp -d)"
 .venv/bin/python -I tools/docx_mark_code.py "$src" "$tmp/marked.docx"
 mkdir -p "$out"

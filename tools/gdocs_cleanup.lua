@@ -131,9 +131,7 @@ end
 function Pandoc(doc)
   local prefix = doc.meta.rtfr_prefix and pandoc.utils.stringify(doc.meta.rtfr_prefix)
   if not prefix then return doc end
-  -- label prefix: "d7-1" -> "clsinfra-d71" (project + deliverable; the hyphen
-  -- after the deliverable number starts the section number)
-  prefix = "clsinfra-" .. prefix:gsub("-", "")
+  -- the prefix is the report id, e.g. "clsinfra-d71" (project + deliverable)
   local bynum, byid = {}, {}
   for _, b in ipairs(doc.blocks) do
     if b.t == "Header" then
