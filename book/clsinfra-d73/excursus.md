@@ -1,20 +1,20 @@
 ---
 title: "Excursus: An Algorithmic Archaeology of a Living Corpus: GerDraCor as a Dynamic Epistemic Object"
-label: clsinfra-d73-excursus-an-algorithmic-archaeology-of-a-living-corpus-gerdracor-as-a-dynamic-epistemic-object
+label: clsinfra-d73-excursus
 ---
 
-(clsinfra-d73-excursus-an-algorithmic-archaeology-of-a-living-corpus-gerdracor-as-a-dynamic-epistemic-object-p1)=
+(clsinfra-d73-excursus-p1)=
 While we have shown in section 3.2 that Git commits can be used as stable references to states of living corpora and thus as a mechanism for transparent versioning, in section 3.3 we explored in more detail which information about corpora and corpus files can be queried using the GitHub API. Our explorations in section 3.3 have also demonstrated that the use of Git not only provides a powerful versioning tool for CLS corpora, but that this use of the API generates a large amount of additional (technical) metadata about corpora. In the following excursus, we use this metadata for a more in-depth analysis of the genesis of a DraCor corpus (namely “GerDraCor”), taking the Git commit history as a basis.
 
-(clsinfra-d73-excursus-an-algorithmic-archaeology-of-a-living-corpus-gerdracor-as-a-dynamic-epistemic-object-p2)=
+(clsinfra-d73-excursus-p2)=
 The aim of this analysis is twofold: On the one hand, we want to use a particular example to demonstrate what it means that in CLS we are occasionally dealing with living corpora. On the other hand, we want to use the analysis to illustrate the power of Git-based versioning and the metadata generated in this process, not least against the background that this might also open up new research perspectives on the epistemic objects of CLS (now understood as technical objects). An executable (and thus fully reproducible) version of this analysis is accessible on GitHub. In addition, we are convinced that an in-depth knowledge of the constitution of a data set is necessary when wanting to repeat the research based on this data. If the data has changed in the meantime between the original research and the repeating research knowing what exactly changed in the data can help to understand possible deviations in results and allows that informed counter-measures can be taken.
 
-(clsinfra-d73-excursus-an-algorithmic-archaeology-of-a-living-corpus-gerdracor-as-a-dynamic-epistemic-object-p3)=
+(clsinfra-d73-excursus-p3)=
 As already mentioned, the “German Drama Corpus” (“GerDraCor”) will serve as our showcase. The corpus’ repository is available at
 
     https://github.com/dracor-org/gerdracor 
 
-(clsinfra-d73-excursus-an-algorithmic-archaeology-of-a-living-corpus-gerdracor-as-a-dynamic-epistemic-object-p4)=
+(clsinfra-d73-excursus-p4)=
 The first step in the analysis is downloading all the data on all GerDraCor commits from the repository on GitHub. Depending on the overall number of commits this can take a long time. In a previous attempt, fetching and preparing the data of GerDraCor from GitHub took 53min 29s. The following analysis will be based on data that was downloaded on February 14th, 2024. At the time of the download the GitHub Repository `“gerdracor” `contained 1492 commits. We consider each commit being an implicit version of a corpus and therefore we have 1492 versions of “German Drama Corpus” up to this date.
 
 (clsinfra-d73-the-birth-of-gerdracor)=

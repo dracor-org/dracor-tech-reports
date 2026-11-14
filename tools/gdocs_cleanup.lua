@@ -125,17 +125,34 @@ local function heading_label(prefix, h)
     num = num:gsub("%.$", "")
     return prefix .. "-" .. num:gsub("%.", "-"), num
   end
-  return prefix .. "-" .. h.identifier, nil
+  -- unnumbered: short, readable id (MyST ignores labels over ~100 characters,
+  -- and paragraph labels add "-pNN"): text before a colon, at most 50 chars
+  local ident = h.identifier
+  local short = txt:match("^([^:]+):")
+  if short or #ident > 50 then
+    ident = (short or txt):lower():gsub("[^a-z0-9]+", "-"):gsub("^-+", ""):gsub("-+$", "")
+    if #ident > 50 then ident = ident:sub(1, 50):gsub("-[^-]*$", "") end
+  end
+  -- same normalisation as MyST applies to ids: [a-z0-9-] only
+  ident = ident:lower():gsub("[^a-z0-9]+", "-"):gsub("^-+", ""):gsub("-+$", "")
+  return prefix .. "-" .. ident, nil
 end
 
 function Pandoc(doc)
   local prefix = doc.meta.rtfr_prefix and pandoc.utils.stringify(doc.meta.rtfr_prefix)
   if not prefix then return doc end
   -- the prefix is the report id, e.g. "clsinfra-d71" (project + deliverable)
-  local bynum, byid = {}, {}
-  for _, b in ipairs(doc.blocks) do
-    if b.t == "Header" then
+  local bynum, byid, used, labels = {}, {}, {}, {}
+  for i, b in ipairs(doc.blocks) do
+    if b.t == "Header" and pandoc.utils.stringify(b.content):match("%S") then
       local lab, num = heading_label(prefix, b)
+      if used[lab] then  -- e.g. two sections with the same title
+        local k = 2
+        while used[lab .. "-" .. k] do k = k + 1 end
+        lab = lab .. "-" .. k
+      end
+      used[lab] = true
+      labels[i] = lab
       if num then bynum[num] = lab end
       byid[b.identifier] = lab
     end
@@ -153,9 +170,9 @@ function Pandoc(doc)
     end,
   })
   local out = pandoc.List()
-  for _, b in ipairs(doc.blocks) do
-    if b.t == "Header" and pandoc.utils.stringify(b.content):match("%S") then
-      out:insert(pandoc.RawBlock("markdown", "(" .. heading_label(prefix, b) .. ")="))
+  for i, b in ipairs(doc.blocks) do
+    if labels[i] then
+      out:insert(pandoc.RawBlock("markdown", "(" .. labels[i] .. ")="))
     end
     out:insert(b)
   end
