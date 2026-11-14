@@ -18,7 +18,7 @@ keywords: [Computation Literary Studies, DraCor, Reproducible Research, Docker, 
 
 :::{note} About this edition
 This is an HTML edition of CLS INFRA Deliverable D7.3 in the state archived on Zenodo
-(version 1.0.0): [doi:10.5281/zenodo.11081934](https://doi.org/10.5281/zenodo.11081934) (CC BY 4.0).
+(version 1.0.0): [doi:10.5281/zenodo.11081934](https://hdl.handle.net/10.5281/zenodo.11081934) (CC BY 4.0).
 It was converted from the Google Docs source and aligned with the published PDF, including its typos.
 Page numbers, the table of contents and the lists of figures and tables are not reproduced.
 The executable version of the analyses in chapter 3 that accompanies the report is available at

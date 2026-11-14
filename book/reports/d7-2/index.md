@@ -20,7 +20,7 @@ license: CC-BY-4.0
 
 :::{note} About this edition
 This is an HTML edition of CLS INFRA Deliverable D7.2 in the state archived on Zenodo:
-[doi:10.5281/zenodo.15302236](https://doi.org/10.5281/zenodo.15302236) (CC BY 4.0).
+[doi:10.5281/zenodo.15302236](https://hdl.handle.net/10.5281/zenodo.15302236) (CC BY 4.0).
 It was converted from the Google Docs source and aligned with the published PDF.
 Page numbers and the table of contents are not reproduced.
 The [appendices](#d7-2-appendix) (the documentation of “rdracor” 0.7.2 and “pydracor” 1.0.0

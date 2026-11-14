@@ -24,7 +24,7 @@ keywords: [Computational Literary Studies, Corpora, Drama, API, Programmable Cor
 :::{note} About this edition
 This is an HTML edition of CLS INFRA Deliverable D7.4 in the state of the
 "Version for Publication" (2025-07-10) archived on Zenodo:
-[doi:10.5281/zenodo.15301341](https://doi.org/10.5281/zenodo.15301341) (CC BY 4.0).
+[doi:10.5281/zenodo.15301341](https://hdl.handle.net/10.5281/zenodo.15301341) (CC BY 4.0).
 It was converted from the Google Docs source and aligned with the published PDF.
 Page numbers, the analytical table of contents and the print layout are not reproduced.
 Please cite the Zenodo record.

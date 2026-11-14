@@ -4,7 +4,7 @@ label: d7-2-appendix
 ---
 
 :::{note} Appendices not reproduced
-The appendices of the report are the documentation of the two libraries as generated at the time of the report (February 2023). They are not reproduced here; see the [PDF on Zenodo](https://doi.org/10.5281/zenodo.15302236). The libraries are developed further at <https://github.com/dracor-org/rdracor> and <https://github.com/dracor-org/pydracor>, where their current documentation can be found.
+The appendices of the report are the documentation of the two libraries as generated at the time of the report (February 2023). They are not reproduced here; see the [PDF on Zenodo](https://hdl.handle.net/10.5281/zenodo.15302236). The libraries are developed further at <https://github.com/dracor-org/rdracor> and <https://github.com/dracor-org/pydracor>, where their current documentation can be found.
 :::
 
 (d7-2-appendix-1-rdracor-readme)=
