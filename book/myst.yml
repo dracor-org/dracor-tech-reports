@@ -69,3 +69,8 @@ site:
   template: book-theme
   options:
     folders: true
+    # DraCor branding as in the DraCor Textbook (logo/favicon from ../dracor-textbook)
+    logo: _static/dracor-logo.png
+    logo_dark: _static/dracor-logo-dark.png
+    logo_text: DraCor Technical Reports
+    favicon: _static/favicon.png
