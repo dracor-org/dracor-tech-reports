@@ -23,5 +23,6 @@ The original download name is kept; a suffix states what the file is:
 | `d7-1/CLSINFRA_D7.1_Report-Programmable-Corpora_final_v0.8.docx` | 2026-11-14 (Time Machine) | **final master** (Word, 2023-02-27, tracked changes; accepted = Zenodo PDF, 279 footnotes; one bibliography entry differs). Could not be renamed (permission denied), original name kept |
 | `d7-1/CLSINFRA_D7.1_Report-Programmable-Corpora_final_v0.7.1 (1).docx` | 2026-11-14 (Time Machine) | previous version (2023-02-26), superseded by v0.8 |
 | `d7-1/DraCor_Components_Chart_v2.drawio{,.png}` | 2026-11-14 (Time Machine) | source of Fig. 08 "Overview of the DraCor System" (PNG = image12 in v0.8) |
+| `d7-2/D7.2.{docx,md}` | 2026-11-14 (GDrive) | final Google Doc; report text = Zenodo PDF pp. 1–12 (verified); appendices only in the PDF |
 | `d7-3/CLSINFRA_D7.3_Report.{docx,md}` | 2026-11-12 | submission version 2024-02-27; body text matches Zenodo PDF (verified) |
 | `d7-4/EU-Upload von CLSINFRA_D7.4_Report-Implementation-Programmable-Corpora.{docx,md}` | 2026-11-12 | submission version 2025-04-30 (verified against Zenodo PDF, which is the 2025-07-10 publication version) |

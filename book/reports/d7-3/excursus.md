@@ -47,9 +47,8 @@ Fig. 3 Development of the number of documents in all versions in GerDraCor
 
 Tab. 1 lists the number of plays being added per year from 2016 to 2024 which shows that from 2020 (the year the COVID19 pandemic began) onwards the number of plays added per year grows significantly.
 
-|          |         |             |
+| year | new | overall |
 |:--------:|---------|-------------|
-| **year** | **new** | **overall** |
 |   2016   | 465     | 465         |
 |   2017   | 0       | 465         |
 |   2018   | 7       | 472         |

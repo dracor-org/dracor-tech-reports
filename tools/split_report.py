@@ -78,6 +78,13 @@ def main():
                   f":::{{figure}} {m.group(2)}\n{m.group(4).strip()}\n:::\n",
         src,
     )
+    # pipe tables with an empty header and a bold first row: use that row as header
+    def promote(m):
+        cells = [c.strip() for c in m.group(2).strip().strip("|").split("|")]
+        if not all(re.fullmatch(r"\*\*.+\*\*", c) for c in cells):
+            return m.group(0)
+        return "| " + " | ".join(c[2:-2] for c in cells) + " |\n" + m.group(1)
+    src = re.sub(r"^\|(?:\s*\|)+\n(\|[-:| ]+\|\n)(\|.*\|)\n", promote, src, flags=re.M)
     lines = escape_md(src.splitlines())
 
     # collect footnote definitions (possibly multi-line, indented continuation)

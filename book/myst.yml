@@ -35,9 +35,12 @@ project:
         - file: reports/d7-1/7.md
         - file: reports/d7-1/references.md
         - file: reports/d7-1/code-references.md
-    - title: "D7.2 API Libraries for R and Python"
+    - file: reports/d7-2/index.md
       children:
-        - file: reports/d7-2/index.md
+        - file: reports/d7-2/about.md
+        - file: reports/d7-2/1.md
+        - file: reports/d7-2/2.md
+        - file: reports/d7-2/appendix.md
     - file: reports/d7-3/index.md
       children:
         - file: reports/d7-3/0.md
