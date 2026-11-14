@@ -280,8 +280,22 @@ local function unmerge_rows(rows, ncols)
   return out
 end
 
+local SHADE = "\u{2064}"
+local function has_shading(t)
+  local found = false
+  t:walk({ Str = function(s) if s.text:find(SHADE, 1, true) then found = true end end })
+  return found
+end
+
 function Table(t)
-  if not has_note(t) then return nil end
+  if not has_note(t) then
+    -- tables with coloured cells: write as HTML (pipe tables cannot carry
+    -- cell colours); tools/highlights.py turns the markers into styles
+    if has_shading(t) then
+      return pandoc.RawBlock("html", pandoc.write(pandoc.Pandoc({ t }), "html"))
+    end
+    return nil
+  end
   local ncols = #t.colspecs
   t.head.rows = unmerge_rows(t.head.rows, ncols)
   for _, b in ipairs(t.bodies) do
