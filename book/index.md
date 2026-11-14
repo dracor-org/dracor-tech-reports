@@ -20,5 +20,3 @@ All four reports were converted automatically from their original sources and ch
 The editions reproduce the published text with its footnotes, figures, tables and code (shown with the original output as of the report date). Page layout, page numbers, tables of contents and the appendices of D7.2 are not reproduced.
 
 Source and conversion workflow: [github.com/dracor-org/dracor-tech-reports](https://github.com/dracor-org/dracor-tech-reports)
-
-The CLS INFRA project received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No 101004984.

@@ -66,6 +66,8 @@ project:
         - file: reports/d7-4/5.md
 site:
   template: book-theme
+  parts:
+    footer: _parts/footer.md   # funding acknowledgement, wording as in the DraCor Textbook
   options:
     folders: true
     # DraCor branding as in the DraCor Textbook (logo/favicon from ../dracor-textbook)
