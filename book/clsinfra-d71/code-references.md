@@ -456,4 +456,5 @@ label: clsinfra-d71-code-references
 (clsinfra-d71-code-references-p151)=
 \<151\> [https://​github​.com​/dh​-network​/postdata​-2​-dracor​-api​/blob​/5e41840e45b127d201e8a9580d4daa0e0ec81399​/pd​\_corpus​.py​#L339​-L374](<https://github.com/dh-network/postdata-2-dracor-api/blob/5e41840e45b127d201e8a9580d4daa0e0ec81399/pd_corpus.py#L339-L374>)
 
-<u>\<152\> https://github.com/dracor-org/dracor-frontend/blob/0db19a0b59f8253bccf688dcec70539d64099752/src/components/PlayMetrics.js</u>
+(clsinfra-d71-code-references-p152)=
+\<152\> [https://​github​.com​/dracor​-org​/dracor​-frontend​/blob​/0db19a0b59f8253bccf688dcec70539d64099752​/src​/components​/PlayMetrics​.js](<https://github.com/dracor-org/dracor-frontend/blob/0db19a0b59f8253bccf688dcec70539d64099752/src/components/PlayMetrics.js>)
