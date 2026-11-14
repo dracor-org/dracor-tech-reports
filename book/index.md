@@ -19,4 +19,6 @@ All four reports were converted automatically from their original sources and ch
 
 The editions reproduce the published text with its footnotes, figures, tables and code (shown with the original output as of the report date). Page layout, page numbers, tables of contents and the appendices of D7.2 are not reproduced.
 
+For more recent developments, see the [DraCor Blog](https://blog.dracor.org) (e.g. [your own DraCor on the EOSC EU Node](https://blog.dracor.org/posts/cloud-credits-coding-agent-own-dracor-eosc-eu-node/)) and the [DraCor Textbook](https://dracor-org.github.io/dracor-textbook/).
+
 Source and conversion workflow: [github.com/dracor-org/dracor-tech-reports](https://github.com/dracor-org/dracor-tech-reports)
