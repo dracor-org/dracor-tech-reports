@@ -29,13 +29,13 @@ from pathlib import Path
 
 DOI = r"https?://(?:dx\.|www\.)?doi\.org/(10\.[^\s<>()\[\]]+?)"
 END = r"(?=[.,;:]?(?:[\s)\]]|$))"
-AUTOLINK = re.compile(r"<" + DOI + r">")
+AUTOLINK = re.compile(r"(?<!\\)<" + DOI + r">")
 TARGET = re.compile(r"\]\(" + DOI + r"\)")
 BARE = re.compile(r"(?<![<\[/])(?<!\]\()\b" + DOI + END)
 CODE = re.compile(r"(`[^`\n]*`)")
 SHORTENED = r"https?://(?:[a-z]+\.)?(?:github\.com|wikipedia\.org)/[^\s<>()\[\]]+?"
 ANY = r"https?://[^\s<>()\[\]]+?"
-URL_AUTOLINK = re.compile(r"<(https?://[^\s<>]+)>")    # all written-out URLs
+URL_AUTOLINK = re.compile(r"(?<!\\)<(https?://[^\s<>\\]+)>")  # all written-out URLs (not \<…\>)
 URL_SELF = re.compile(r"\[(" + ANY + r")\]\((\1)\)")
 URL_BARE = re.compile(r"(?<![<\[/(\w])(" + SHORTENED + r")" + END)
 
