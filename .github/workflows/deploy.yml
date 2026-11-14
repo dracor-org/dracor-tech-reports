@@ -38,6 +38,8 @@ jobs:
           BASE_URL: /${{ github.event.repository.name }}
         # no --execute: the report editions show code with its original output
         run: jupyter-book build --html
+      - name: Inline custom CSS (the theme does not link site.options.style)
+        run: python tools/inject_css.py book/_build/html
       - name: Redirects from the old report URLs (/reports/d7-N/...)
         run: python tools/make_redirects.py book/_build/html "/${{ github.event.repository.name }}"
       - uses: actions/upload-pages-artifact@v3
