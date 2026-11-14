@@ -1,4 +1,5 @@
 ---
+label: d7-1-index
 title: "D7.1 On Programmable Corpora"
 subtitle: "Report and Prototype (DraCor)"
 short_title: "D7.1 On Programmable Corpora"

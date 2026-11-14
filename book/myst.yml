@@ -1,11 +1,10 @@
 # Jupyter Book 2 (mystmd) configuration
 version: 1
 project:
-  title: DraCor Technical Reports (working title "RTFR")
-  description: Executable editions of the CLS INFRA WP7 reports documenting DraCor
-  authors: []   # TODO: per-report authors from the originals
-  license: CC-BY-4.0   # TODO: confirm against Zenodo records
-  jupyter: true       # code cells are executed at build time (python3 kernel)
+  title: DraCor Technical Reports
+  description: HTML editions of the CLS INFRA work package 7 reports documenting DraCor
+  github: https://github.com/dracor-org/dracor-tech-reports
+  license: CC-BY-4.0
   toc:
     - file: index.md
     - file: reports/d7-1/index.md

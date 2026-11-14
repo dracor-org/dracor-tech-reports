@@ -1,28 +1,24 @@
----
-kernelspec:
-  name: python3
-  display_name: Python 3
----
 # DraCor Technical Reports
 
-*Working title. Under construction.*
+HTML editions of the four technical reports on [DraCor](https://dracor.org) written in work package 7 of the EU project [CLS INFRA](https://clsinfra.io) (Computational Literary Studies Infrastructure, 2021–2025).
 
-This book provides executable, updatable editions of the reports produced by work package 7 of the
-[CLS INFRA](https://clsinfra.io) project, which document the [DraCor](https://dracor.org) system.
+Together, the reports document the DraCor system (corpora, API, front end, metrics, versioning and research software) at different points in time.
 
-Version 1 aims to be faithful to the published reports (archived on Zenodo); later versions may
-evolve into maintained documentation.
+| Report | Title | Year | Archived version |
+|---|---|---|---|
+| [D7.1](#d7-1-index) | On Programmable Corpora. Report and Prototype (DraCor) | 2023 | [10.5281/zenodo.7664964](https://doi.org/10.5281/zenodo.7664964) |
+| [D7.2](#d7-2-index) | API Libraries for R and Python for the Programmable Corpora Prototype “DraCor”: “rdracor” and “pydracor” | 2023 | [10.5281/zenodo.15302236](https://doi.org/10.5281/zenodo.15302236) |
+| [D7.3](#d7-3-index) | On Versioning Living and Programmable Corpora | 2024 | [10.5281/zenodo.11081934](https://doi.org/10.5281/zenodo.11081934) |
+| [D7.4](#d7-4-index) | Report on the Implementation of Programmable Corpora | 2025 | [10.5281/zenodo.15301341](https://doi.org/10.5281/zenodo.15301341) |
 
-| Report | Year | Archived version |
-|---|---|---|
-| D7.1 On Programmable Corpora | 2023 | [10.5281/zenodo.7664964](https://doi.org/10.5281/zenodo.7664964) |
-| D7.2 API Libraries for R and Python: rdracor and pydracor | 2023 | [10.5281/zenodo.15302236](https://doi.org/10.5281/zenodo.15302236) |
-| D7.3 On Versioning Living and Programmable Corpora | 2024 | [10.5281/zenodo.11081934](https://doi.org/10.5281/zenodo.11081934) |
-| D7.4 Report on the Implementation of Programmable Corpora | 2025 | [10.5281/zenodo.15301341](https://doi.org/10.5281/zenodo.15301341) |
+The archived PDFs on Zenodo remain the version of record; please cite them.
 
-```{code-cell} python
-# Build-time execution check: live DraCor API
-import requests
-info = requests.get("https://dracor.org/api/v1/info", timeout=30).json()
-print(info.get("name"), info.get("version"))
-```
+:::{warning} Status: 0.9.0, not yet reviewed
+All four reports were converted automatically from their original sources and checked against the published PDFs (text, footnote numbering, figures). A review is pending; version 1.0.0 will follow it.
+:::
+
+The editions reproduce the published text with its footnotes, figures, tables and code (shown with the original output as of the report date). Page layout, page numbers, tables of contents and the appendices of D7.2 are not reproduced.
+
+Source and conversion workflow: [github.com/dracor-org/dracor-tech-reports](https://github.com/dracor-org/dracor-tech-reports)
+
+The CLS INFRA project received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No 101004984.
