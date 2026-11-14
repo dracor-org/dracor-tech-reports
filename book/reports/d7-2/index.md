@@ -1,5 +1,5 @@
 ---
-label: d7-2-index
+label: clsinfra-d72-index
 title: "D7.2 API Libraries for R and Python"
 subtitle: "for the Programmable Corpora Prototype “DraCor”: “rdracor” and “pydracor”"
 short_title: "D7.2 API Libraries for R and Python"
@@ -23,7 +23,7 @@ This is an HTML edition of CLS INFRA Deliverable D7.2 in the state archived on Z
 [doi:10.5281/zenodo.15302236](https://hdl.handle.net/10.5281/zenodo.15302236) (CC BY 4.0).
 It was converted from the Google Docs source and aligned with the published PDF.
 Page numbers and the table of contents are not reproduced.
-The [appendices](#d7-2-appendix) (the documentation of “rdracor” 0.7.2 and “pydracor” 1.0.0
+The [appendices](#clsinfra-d72-appendix) (the documentation of “rdracor” 0.7.2 and “pydracor” 1.0.0
 as generated in February 2023) are only available in the PDF.
 Please cite the Zenodo record.
 :::

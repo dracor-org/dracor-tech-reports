@@ -6,10 +6,10 @@ Together, the reports document the DraCor system (corpora, API, front end, metri
 
 | Report | Title | Year | Archived version |
 |---|---|---|---|
-| [D7.1](#d7-1-index) | On Programmable Corpora. Report and Prototype (DraCor) | 2023 | [10.5281/zenodo.7664964](https://hdl.handle.net/10.5281/zenodo.7664964) |
-| [D7.2](#d7-2-index) | API Libraries for R and Python for the Programmable Corpora Prototype “DraCor”: “rdracor” and “pydracor” | 2023 | [10.5281/zenodo.15302236](https://hdl.handle.net/10.5281/zenodo.15302236) |
-| [D7.3](#d7-3-index) | On Versioning Living and Programmable Corpora | 2024 | [10.5281/zenodo.11081934](https://hdl.handle.net/10.5281/zenodo.11081934) |
-| [D7.4](#d7-4-index) | Report on the Implementation of Programmable Corpora | 2025 | [10.5281/zenodo.15301341](https://hdl.handle.net/10.5281/zenodo.15301341) |
+| [D7.1](#clsinfra-d71-index) | On Programmable Corpora. Report and Prototype (DraCor) | 2023 | [10.5281/zenodo.7664964](https://hdl.handle.net/10.5281/zenodo.7664964) |
+| [D7.2](#clsinfra-d72-index) | API Libraries for R and Python for the Programmable Corpora Prototype “DraCor”: “rdracor” and “pydracor” | 2023 | [10.5281/zenodo.15302236](https://hdl.handle.net/10.5281/zenodo.15302236) |
+| [D7.3](#clsinfra-d73-index) | On Versioning Living and Programmable Corpora | 2024 | [10.5281/zenodo.11081934](https://hdl.handle.net/10.5281/zenodo.11081934) |
+| [D7.4](#clsinfra-d74-index) | Report on the Implementation of Programmable Corpora | 2025 | [10.5281/zenodo.15301341](https://hdl.handle.net/10.5281/zenodo.15301341) |
 
 The archived PDFs on Zenodo remain the version of record; please cite them.
 

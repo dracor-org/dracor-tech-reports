@@ -1,5 +1,5 @@
 ---
-label: d7-3-index
+label: clsinfra-d73-index
 title: "D7.3 On Versioning Living and Programmable Corpora"
 subtitle: "(Executable) Report and Prototypes for Reproducible Research"
 short_title: "D7.3 Versioning Living and Programmable Corpora"

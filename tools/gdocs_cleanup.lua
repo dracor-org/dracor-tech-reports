@@ -112,7 +112,8 @@ function Inlines(inls)
 end
 
 -- Section labels and internal links.
--- Every heading gets a MyST label "<prefix>-<section number>" (dots -> dashes),
+-- Every heading gets a MyST label "<prefix>-<section number>" (dots -> dashes;
+-- e.g. "clsinfra-d71-5-3-3-2"),
 -- unnumbered headings "<prefix>-<pandoc identifier>". Internal links are
 -- resolved by the section number in their text ("section 5.3.3.2"), since the
 -- Google Docs bookmark ids they point to are not in the document; else by
@@ -130,6 +131,9 @@ end
 function Pandoc(doc)
   local prefix = doc.meta.rtfr_prefix and pandoc.utils.stringify(doc.meta.rtfr_prefix)
   if not prefix then return doc end
+  -- label prefix: "d7-1" -> "clsinfra-d71" (project + deliverable; the hyphen
+  -- after the deliverable number starts the section number)
+  prefix = "clsinfra-" .. prefix:gsub("-", "")
   local bynum, byid = {}, {}
   for _, b in ipairs(doc.blocks) do
     if b.t == "Header" then

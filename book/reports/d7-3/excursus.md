@@ -1,50 +1,63 @@
 ---
 title: "Excursus: An Algorithmic Archaeology of a Living Corpus: GerDraCor as a Dynamic Epistemic Object"
-label: d7-3-excursus-an-algorithmic-archaeology-of-a-living-corpus-gerdracor-as-a-dynamic-epistemic-object
+label: clsinfra-d73-excursus-an-algorithmic-archaeology-of-a-living-corpus-gerdracor-as-a-dynamic-epistemic-object
 ---
 
+(clsinfra-d73-excursus-an-algorithmic-archaeology-of-a-living-corpus-gerdracor-as-a-dynamic-epistemic-object-p1)=
 While we have shown in section 3.2 that Git commits can be used as stable references to states of living corpora and thus as a mechanism for transparent versioning, in section 3.3 we explored in more detail which information about corpora and corpus files can be queried using the GitHub API. Our explorations in section 3.3 have also demonstrated that the use of Git not only provides a powerful versioning tool for CLS corpora, but that this use of the API generates a large amount of additional (technical) metadata about corpora. In the following excursus, we use this metadata for a more in-depth analysis of the genesis of a DraCor corpus (namely “GerDraCor”), taking the Git commit history as a basis.
 
+(clsinfra-d73-excursus-an-algorithmic-archaeology-of-a-living-corpus-gerdracor-as-a-dynamic-epistemic-object-p2)=
 The aim of this analysis is twofold: On the one hand, we want to use a particular example to demonstrate what it means that in CLS we are occasionally dealing with living corpora. On the other hand, we want to use the analysis to illustrate the power of Git-based versioning and the metadata generated in this process, not least against the background that this might also open up new research perspectives on the epistemic objects of CLS (now understood as technical objects). An executable (and thus fully reproducible) version of this analysis is accessible on GitHub. In addition, we are convinced that an in-depth knowledge of the constitution of a data set is necessary when wanting to repeat the research based on this data. If the data has changed in the meantime between the original research and the repeating research knowing what exactly changed in the data can help to understand possible deviations in results and allows that informed counter-measures can be taken.
 
+(clsinfra-d73-excursus-an-algorithmic-archaeology-of-a-living-corpus-gerdracor-as-a-dynamic-epistemic-object-p3)=
 As already mentioned, the “German Drama Corpus” (“GerDraCor”) will serve as our showcase. The corpus’ repository is available at
 
     https://github.com/dracor-org/gerdracor 
 
+(clsinfra-d73-excursus-an-algorithmic-archaeology-of-a-living-corpus-gerdracor-as-a-dynamic-epistemic-object-p4)=
 The first step in the analysis is downloading all the data on all GerDraCor commits from the repository on GitHub. Depending on the overall number of commits this can take a long time. In a previous attempt, fetching and preparing the data of GerDraCor from GitHub took 53min 29s. The following analysis will be based on data that was downloaded on February 14th, 2024. At the time of the download the GitHub Repository `“gerdracor” `contained 1492 commits. We consider each commit being an implicit version of a corpus and therefore we have 1492 versions of “German Drama Corpus” up to this date.
 
-(d7-3-the-birth-of-gerdracor)=
+(clsinfra-d73-the-birth-of-gerdracor)=
 ### The “Birth” of GerDraCor
 
+(clsinfra-d73-the-birth-of-gerdracor-p1)=
 From the commit history of the repository of the German Drama Corpus we can retrieve the very first commit. This initial commit to the repository which is identified by the SHA value “`2f4e830a852960eba8e05d6b622b3bd64911ab6`9” was committed by Mathias Göbel (during a hackathon at the University of Potsdam) and dates from 2 December, 2016.
 
     https://github.com/dracor-org/gerdracor/commit/2f4e830a852960eba8e05d6b622b3bd64911ab69 
 
+(clsinfra-d73-the-birth-of-gerdracor-p2)=
 With this commit, 465 TEI-XML files were added to a data folder with the name `data`. The commit message “inital commit: converted text based on LINA and TextGrid” already reveals the initial source of the data of corpus: *LINA* is short for “Literary Network Analysis” and was the format developed in the project DLINA.[^18]
 
+(clsinfra-d73-the-birth-of-gerdracor-p3)=
 In the DLINA project, research on dramatic texts was based on derivatives of the full-texts taken from the TextGrid Repository[^19]. The “LINA files” included only metadata on the dramatic texts (e.g. date of publication) and very detailed structural information on the segmentation (acts, scenes); this included also information on which characters appear in which structural segment. Thus, the “Zwischenformat”[^20]-Files (i.e., files in an intermediary format) allowed for the extraction of networks based on the co-occurence of characters in the same structural segment (cf. Dario Kampkaspar, Trilcke 2015). The DLINA project officially released their corpus of 465 plays before the Digital Humanities DH2015 conference in Sydney. This corpus is also referred to as “Sydney Corpus” or the corpus with the “Codename Sydney”. Unlike the current practice in DraCor, DLINA used Git Tags[^21] on corpus data. In the GitHub Repository of the DLINA Corpus, there is a single tagged version `15.07-sydney`:
 
     https://github.com/dlina/project/releases/tag/15.07-sydney 
 
+(clsinfra-d73-the-birth-of-gerdracor-p4)=
 The respective commit
 
     https://github.com/dlina/project/commit/cca01b501a1a294772c2a6a9fe38944b930eea03 
 
+(clsinfra-d73-the-birth-of-gerdracor-p5)=
 adds a RelaxNG schema[^22] describing the “Zwischenformat”. Although this dates from August 31, 2016, this version number was already introduced more than a year before in a blog post dating from June 20, 2015. The blog post explains it as such:
 
+(clsinfra-d73-the-birth-of-gerdracor-p6)=
 > “The version number 15.07 is referring to ‘July 2015’ as we’re going to present our results at the DH2015 conference on July 2, 2015. Further versions of the DLINA Corpus will receive according versioning numbers.” (Fischer, Trilcke 2015)
 
+(clsinfra-d73-the-birth-of-gerdracor-p7)=
 The files in the first commit to the GerDraCor repository re-include the full text of the play from the TextGrid Repository source in the element `<text>`, but in the `<teiHeader>` contain the metadata of the LINA files. This metadata is transformed from the custom intermediary format (“Zwischenformat”) that was used in the DLINA project to an XML encoding following the Guidelines of the Text Encoding Initiative (TEI Guidelines).
 
-(d7-3-a-living-corpus-growing)=
+(clsinfra-d73-a-living-corpus-growing)=
 ### A Living Corpus “Growing”
 
+(clsinfra-d73-a-living-corpus-growing-p1)=
 Fig. 3 shows the development of the number of plays included in the corpus versions of GerDraCor. It can be seen from the plot that in 2018 the corpus slowly begins to grow.
 
 :::{figure} ./media/image8.png
 Fig. 3 Development of the number of documents in all versions in GerDraCor
 :::
 
+(clsinfra-d73-a-living-corpus-growing-p2)=
 Tab. 1 lists the number of plays being added per year from 2016 to 2024 which shows that from 2020 (the year the COVID19 pandemic began) onwards the number of plays added per year grows significantly.
 
 | year | new | overall |
@@ -59,95 +72,121 @@ Tab. 1 lists the number of plays being added per year from 2016 to 2024 which sh
 |   2023   | 66      | 663         |
 |   2024   | 15      | 678         |
 
+(clsinfra-d73-a-living-corpus-growing-p3)=
 *Tab. 1: Plays added to GerDraCor per year*
 
+(clsinfra-d73-a-living-corpus-growing-p4)=
 The “growth” of the corpus – to a certain extent – also results from diversifying the digital sources of which data is included.
 
+(clsinfra-d73-a-living-corpus-growing-p5)=
 Soon after the consolidation of the DLINA/TextGrid data the first Non-DLINA play was added. Corpus version “a0bf290a517092e3db27b5f37c30776f596565cd” dating from January 6, 2018 includes the play *Die Überschwemmung* by Franz Philipp Adolph Schouwärt[^23]. The play’s digital source data does not stem from the TextGrid Repository as in the case of the data from the DLINA project[^24], but is converted from Wikisource[^25]. The following plot Fig. 4 shows the distribution of sources used over time.
 
 :::{figure} ./media/image4.png
 Fig. 4: Development of the Distribution of the Digital Sources of GerDraCor
 :::
 
+(clsinfra-d73-a-living-corpus-growing-p6)=
 In the course of its existence, the GerDraCor corpus also expands in terms of the time period covered (see Fig. 5).
 
 :::{figure} ./media/image6.png
 Fig. 5: Development of the time range (“YearNormalized”) covered by GerDraCor
 :::
 
+(clsinfra-d73-a-living-corpus-growing-p7)=
 There is a second parameter that can be used to visualize the “growth” of a corpus – the sum of the file sizes of all TEI-XML documents in a corpus version. As expected, the overall size grows when adding plays to the corpus, but in 2017 it can also be observed that the overall size shrinks even though the number of plays stay the same. Still, plotting the size can be used to visualize changes when the overall number of documents stays the same, as happened in 2017, for example, when the total file sizes suddenly dropped. In this year no new plays were added to the corpus (see Tab. 1).
 
 :::{figure} ./media/image10.png
 Fig. 6: Development of the sum of all document sizes in all versions in GerDraCor
 :::
 
+(clsinfra-d73-a-living-corpus-growing-p8)=
 We don't want to go into detail about what happened in 2017. What is more important to us at this moment is something else that clarifies our understanding of living corpora. Living corpora are not only characterized by the fact that the number of documents they contain is growing. Rather, it is also the case that the documents from living corpora themselves can change (e.g. grow or shrink), because they are enriched by additional mark-up or homogenized, which can lead, for example, to mark-up or metadata being deleted from the files (as was the case in 2017, to solve this cliffhanger).
 
+(clsinfra-d73-a-living-corpus-growing-p9)=
 Plotting the file size over a period of time is also useful to understand if and when a single file has been subject to modification. As an example we plot the file size of each version of the XML file of the play *Emilia Galotti* by Gotthold Ephraim Lessing[^26] in Fig. 7.
 
 :::{figure} ./media/image7.png
 Fig. 7: Development of file size of the play Emila Galotti over all versions in GerDraCor
 :::
 
+(clsinfra-d73-a-living-corpus-growing-p10)=
 The change in color of the plotted line indicates the moment when the file was renamed from `1772-Lessing_Gotthold_Ephraim-Emilia_Galotti-lina.xml`[^27] to the still valid `lessing-emilia-galotti.xml`. In the initial version of the XML file the metadata in the `<teiHeader>` was based on the LINA file, but not in the format (“Zwischenformat”) that is available as `lina88` on the DLINA website[^28], but already encoded following the TEI Guidelines. The reference to DLINA is still kept in the TEI version in the `<publicationStmt>` encoded as an `<idno>` element until the version dated ‘12 May, 2019’ (see the section “Batch Edits as Major Revisions” below). A reference to the TextGrid source is contained in the `<sourceDesc>` and tagged as `<bibl type="digitalSource">` including a link to TextGrid in an `<idno>` element.[^29]
 
+(clsinfra-d73-a-living-corpus-growing-p11)=
 The full text content taken from TextGrid was included in the initial version in the `<text>` element without any line breaks and indentations on a single line only. The text is formatted in the third version (“`106fefd275c20c5b673a326e89647f7511ba9f76”`[^30]) which results in the steep increase of the file size. Overall, there are 26 versions in which the XML file of *Emilia Galotti* is modified.[^31]
 
-(d7-3-batch-edits-as-major-revisions)=
+(clsinfra-d73-batch-edits-as-major-revisions)=
 ### Batch Edits as Major Revisions
 
+(clsinfra-d73-batch-edits-as-major-revisions-p1)=
 One can differentiate (at least) two major types of modifications to the files in a corpus version:
 
+(clsinfra-d73-batch-edits-as-major-revisions-p2)=
 - Edits of single files only that bring a single file in shape;
 
 - “Batch” edits that change all files at once.
 
+(clsinfra-d73-batch-edits-as-major-revisions-p3)=
 The first edits need to be analyzed on an individual level. On a broader scale it must be said that these are, of course, relevant in reproduction studies because they might change, for example, the text resulting in different numbers of `<sp>`, stage direction, number of words, et cetera. We can always assume some effect on some of the metrics if there is a new version.[^32]
 
+(clsinfra-d73-batch-edits-as-major-revisions-p4)=
 In the following, we identify and comment on the batch edits, because we assume that they introduce changes to the files that are the results of some automatic process, e.g. using element Y instead of X.
 
+(clsinfra-d73-batch-edits-as-major-revisions-p5)=
 In the case of the very early GerDraCor there are two commits that introduce significant changes to where files are stored in the repository and how they are named:[^33]
 
+(clsinfra-d73-batch-edits-as-major-revisions-p6)=
 - With the commit “e18c322706417825229f1471b15bd6daaeaf3ab1” dating from September 17, 2017 the folder containing the files is renamed from the initial `data` to `tei`.
 
 - With the commit “fdac66ba90c2c094012dc90395e952411d324e4c”, on the same day, the file names of all TEI-XML files are changed to now match the identifier `playname`.[^34]
 
+(clsinfra-d73-batch-edits-as-major-revisions-p7)=
 There are 11 versions in which all TEI files available at that time are modified at once. In the following we describe the relevant ones.
 
+(clsinfra-d73-batch-edits-as-major-revisions-p8)=
 - The commit “7987eb78ecee670e999373d1917bf64b8b1e5253” dating from September 3, 2018 adds Wikidata identifiers to 468 of 468 TEI files available at that time. The identifier is included as an element `<idno>` with the value "`wikidata`" of the attribute `@type` in `<publicationStmt>.`
 
 - The commit “e8b7285eb4adbecebbcfcf53046f9a1093f250762“ dating from October 16, 2018 changes the `<revisionDesc>` of 468 of 468 TEI files available at that time. This is a modification of all files that should not affect any metrics currently returned by the DraCor API.
 
 - The commit “8145e178ee1714ac115d2097e7c6df8cd1181e91” dating from May 12, 2019 mainly changes several elements in the `<teiHeader>` of 472 of 472 TEI files available at that time.
 
+(clsinfra-d73-batch-edits-as-major-revisions-p9)=
 With the initial version of GerDraCor the identifiers that were assigned to the TextGrid plays in the DLINA project were kept. These identifiers consisted of a running number that, in the case of the DLINA website, was prefixed with “`lina`”. In this version of the corpus these identifiers were replaced with DraCor Identifiers that include the corpus identifier, e.g. “`ger`” followed by a number with 6 digits. For example, in the case of the play *Emilia Galotti* the LINA identifier “88” or “`lina88`” as in the URL of the LINA on the DLINA Website becomes “`ger000088`”.
 
+(clsinfra-d73-batch-edits-as-major-revisions-p10)=
 This implies that all the 465 Identifiers of the DLINA-based plays in GerDraCor can be “converted” into the DLINA identifiers by just stripping the leading zeros and, in the case of the URL of the DLINA website, pre-pending “`lina”` in the URL:
 
     https://dlina.github.io/linas/lina{XXX}
 
+(clsinfra-d73-batch-edits-as-major-revisions-p11)=
 E.g. the DraCor identifier that is resolvable with the URL
 
     https://dracor.org/id/ger000010  
 
+(clsinfra-d73-batch-edits-as-major-revisions-p12)=
 would result in
 
     https://dlina.github.io/linas/lina10
 
+(clsinfra-d73-batch-edits-as-major-revisions-p13)=
 Vice versa
 
     https://dlina.github.io/linas/lina465   
 
+(clsinfra-d73-batch-edits-as-major-revisions-p14)=
 would result in
 
     https://dracor.org/id/ger000465  
 
+(clsinfra-d73-batch-edits-as-major-revisions-p15)=
 which is resolved to
 
     https://dracor.org/ger/immermann-das-gericht-von-st-petersburg
 
+(clsinfra-d73-batch-edits-as-major-revisions-p16)=
 The remaining major revision commits are:
 
+(clsinfra-d73-batch-edits-as-major-revisions-p17)=
 - The commit “e8c21cfd3b76bdcb05c6174e2c2d237d0d07c21e” dating from September 7, 2019 assigns a RelaxNG schema derived from the DraCor TEI ODD[^35] to 474 play TEI files available at that time.
 
 - The commit “8f0b2ac84f85ebf79df6b8aa0fb2d9662ee212ea” dating from January 16, 2020 changes the values of the attribute `@xml:lang` of the root element \<`TEI`\> from ISO-639-1 to ISO-639-2 codes, e.g. from "`de`" to "`ger`" in all 480 play TEI files available at that time.
@@ -168,8 +207,10 @@ The remaining major revision commits are:
 
 - The commit “d23a93d9fa0e4eb53a580904ac5d01c8b8f8037c” dating from June 3, 2022 adds the DraCor ID as the value of the attribute `@xml:id` to the root element `<TEI>` and changes the encoding of the reference to Wikidata from a `<link>` to a `<relation>` with the value "`wikidata`" of the attribute `@type` to all 569 TEI files available at that time.
 
+(clsinfra-d73-batch-edits-as-major-revisions-p18)=
 In this systematic perspective that is based on commits that change all files included in a corpus version at a time, we might still miss some important milestones in the development of the corpus if the respective changes in the encoding are not introduced at once but bit by bit to one or several files. For example, this is the case when introducing a new “feature”, the encoding of social or family relations of characters.[^39] This feature was introduced to GerDraCor in cooperation with the “QuaDramA” project (Wiedmer, Pagel, Reiter 2020).[^40] The elements `<relation>` in a `<listRelation type="personal"> `in the `<teiHeader>` were added between September and November 2019 to 358 GerDraCor files.
 
+(clsinfra-d73-batch-edits-as-major-revisions-p19)=
 What we have shown in this excursus was just a small example of the possibilities that a corpus archaeology can offer based on the information that the GitHub API makes available as the commit history. With the excursus, we wanted to illustrate how important it is from our perspective to familiarize oneself as comprehensively as possible with the epistemic objects of one's own research, i.e. –- in the case of CLS research — to gain a deep understanding of the origin, genesis and development of a corpus.
 
 [^18]: The project members included Frank Fischer, Mathias Göbel, Dario Kampkaspar, Christopher Kittel and Peer Trilcke. The output of the project is well documented on the project’s Blog (<https://dlina.github.io/>), the data and tools are available on GitHub at dlina (<https://github.com/dlina>). The term LINA as an abbreviation of the German “Literarische Netzwerkanalyse” (Literary Network Analysis) first appeared in print in the publication Trilcke 2013.

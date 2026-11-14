@@ -1,5 +1,5 @@
 ---
-label: d7-1-index
+label: clsinfra-d71-index
 title: "D7.1 On Programmable Corpora"
 subtitle: "Report and Prototype (DraCor)"
 short_title: "D7.1 On Programmable Corpora"
@@ -21,7 +21,7 @@ This is an HTML edition of CLS INFRA Deliverable D7.1 in the state archived on Z
 (version 1.0.0): [doi:10.5281/zenodo.7664964](https://hdl.handle.net/10.5281/zenodo.7664964) (CC BY 4.0).
 It was converted from the final Word file and aligned with the published PDF, including its typos.
 Page numbers, the table of contents and the lists of figures and tables are not reproduced.
-The numbers in angle brackets, e.g. \<8\>, refer to the [Code References](#d7-1-code-references) and link to the code on GitHub.
+The numbers in angle brackets, e.g. \<8\>, refer to the [Code References](#clsinfra-d71-code-references) and link to the code on GitHub.
 Please cite the Zenodo record.
 :::
 

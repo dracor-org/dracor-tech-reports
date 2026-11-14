@@ -1,5 +1,5 @@
 ---
-label: d7-4-index
+label: clsinfra-d74-index
 title: "D7.4 Report on the Implementation of Programmable Corpora"
 short_title: "D7.4 Implementation of Programmable Corpora"
 authors:

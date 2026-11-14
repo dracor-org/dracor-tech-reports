@@ -26,5 +26,7 @@ for e in alignment/"$id"_*.json; do
 done
 # keep DOI links as links (mystmd would turn doi.org links into citations)
 .venv/bin/python -I tools/doi_links.py $(printf "$out/%s " $pages)
+# stable labels for every paragraph (<section label>-p<n>)
+.venv/bin/python -I tools/para_labels.py $(printf "$out/%s " $pages)
 # renumber footnotes consecutively (MyST shows labels as numbers)
 .venv/bin/python -I tools/renumber_footnotes.py "$out" $pages
