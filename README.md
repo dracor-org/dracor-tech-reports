@@ -63,6 +63,7 @@ Every deviation from the source is therefore recorded in `alignment/` and reappl
 - [DraCor](https://dracor.org) and its [API documentation](https://dracor.org/doc/api)
 - [DraCor Textbook](https://github.com/dracor-org/dracor-textbook): learning path for working with DraCor
 - [dracor-notebooks](https://github.com/dracor-org/dracor-notebooks): hands-on Jupyter notebooks
+- [dracor-explorecor](https://github.com/dracor-org/dracor-explorecor): teaching material of the CLS INFRA Training School “ExploreCor” (Vienna, June 2024). The four showcases of D7.1 (chapter 4, “The DraCor Prototype in Action”) were reused as an executable notebook there: [1-3_DraCor_Showcase.ipynb](https://github.com/dracor-org/dracor-explorecor/blob/main/notebooks/1_Introduction/1-3_DraCor_Showcase.ipynb)
 - [Executable version of D7.3](https://github.com/dh-network/clsinfra-d73)
 
 ## Licence
