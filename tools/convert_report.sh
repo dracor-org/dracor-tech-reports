@@ -2,8 +2,8 @@
 # Convert a Google-Docs-exported report (.docx) into MyST pages under book/reports/<id>/
 # Usage: tools/convert_report.sh <id> <input.docx> [chapters to split at level 2...]
 # Example: tools/convert_report.sh d7-4 "input/d7-4/....docx" 3
-# Re-running overwrites the generated pages; manual alignment with the Zenodo PDF
-# is done afterwards in separate commits (see CLAUDE.md).
+# Re-running overwrites the generated pages (not index.md); the recorded alignment
+# with the Zenodo PDF (alignment/<id>_*.json) is re-applied automatically.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 id="$1"; src="$2"; shift 2
