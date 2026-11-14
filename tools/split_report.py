@@ -7,6 +7,9 @@
   are additionally split at level-2 headings
 * footnote definitions travel with the page that references them
 * the page heading becomes the frontmatter title; deeper headings shift up
+* a MyST label line "(label)=" before a page heading becomes the page's
+  frontmatter label; footnote references in a page heading (not allowed in
+  titles) move to the first sentence of the page's first paragraph
 
 Usage:
   python tools/split_report.py IN.md OUTDIR --prefix d7-4 --split-sections 3
@@ -46,7 +49,8 @@ def slug(title):
     if m:
         return m.group(1).replace(".", "-")
     # unnumbered chapters (e.g. "Excursus: ...", "References"): first word
-    return re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-").split("-")[0]
+    words = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-").split("-")
+    return "-".join(words[:2]) if words[0] in ("code", "list") else words[0]
 
 
 def main():
@@ -60,11 +64,20 @@ def main():
     src = Path(a.src).read_text(encoding="utf8")
     # <img> + italic "Fig..." caption paragraph -> MyST figure; other <img> -> markdown image
     src = re.sub(
-        r'<img src="([^"]+)"[^>]*/>\s*\n\s*\n\*(Fig\.?\s*\d+[^\n]*?)\*[ \t]*\n',
+        r'<img src="([^"]+)"[^>]*/>\s*\n\s*\n\*?(Fig\.?\s*\d+[^\n]*?)\*?[ \t]*\n',
         lambda m: f":::{{figure}} {m.group(1)}\n{m.group(2).strip()}\n:::\n",
         src,
     )
     src = re.sub(r'<img src="([^"]+)"[^>]*/>', r"![](\1)", src)
+    # Word layout tables holding two figures side by side -> two figures
+    src = re.sub(
+        r"\|\s*\|\s*\|\n\|[-:| ]+\|\n"
+        r"\| !\[\]\(([^)]+)\) \| !\[\]\(([^)]+)\) \|\n"
+        r"\| (Fig\.[^|\n]*?) \| (Fig\.[^|\n]*?) \|\n",
+        lambda m: f":::{{figure}} {m.group(1)}\n{m.group(3).strip()}\n:::\n\n"
+                  f":::{{figure}} {m.group(2)}\n{m.group(4).strip()}\n:::\n",
+        src,
+    )
     lines = escape_md(src.splitlines())
 
     # collect footnote definitions (possibly multi-line, indented continuation)
@@ -87,24 +100,39 @@ def main():
     start = re.compile(a.start)
     idx = next(i for i, ln in enumerate(body)
                if (m := H.match(ln)) and len(m.group(1)) == 1 and start.match(m.group(2)))
+    # keep the label line of the first chapter heading with the chapter
+    j = idx - 1
+    while j >= 0 and not body[j].strip():
+        j -= 1
+    if j >= 0 and re.fullmatch(r"\([^)\s]+\)=", body[j]):
+        idx = j
     out = Path(a.outdir)
     out.mkdir(parents=True, exist_ok=True)
     (out / "_frontmatter_raw.md").write_text("\n".join(body[:idx]) + "\n", encoding="utf8")
 
     # cut into pages
-    pages, chap = [], None
+    pages, chap, label = [], None, None
+    LABEL = re.compile(r"^\(([^)\s]+)\)=$")
     for ln in body[idx:]:
         m = H.match(ln)
         if m:
             lvl, title = len(m.group(1)), m.group(2)
-            if lvl == 1:
-                chap = slug(title)
-                pages.append({"title": title, "level": 1, "lines": []})
+            if lvl == 1 or (lvl == 2 and chap in a.split_sections):
+                if lvl == 1:
+                    chap = slug(title)
+                pages.append({"title": title, "level": lvl, "lines": [], "label": label})
+                label = None
                 continue
-            if lvl == 2 and chap in a.split_sections:
-                pages.append({"title": title, "level": 2, "lines": []})
-                continue
-        pages[-1]["lines"].append(ln)
+        if label and not ln.strip():
+            continue  # blank line between label and heading
+        if label:
+            pages[-1]["lines"].append(f"({label})=")
+            label = None
+        if (lm := LABEL.match(ln)):
+            label = lm.group(1)
+            continue
+        if pages:
+            pages[-1]["lines"].append(ln)
 
     files = []
     for p in pages:
@@ -118,6 +146,20 @@ def main():
             text.append(ln)
         while text and not text[0].strip():
             text.pop(0)
+        # footnote refs are not allowed in titles: move them to the first paragraph
+        title_refs = FN_REF.findall(p["title"])
+        if title_refs:
+            p["title"] = FN_REF.sub("", p["title"]).strip()
+            for i, ln in enumerate(text):
+                if ln.strip() and not ln.startswith(("#", "(", "    ", "```", ":::", "<", "|", "!")):
+                    # insert at the end of the first sentence, but before the
+                    # paragraph's first own footnote ref (keeps PDF numbering)
+                    marks = "".join(f"[^{r}]" for r in title_refs)
+                    sent = re.search(r"[.!?:](?=\s)", ln)
+                    ref = FN_REF.search(ln)
+                    cut = min([x for x in (sent and sent.end(), ref and ref.start()) if x] or [len(ln.rstrip())])
+                    text[i] = ln[:cut] + marks + ln[cut:]
+                    break
         refs = []
         for ln in text:
             for r in FN_REF.findall(ln):
@@ -128,8 +170,9 @@ def main():
             if r in fns:
                 notes.extend(fns.pop(r))
         fname = f"{slug(p['title'])}.md"
-        title = p["title"].replace('"', '\\"')
-        content = f'---\ntitle: "{title}"\n---\n\n' + "\n".join(text).rstrip() + "\n"
+        title = p["title"].strip().replace('"', '\\"')
+        fm = f'title: "{title}"\n' + (f'label: {p["label"]}\n' if p.get("label") else "")
+        content = f'---\n{fm}---\n\n' + "\n".join(text).rstrip() + "\n"
         if notes:
             content += "\n" + "\n".join(notes) + "\n"
         (out / fname).write_text(content, encoding="utf8")

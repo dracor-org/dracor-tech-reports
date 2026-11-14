@@ -79,7 +79,7 @@ def main(src, dst):
     n_para = n_inline = 0
     for p in tree.iter(q("p")):
         ppr_style = p.find("w:pPr/w:pStyle", NS)
-        if ppr_style is not None and ppr_style.get(q("val"), "").startswith(("Heading", "Title")):
+        if ppr_style is not None and ppr_style.get(q("val"), "").startswith(("Heading", "Title", "berschrift", "Titel", "Verzeichnis", "Abbildungsverzeichnis", "Caption")):
             continue
         runs = [r for r in p.iter(q("r")) if run_text(r).strip()]
         if not runs:

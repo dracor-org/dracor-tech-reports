@@ -13,9 +13,9 @@ tmp="$(mktemp -d)"
 mkdir -p "$out"
 rm -rf "$out/media"
 ( cd "$out" && pandoc "$tmp/marked.docx" -t gfm --wrap=none \
-    --lua-filter="$OLDPWD/tools/gdocs_cleanup.lua" \
+    --lua-filter="$OLDPWD/tools/gdocs_cleanup.lua" -M rtfr_prefix="$id" \
     --extract-media=. -o "$tmp/full.md" )
-pages=$(.venv/bin/python -I tools/split_report.py "$tmp/full.md" "$out" --split-sections "$@")
+pages=$(.venv/bin/python -I tools/split_report.py "$tmp/full.md" "$out" ${START:+--start "$START"} --split-sections "$@")
 echo "$pages"
 rm -rf "$tmp"
 # re-apply the recorded manual alignment with the published PDF

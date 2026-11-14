@@ -1,5 +1,6 @@
 ---
 title: "Excursus: An Algorithmic Archaeology of a Living Corpus: GerDraCor as a Dynamic Epistemic Object"
+label: d7-3-excursus-an-algorithmic-archaeology-of-a-living-corpus-gerdracor-as-a-dynamic-epistemic-object
 ---
 
 While we have shown in section 3.2 that Git commits can be used as stable references to states of living corpora and thus as a mechanism for transparent versioning, in section 3.3 we explored in more detail which information about corpora and corpus files can be queried using the GitHub API. Our explorations in section 3.3 have also demonstrated that the use of Git not only provides a powerful versioning tool for CLS corpora, but that this use of the API generates a large amount of additional (technical) metadata about corpora. In the following excursus, we use this metadata for a more in-depth analysis of the genesis of a DraCor corpus (namely “GerDraCor”), taking the Git commit history as a basis.
@@ -12,6 +13,7 @@ As already mentioned, the “German Drama Corpus” (“GerDraCor”) will serve
 
 The first step in the analysis is downloading all the data on all GerDraCor commits from the repository on GitHub. Depending on the overall number of commits this can take a long time. In a previous attempt, fetching and preparing the data of GerDraCor from GitHub took 53min 29s. The following analysis will be based on data that was downloaded on February 14th, 2024. At the time of the download the GitHub Repository `“gerdracor” `contained 1492 commits. We consider each commit being an implicit version of a corpus and therefore we have 1492 versions of “German Drama Corpus” up to this date.
 
+(d7-3-the-birth-of-gerdracor)=
 ### The “Birth” of GerDraCor
 
 From the commit history of the repository of the German Drama Corpus we can retrieve the very first commit. This initial commit to the repository which is identified by the SHA value “`2f4e830a852960eba8e05d6b622b3bd64911ab6`9” was committed by Mathias Göbel (during a hackathon at the University of Potsdam) and dates from 2 December, 2016.
@@ -34,6 +36,7 @@ adds a RelaxNG schema[^22] describing the “Zwischenformat”. Although this da
 
 The files in the first commit to the GerDraCor repository re-include the full text of the play from the TextGrid Repository source in the element `<text>`, but in the `<teiHeader>` contain the metadata of the LINA files. This metadata is transformed from the custom intermediary format (“Zwischenformat”) that was used in the DLINA project to an XML encoding following the Guidelines of the Text Encoding Initiative (TEI Guidelines).
 
+(d7-3-a-living-corpus-growing)=
 ### A Living Corpus “Growing”
 
 Fig. 3 shows the development of the number of plays included in the corpus versions of GerDraCor. It can be seen from the plot that in 2018 the corpus slowly begins to grow.
@@ -91,6 +94,7 @@ The change in color of the plotted line indicates the moment when the file was r
 
 The full text content taken from TextGrid was included in the initial version in the `<text>` element without any line breaks and indentations on a single line only. The text is formatted in the third version (“`106fefd275c20c5b673a326e89647f7511ba9f76”`[^30]) which results in the steep increase of the file size. Overall, there are 26 versions in which the XML file of *Emilia Galotti* is modified.[^31]
 
+(d7-3-batch-edits-as-major-revisions)=
 ### Batch Edits as Major Revisions
 
 One can differentiate (at least) two major types of modifications to the files in a corpus version:
@@ -111,7 +115,7 @@ In the case of the very early GerDraCor there are two commits that introduce sig
 
 There are 11 versions in which all TEI files available at that time are modified at once. In the following we describe the relevant ones.
 
-- The commit “7987eb78ecee670e999373d1917bf64b8b1e5253” dating from September 3, 2018 adds Wikidata identifiers to 468 of 468 TEI files available at that time. The identifier is included as an element `<idno>` with the value "`wikidata`" of the attribute `@type` in `<publicationStmt>``.`
+- The commit “7987eb78ecee670e999373d1917bf64b8b1e5253” dating from September 3, 2018 adds Wikidata identifiers to 468 of 468 TEI files available at that time. The identifier is included as an element `<idno>` with the value "`wikidata`" of the attribute `@type` in `<publicationStmt>.`
 
 - The commit “e8b7285eb4adbecebbcfcf53046f9a1093f250762“ dating from October 16, 2018 changes the `<revisionDesc>` of 468 of 468 TEI files available at that time. This is a modification of all files that should not affect any metrics currently returned by the DraCor API.
 
