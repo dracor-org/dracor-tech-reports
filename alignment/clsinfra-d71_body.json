@@ -18,5 +18,10 @@
   "file": "code-references.md",
   "old": "\\<11\\> fhttps://",
   "new": "\\<11\\> https://"
+ },
+ {
+  "file": "6-2.md",
+  "old": "In this section we give a brief overview of the POSTDATA system developed by the ERC funded project “POSTDATA”[^233][^234]",
+  "new": "In this section[^233] we give a brief overview of the POSTDATA system developed by the ERC funded project “POSTDATA”[^234]"
  }
 ]
