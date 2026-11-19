@@ -1,2 +1,6 @@
 /* Highlights as in the published reports (yellow marker) */
 .mark { background-color: #ffff00; color: #000; padding: 0 0.1em; }
+
+/* Editorial notes (1.x): additions by the editors, not part of the report text */
+.editorial { border-left-style: dashed !important; font-size: 0.95em; }
+.editorial > :first-child::after { content: " · editorial note"; font-weight: normal; font-style: italic; opacity: 0.75; }

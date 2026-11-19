@@ -1,0 +1,4 @@
+[
+  {"file": "2.md", "after": "clsinfra-d72-2-2", "kind": "outdated", "checked": "2026-11", "text": "This section describes pydracor 1.0.0, which was written for the legacy API without version prefix; some of its requests already fail today, and it will stop working when the legacy API is shut down ([#15](https://github.com/dracor-org/dracor-tech-reports/issues/15)). Current version: pydracor 3.0.2 for API v1 ([PyPI](https://pypi.org/project/pydracor/), [GitHub](https://github.com/dracor-org/pydracor), archived on Zenodo: [doi:10.5281/zenodo.24334023](https://hdl.handle.net/10.5281/zenodo.24334023))."},
+  {"file": "2.md", "after": "clsinfra-d72-2-1", "kind": "update", "checked": "2026-11", "text": "This section describes rdracor 0.7.2. Current version on CRAN: rdracor 1.1.0 (October 2026), see [CRAN](https://CRAN.R-project.org/package=rdracor)."}
+]

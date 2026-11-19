@@ -25,6 +25,7 @@ rm -rf "$tmp"
 # re-apply the recorded manual alignment with the published PDF
 for e in alignment/"$id"_*.json; do
   [ -e "$e" ] || continue
+  case "$e" in *_notes.json) continue;; esac
   echo "applying $e"
   .venv/bin/python -I tools/apply_edits.py "$e" "$out"
 done
@@ -35,3 +36,7 @@ done
 .venv/bin/python -I tools/para_labels.py $(printf "$out/%s " $pages)
 # renumber footnotes consecutively (MyST shows labels as numbers)
 .venv/bin/python -I tools/renumber_footnotes.py "$out" $pages
+# editorial notes (1.x): boxes added after the report text, never inside it
+if [ -e alignment/"$id"_notes.json ]; then
+  .venv/bin/python -I tools/insert_notes.py alignment/"$id"_notes.json "$out"
+fi
