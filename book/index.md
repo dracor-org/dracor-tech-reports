@@ -19,7 +19,9 @@ Together, the reports document the DraCor system (corpora, API, front end, metri
 
 The archived PDFs on Zenodo remain the version of record; please cite them.
 
-:::{note} Status: 1.0.0, reviewed edition
+:::{note} Status: 1.1.0-rc.1, preview with editorial notes
+This preview adds editorial notes to the reviewed edition 1.0.0: boxes marked “Outdated” or “Update” point out where DraCor has changed since a report was written and link to current resources. The report text itself is unchanged. The archived version on Zenodo is 1.0.0.
+
 All four reports were converted from their original sources and checked page by page against the published PDFs (text, footnote numbering, formatting, figures, tables, code and links). Every deviation from the sources is recorded in the repository.
 
 To cite these editions: Börner, Ingo. *DraCor Technical Reports: HTML editions of the CLS INFRA reports on DraCor (D7.1–D7.4)*. Zenodo. [doi:10.5281/zenodo.24368947](https://hdl.handle.net/10.5281/zenodo.24368947) (all versions).
