@@ -1,4 +1,10 @@
+---
+doi: 10.5281/zenodo.24368947
+---
+
 # DraCor Technical Reports
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24368947.svg)](https://hdl.handle.net/10.5281/zenodo.24368947)
 
 HTML editions of the four technical reports on [DraCor](https://dracor.org) written in work package 7 of the EU project [CLS INFRA](https://clsinfra.io) (Computational Literary Studies Infrastructure, 2021–2025).
 
@@ -13,8 +19,10 @@ Together, the reports document the DraCor system (corpora, API, front end, metri
 
 The archived PDFs on Zenodo remain the version of record; please cite them.
 
-:::{warning} Status: 0.9.0, not yet reviewed
-All four reports were converted automatically from their original sources and checked against the published PDFs (text, footnote numbering, figures). A review is pending; version 1.0.0 will follow it.
+:::{note} Status: 1.0.0, reviewed edition
+All four reports were converted from their original sources and checked page by page against the published PDFs (text, footnote numbering, formatting, figures, tables, code and links). Every deviation from the sources is recorded in the repository.
+
+To cite these editions: Börner, Ingo. *DraCor Technical Reports: HTML editions of the CLS INFRA reports on DraCor (D7.1–D7.4)*. Zenodo. [doi:10.5281/zenodo.24368947](https://hdl.handle.net/10.5281/zenodo.24368947) (all versions).
 :::
 
 The editions reproduce the published text with its footnotes, figures, tables and code (shown with the original output as of the report date). Page layout, page numbers, tables of contents and the appendices of D7.2 are not reproduced.

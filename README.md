@@ -1,5 +1,7 @@
 # DraCor Technical Reports
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24368947.svg)](https://doi.org/10.5281/zenodo.24368947)
+
 HTML editions of the four technical reports on [DraCor](https://dracor.org) written in work package 7 of the EU project [CLS INFRA](https://clsinfra.io) (Computational Literary Studies Infrastructure, 2021–2025).
 
 Together, the reports document the DraCor system (corpora, API, front end, metrics, versioning and research software) at different points in time. Until now they were only available as PDFs on Zenodo. This repository makes them readable on the web, searchable and linkable section by section, and is meant to grow into up-to-date documentation of DraCor.
@@ -13,12 +15,14 @@ Together, the reports document the DraCor system (corpora, API, front end, metri
 
 The archived PDFs remain the version of record; please cite the Zenodo records.
 
+The editions themselves are archived on Zenodo: [10.5281/zenodo.24368947](https://doi.org/10.5281/zenodo.24368947) (concept DOI, always resolves to the latest version). See also `CITATION.cff`.
+
 ## Status and roadmap
 
 The work proceeds in phases. Each phase has a [milestone](https://github.com/dracor-org/dracor-tech-reports/milestones); the issues document how the reports are turned into current documentation.
 
-1. **0.9.0** (current): all four reports converted automatically from their original sources and checked against the published PDFs (text, footnote numbering, figures). **Not yet reviewed.**
-2. **[1.0.0 Reviewed edition](https://github.com/dracor-org/dracor-tech-reports/milestone/1):** faithful editions of the reports as published at the end of CLS INFRA, after review. Only corrections towards the published text; no additions. Archived on Zenodo as a citable snapshot.
+1. **0.9.0:** all four reports converted automatically from their original sources and checked against the published PDFs (text, footnote numbering, figures).
+2. **[1.0.0 Reviewed edition](https://github.com/dracor-org/dracor-tech-reports/milestone/1)** (current): faithful editions of the reports as published at the end of CLS INFRA, reviewed page by page against the published PDFs ([#17](https://github.com/dracor-org/dracor-tech-reports/issues/17)). Only corrections towards the published text; no additions. Printed URLs are kept as published, but broken link targets were fixed. Archived on Zenodo as a citable snapshot ([10.5281/zenodo.24368947](https://doi.org/10.5281/zenodo.24368947)).
 3. **[1.x Enhanced reports](https://github.com/dracor-org/dracor-tech-reports/milestone/2):** the report texts stay unchanged; clearly marked editorial notes and links are added: cross-references between the reports, links to executable material (e.g. [dracor-notebooks](https://github.com/dracor-org/dracor-notebooks), ExploreCor, the DraCor Textbook) and notes where DraCor has changed since a report was written.
 4. **[2.0.0 Current documentation](https://github.com/dracor-org/dracor-tech-reports/milestone/3):** topic-based documentation of the current DraCor system, built from the report content and kept up to date with DraCor releases. Tutorial-style code goes to notebooks rather than being duplicated. The report editions remain available unchanged as an archive.
 

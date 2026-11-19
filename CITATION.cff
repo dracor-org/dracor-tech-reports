@@ -7,6 +7,11 @@ authors:
     given-names: Ingo
     orcid: "https://orcid.org/0000-0001-8294-2541"
     affiliation: University of Potsdam
+doi: 10.5281/zenodo.24368947
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.24368947
+    description: "Concept DOI: all versions, resolves to the latest one"
 repository-code: "https://github.com/dracor-org/dracor-tech-reports"
 license: CC-BY-4.0
 keywords:
