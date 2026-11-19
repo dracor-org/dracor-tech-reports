@@ -1,0 +1,94 @@
+{
+  "title": "DraCor Technical Reports: HTML editions of the CLS INFRA reports on DraCor (D7.1–D7.4)",
+  "upload_type": "publication",
+  "publication_type": "report",
+  "description": "<p>HTML editions of the four technical reports on DraCor (https://dracor.org) written in work package 7 of the EU project CLS INFRA (Computational Literary Studies Infrastructure): D7.1 On Programmable Corpora, D7.2 API Libraries for R and Python (rdracor and pydracor), D7.3 On Versioning Living and Programmable Corpora, D7.4 Report on the Implementation of Programmable Corpora.</p><p>The editions reproduce the reports as published on Zenodo, including their footnote numbering, figures, tables and code, and were checked page by page against the published PDFs. Every deviation from the original sources is recorded in the repository (alignment/). The archived PDFs remain the version of record.</p><p>The text and figures are licensed under CC BY 4.0; the conversion scripts under the MIT License.</p>",
+  "creators": [
+    {
+      "name": "Börner, Ingo",
+      "orcid": "0000-0001-8294-2541",
+      "affiliation": "University of Potsdam"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Trilcke, Peer",
+      "orcid": "0000-0002-1421-4320",
+      "affiliation": "University of Potsdam",
+      "type": "ProjectMember"
+    },
+    {
+      "name": "Sluyter-Gäthje, Henny",
+      "orcid": "0000-0003-2969-3237",
+      "affiliation": "University of Potsdam",
+      "type": "ProjectMember"
+    },
+    {
+      "name": "Skorinkin, Daniil",
+      "orcid": "0000-0002-1845-9974",
+      "affiliation": "University of Potsdam",
+      "type": "ProjectMember"
+    },
+    {
+      "name": "Giovannini, Luca",
+      "orcid": "0000-0003-2444-7192",
+      "affiliation": "University of Potsdam",
+      "type": "ProjectMember"
+    },
+    {
+      "name": "Fischer, Frank",
+      "orcid": "0000-0003-2419-6629",
+      "type": "ProjectMember"
+    },
+    {
+      "name": "Milling, Carsten",
+      "orcid": "0000-0003-0553-7512",
+      "type": "ProjectMember"
+    }
+  ],
+  "license": "cc-by-4.0",
+  "communities": [
+    {
+      "identifier": "dracor"
+    }
+  ],
+  "keywords": [
+    "DraCor",
+    "Programmable Corpora",
+    "Computational Literary Studies",
+    "API",
+    "CLS INFRA",
+    "documentation"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.7664964",
+      "relation": "isDerivedFrom",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.5281/zenodo.15302236",
+      "relation": "isDerivedFrom",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.5281/zenodo.11081934",
+      "relation": "isDerivedFrom",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.5281/zenodo.15301341",
+      "relation": "isDerivedFrom",
+      "scheme": "doi"
+    }
+  ],
+  "grants": [
+    {
+      "id": "10.13039/501100000780::101004984"
+    },
+    {
+      "id": "10.13039/501100000780::101129751"
+    }
+  ],
+  "language": "eng"
+}

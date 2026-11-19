@@ -1,0 +1,52 @@
+cff-version: 1.2.0
+message: "If you cite the content of a report, please cite the report itself (see references). To cite these editions, please use the metadata below."
+title: "DraCor Technical Reports: HTML editions of the CLS INFRA reports on DraCor (D7.1–D7.4)"
+type: dataset
+authors:
+  - family-names: Börner
+    given-names: Ingo
+    orcid: "https://orcid.org/0000-0001-8294-2541"
+    affiliation: University of Potsdam
+repository-code: "https://github.com/dracor-org/dracor-tech-reports"
+license: CC-BY-4.0
+keywords:
+  - DraCor
+  - Programmable Corpora
+  - Computational Literary Studies
+  - CLS INFRA
+abstract: >-
+  HTML editions of the four technical reports on DraCor written in work
+  package 7 of the EU project CLS INFRA (D7.1–D7.4), reproducing the
+  reports as published on Zenodo and checked against the published PDFs.
+references:
+  - type: report
+    title: "On Programmable Corpora. Report and Prototype (DraCor). CLS INFRA D7.1"
+    authors:
+      - {family-names: Börner, given-names: Ingo}
+      - {family-names: Trilcke, given-names: Peer}
+    year: 2023
+    doi: 10.5281/zenodo.7664964
+  - type: report
+    title: "API Libraries for R and Python for the Programmable Corpora Prototype “DraCor”: “rdracor” and “pydracor”. CLS INFRA D7.2"
+    authors:
+      - {family-names: Sluyter-Gäthje, given-names: Henny}
+      - {family-names: Trilcke, given-names: Peer}
+      - {family-names: Börner, given-names: Ingo}
+    year: 2023
+    doi: 10.5281/zenodo.15302236
+  - type: report
+    title: "On Versioning Living and Programmable Corpora. CLS INFRA D7.3"
+    authors:
+      - {family-names: Börner, given-names: Ingo}
+      - {family-names: Trilcke, given-names: Peer}
+    year: 2024
+    doi: 10.5281/zenodo.11081934
+  - type: report
+    title: "Report on the Implementation of Programmable Corpora. CLS INFRA D7.4"
+    authors:
+      - {family-names: Börner, given-names: Ingo}
+      - {family-names: Trilcke, given-names: Peer}
+      - {family-names: Skorinkin, given-names: Daniil}
+      - {family-names: Giovannini, given-names: Luca}
+    year: 2025
+    doi: 10.5281/zenodo.15301341
