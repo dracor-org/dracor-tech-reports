@@ -1,0 +1,107 @@
+{
+  "targets": {
+    "dracor-api": "1.5.0-rc.1",
+    "dracor-frontend": "3.0.0-rc.1",
+    "dracor-metrics": "1.6.0",
+    "dracor-react": "1.11.0"
+  },
+  "api_main": "c110a27 2026-11-17",
+  "code_links": {
+    "occurrences": 290,
+    "unique": 166,
+    "by_report_repo": {
+      "clsinfra-d71 dracor-api": 133,
+      "clsinfra-d71 dracor-metrics": 16,
+      "clsinfra-d71 dracor-frontend": 97,
+      "clsinfra-d73 dracor-api": 1,
+      "clsinfra-d74 dracor-api": 42,
+      "clsinfra-d74 dracor-metrics": 1
+    },
+    "by_kind": {
+      "unit": 228,
+      "unpinned (branch)": 5,
+      "file": 51,
+      "lines (no unit)": 5,
+      "branch ref (gone)": 1
+    },
+    "by_status": {
+      "changed": 206,
+      "file exists": 15,
+      "gone": 8,
+      "unchanged": 21,
+      "unresolvable": 1,
+      "file moved/renamed": 35,
+      "file removed": 4
+    },
+    "by_action": {
+      "repoint, check text": 128,
+      "note (rewritten)": 53,
+      "keep": 15,
+      "note": 12,
+      "repoint + note (renamed)": 25,
+      "repoint (same code)": 21,
+      "check by hand": 1,
+      "repoint": 35
+    }
+  },
+  "units": {
+    "count": 82,
+    "by_repo_status": {
+      "dracor-api changed": 53,
+      "dracor-api gone": 1,
+      "dracor-api unchanged": 8,
+      "dracor-metrics changed": 1,
+      "dracor-frontend gone": 3,
+      "dracor-frontend changed": 16
+    },
+    "by_match": {
+      "same name": 65,
+      "": 4,
+      "renamed? (body similarity)": 8,
+      "same name, other signature": 5
+    },
+    "api_changed_per_release": {
+      "0.88.0": 1,
+      "0.89.0": 1,
+      "0.90.0": 2,
+      "0.91.0": 5,
+      "0.91.1": 1,
+      "1.0.0": 16,
+      "1.1.0": 27,
+      "1.1.1": 1,
+      "1.1.5": 2,
+      "1.1.6": 1,
+      "1.2.0": 5,
+      "1.2.2": 1,
+      "1.2.3": 1,
+      "1.3.0": 8,
+      "1.3.1": 1,
+      "1.4.0": 15,
+      "1.5.0": 21
+    },
+    "api_main_differs": 4
+  },
+  "api_refs": {
+    "occurrences": 252,
+    "by_kind": {
+      "url": 116,
+      "api doc": 15,
+      "code path": 82,
+      "swagger deep link": 39
+    },
+    "by_status": {
+      "legacy (v0 shutdown, #15)": 35,
+      "page": 15,
+      "path changed": 45,
+      "ok": 105,
+      "served, not in api.yaml": 3,
+      "endpoint removed": 2,
+      "operation exists": 33,
+      "operation removed": 2,
+      "operation renamed": 4,
+      "no match in target": 1,
+      "PoeCor API (not DraCor)": 6,
+      "path pattern (elided)": 1
+    }
+  }
+}
