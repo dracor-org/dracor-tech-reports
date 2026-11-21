@@ -69,6 +69,7 @@ project:
     - title: System Documentation (Current)
       children:
         - file: docs/index.md
+        - file: docs/api.md
         - file: docs/frontend/dracor-frontend.md
     - title: Building DraCor Spin-offs
       children:
