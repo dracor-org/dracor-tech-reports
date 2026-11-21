@@ -36,7 +36,7 @@ For people and coding agents starting a new DraCor Spin-off front end. Details a
 (spinoffs-frontend-example)=
 ## Example: a PoeCor front end with `@dracor/react` in 2026
 
-PoeCor (D7.1 §6.2) showed that the DraCor approach carries over to poetry. Its front end listed the corpora, the poems of a corpus and, for a single poem, its metadata and POSTDATA's analysis results. This section shows how that front end would be built today, as an example of adapting DraCor's front end to a different kind of corpus. It is a sketch, not a tutorial. The three code examples below were tested (21 November 2026) in a minimal app with `@dracor/react` 1.11.0, React 19.3, TanStack Router 1.170, TanStack Table 8.21, Vite 8 and Tailwind 4.3, against PoeCor's archived mock data: they type-check, build and run.
+PoeCor (D7.1 §6.2) showed that DraCor's Programmable Corpora approach carries over to poetry. Its front end listed the corpora, the poems of a corpus and, for a single poem, its metadata and POSTDATA's analysis results. This section shows how that front end would be built today, as an example of adapting DraCor's front end to a different kind of corpus. It is a sketch, not a tutorial. The three code examples below were tested (21 November 2026) in a minimal app with `@dracor/react` 1.11.0, React 19.3, TanStack Router 1.170, TanStack Table 8.21, Vite 8 and Tailwind 4.3, against PoeCor's archived mock data: they type-check, build and run.
 
 ### General approach
 

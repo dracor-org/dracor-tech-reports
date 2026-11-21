@@ -15,7 +15,7 @@ DraCorOS: this documentation is the delivery instead of a configurable "generic 
 This section is a draft. It is based on the code of the existing DraCor Spin-offs (as of November 2026); the API specification and the code examples were tested.
 :::
 
-A **DraCor Spin-off** applies the DraCor approach to another kind of text: a corpus of TEI files, an API that makes it programmable, and a website to browse it. Three DraCor Spin-offs exist so far:
+A **DraCor Spin-off** applies DraCor's [Programmable Corpora](#clsinfra-d71-index) approach to another kind of text: a corpus of TEI files, an API that makes it programmable, and a website to browse it. Three DraCor Spin-offs exist so far:
 
 | DraCor Spin-off | Texts | Website | API | Since |
 |---|---|---|---|---|
