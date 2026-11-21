@@ -94,6 +94,32 @@ DraCor IDs are resolved on the server: `https://dracor.org/id/ger000088` answers
 
 Old play URLs with a tab in the hash (`/ger/lessing-emilia-galotti#network`) are rewritten to the new path form once, on the first page load ([`src/hashRedirect.ts`](https://github.com/dracor-org/dracor-frontend/blob/3.0.0-rc.1/src/hashRedirect.ts)). Links in the reports that use the hash form therefore keep working.
 
+(dracor-frontend-home)=
+## The home page
+
+<!-- PLACEHOLDER section (Ingo, 2026-11-21): concrete description with before/after screenshots. Facts below are from the code; screenshots still to be taken. -->
+
+The home page lists the published corpora as corpus cards. The way they are shown changed with 3.0.
+
+**From July 2020 up to 2.7.2**, and so also at the time of D7.1 (its Fig. 13, "DraCor landing page"), the cards sat in a carousel ([`Corpora.jsx`](https://github.com/dracor-org/dracor-frontend/blob/2.7.2/src/components/Corpora.jsx), built with `react-slick`). Depending on the screen width it showed up to seven cards side by side, with arrows and dots to move through the corpora. On small screens it scrolled by itself, and below 767 px it became a plain list. The cards were sorted by number of plays.
+
+**Since 3.0** ([`src/routes/index.tsx`](https://github.com/dracor-org/dracor-frontend/blob/3.0.0-rc.1/src/routes/index.tsx)) there is no carousel. Commit [9d8ce68](https://github.com/dracor-org/dracor-frontend/commit/9d8ce68) removed `react-slick` along with swagger-ui. The page now has:
+
+- **A grid of cards.** All corpora are visible at once, wrapping to as many columns as fit (one per row on phones). Each card is a `DracorCorpusCard` from `@dracor/react` and shows plays, characters by sex, word tokens and the last update. A link to the Git commit of the corpus version is included as well.
+- **Sort buttons** above the grid: by number of plays (default), by name A–Z (using the acronym without "DraCor", i.e. what the card shows) or by last update. The choice is kept in the URL (`/?sort=name`, `/?sort=updated`), so a sorted view can be linked.
+- **An introductory line** (`CorporaIntro`) above the cards that points to the [research bibliography](https://dracor.org/doc/research) and counts its entries since 2024. It only appears on deployments whose site menu links `/doc/research`.
+- **A clear message if the API is down** ("Could not load the corpus list …") instead of an empty or broken page.
+
+:::{note} Screenshots needed
+Fig. A: dracor.org home page with the carousel (front end 2.7.2, e.g. from the Internet Archive or a local 2.7.2 build).
+
+Fig. B: the same page in 3.0 (staging.dracor.org), wide screen, default order.
+
+Optional Fig. C: phone width, to show that the cards stack.
+
+D7.1 Fig. 13 shows the carousel version; a caption could make the comparison explicit.
+:::
+
 ## Data flow
 
 All API calls go through a few helpers in [`src/loaders.ts`](https://github.com/dracor-org/dracor-frontend/blob/3.0.0-rc.1/src/loaders.ts):
@@ -211,6 +237,135 @@ The library is built one file per component, and every component also has its ow
 
 The component tables in this draft follow the 1.11.0 sources. For the current props, the Storybook is authoritative (#22: link the generated documentation instead of restating it). This section should therefore stay at the level of "which component does what, and where DraCor uses it".
 
+(dracor-frontend-siblings)=
+## Sibling front ends
+
+DraCor's front end is not the only one built this way. Several corpus browsers with a DraCor-like interface share their look and, increasingly, their code through `@dracor/react`. None of them is a fork of dracor-frontend: they share no Git history with it.
+
+| Front end | Site | Started | Stack today | `@dracor/react` (resolved) | From the library |
+|---|---|---|---|---|---|
+| [dracor-frontend](https://github.com/dracor-org/dracor-frontend) | dracor.org | 2017 | Vite, React 19, TanStack Router, Tailwind 4 (since 3.0) | 1.11.0 (3.0.0-rc.1) | all components (see above) |
+| [einakter](https://github.com/dracor-org/einakter) | einakter.dracor.org | 2020 | Vite, React 19, TanStack Router, Tailwind 4 | ^1.4.0 (1.4.0) | `NavBar`, `LanguageMenu`, `Table`, `IdLink`, `IdCopy`, `AuthorInfo`, `Authors`, `Years`, `formatEra` (since 2026-08) |
+| [ezlinavis](https://github.com/dracor-org/ezlinavis) | ezlinavis.dracor.org | 2017 | Vite, React 19, Tailwind 4 | ^1.2.1 (1.2.1) | `DownloadButton` |
+| [poecor-frontend](https://github.com/dracor-org/poecor-frontend) (archived) | poecor.org (offline) | Dec. 2022 | Create React App, React 18, React Router 6, Tailwind 3 | none (predates it) | none |
+| [ecocor-frontend](https://github.com/EcoCor/ecocor-frontend) | ecocor.org | Dec. 2022 (from PoeCor) | Vite, React 19, TanStack Router, Tailwind 4 | ^1.2.1 (1.2.1) | `NavBar`, `Table`, `Tabs`, `TEIText`, `DocPage`, `ApiDoc`, `DownloadButton`, `AuthorInfo`, `IdCopy`, `IdLink`, `Commit` |
+| [eltec-frontend](https://github.com/clscor-io/eltec-frontend) | eltec.clscor.io | May 2025 | Vite, React 19, TanStack Router, Tailwind 4 | ^1.1.0 (1.1.0) | `NavBar`, `Table`, `Tabs`, `TEIText`, `DocPage`, `ApiDoc`, `DownloadButton`, `AuthorInfo`, `IdCopy`, `IdLink`, `Commit` |
+
+<!-- "Started" = first commit of the repo. Resolved versions from pnpm-lock.yaml on main (2026-11-20). -->
+
+How the code travelled:
+
+1. **Einakter → PoeCor (2022).** poecor-frontend was set up as a new Create React App project in December 2022, not copied from dracor-frontend. It used Tailwind like Einakter (and Einakter's background image) and DraCor's page structure (corpus cards → table of texts → single text). Its own `CorpusCard`, `Table` (TanStack Table) and `DebouncedInput` are the earliest versions of components that later went into the library.
+2. **PoeCor → EcoCor (2023).** ecocor-frontend starts from the same initial commit as poecor-frontend and repeats its first commits (with "poems" renamed to "works", later "texts"). It then grew its own views: entities, animals and plants, word clouds.
+3. **The library (June 2023).** `@dracor/react` (first published as `@dracor.org/react`) was started in June 2023, with Einakter's top navigation as the model for `NavBar` and Einakter's Tailwind base. EcoCor used it from July 2023, `Table`/`DebouncedInput` arrived in September 2023.
+4. **ELTeC (2025/26).** eltec-frontend was set up from scratch with Vite and TanStack Router in May 2025 and switched to the library in February 2026. Its text view (`Full text`, `Downloads`, `Tools` tabs) follows the DraCor play view, and its `Tools.tsx` is a copy of dracor-frontend's `ToolsTab.tsx` (it still says "DraCor API").
+5. **Back into DraCor (2026).** Components first written for the siblings returned to dracor.org with 3.0. The generic `CorpusCard` (1.3.0, July 2026) was added "so eltec-frontend and ecocor-frontend can drop their near-duplicate local implementations". Both still have their own `CorpusCard.tsx` and pin older library versions, so that step is still open.
+
+So the components move in both directions. Something is written for one project, proves itself, moves into `@dracor/react`, and then the other projects pick it up when they upgrade.
+
+(dracor-frontend-poecor-example)=
+## Example: a PoeCor front end with `@dracor/react` in 2026
+
+PoeCor (D7.1 §6.2) showed that the DraCor approach carries over to poetry. Its front end listed the corpora, the poems of a corpus and, for a single poem, its metadata and POSTDATA's analysis results. This section shows how that front end would be built today, as an example of adapting DraCor's front end to a different kind of corpus. It is a sketch, not a tutorial. The code has not been run.
+
+### General approach
+
+1. **Start a new app, don't fork.** Create a Vite + React + TypeScript project and add TanStack Router (file-based routes) and Tailwind 4, like the sibling projects. Forking dracor-frontend would bring in everything drama-specific (networks, speech distribution, segments).
+2. **Install `@dracor/react` and only the peers you need.** For the example: `@tanstack/react-router`, `@tanstack/react-table`, Font Awesome, CETEIcean only if there is TEI to render. Import `@dracor/react/dracor.css` and add the `@source` line (see [above](#dracor-frontend)).
+3. **Write a typed API layer** like dracor-frontend's `src/loaders.ts`: one function per endpoint, called from route loaders. The types describe your API (`Poem`, `CorpusMetrics`), not DraCor's.
+4. **Use the generic components and leave the DraCor-specific ones.** `CorpusCard` instead of `DracorCorpusCard` (which expects plays and characters), `Table`, `Tabs`, `NavBar`, `DocPage`, `ApiDoc`, `IdCopy`/`IdLink`.
+5. **Write the domain views yourself.** For PoeCor, the analysis of a poem (stanzas, rhyme schemes, metrical patterns) has no counterpart in DraCor.
+6. **Mock the API during development** with a mock service worker, as poecor-frontend and ecocor-frontend do (`VITE_MOCK_API`). This lets the front end be developed before the API exists.
+
+### What replaces what
+
+| poecor-frontend (2022) | 2026 with `@dracor/react` |
+|---|---|
+| `App.tsx` with `<Routes>` (React Router 6) | route files: `routes/index.tsx`, `routes/corpora/index.tsx`, `routes/corpora/$corpusId/index.tsx`, `routes/corpora/$corpusId/$poemId/…` |
+| `useEffect` + `useState` + axios in every page, `alert()` on errors | route loaders calling `fetch` helpers; the router shows loading and error states |
+| `Topnav.tsx` (title, version, GitHub icon) | `NavBar` with `title`, `version`, `gitHubUrl`, `navItems` |
+| `CorpusCard.tsx` with its own `CorpusCardRow` | `CorpusCard` + `CorpusCardRow` (same row layout: they descend from this file) |
+| `Table.tsx`, `DebouncedInput.tsx` | `Table` (includes the debounced filter) |
+| `Poem.tsx`: one long page | a poem route with `Tabs` (e.g. "Analysis", "Downloads") and child routes |
+| poem ID as plain text | `IdCopy` (copy button for the ID / URI) |
+| no documentation pages | `DocPage` for Markdown pages, `ApiDoc` for the PoeCor API's OpenAPI spec |
+| `react-helmet-async` for the page title | a `<title>` element in the component (React 19) |
+
+### Three examples
+
+The corpus card, with PoeCor's metrics as rows:
+
+```tsx
+// routes/corpora/index.tsx (excerpt)
+import CorpusCard, {CorpusCardRow} from '@dracor/react/CorpusCard';
+
+<CorpusCard title={corpus.title} to={`/corpora/${corpus.name}`}>
+  <CorpusCardRow label="Poems" value={corpus.metrics.poems} valueClassName="text-2xl" />
+  <CorpusCardRow label="Authors" value={corpus.metrics.authors} />
+  <CorpusCardRow label="Stanzas" value={corpus.metrics.stanzas} />
+  <CorpusCardRow label="Verses" value={corpus.metrics.verses} />
+  <CorpusCardRow label="Words" value={corpus.metrics.words} />
+</CorpusCard>
+```
+
+The list of poems: a loader fetches the corpus, `Table` renders it.
+
+```tsx
+// routes/corpora/$corpusId/index.tsx
+import {createFileRoute, Link} from '@tanstack/react-router';
+import type {ColumnDef} from '@tanstack/react-table';
+import Table from '@dracor/react/Table';
+import {fetchCorpus} from '../../../loaders';
+import type {Poem} from '../../../types';
+
+export const Route = createFileRoute('/corpora/$corpusId/')({
+  loader: ({params}) => fetchCorpus(params.corpusId),
+  component: CorpusPage,
+});
+
+const columns: ColumnDef<Poem>[] = [
+  {
+    accessorKey: 'title',
+    header: 'Title',
+    cell: ({row}) => <Link to="./$poemId" params={{poemId: row.original.name}}>{row.original.title}</Link>,
+  },
+  {
+    id: 'authors',
+    header: 'Author',
+    accessorFn: (p) => p.authors.map((a) => a.name).join(', '),
+  },
+  {accessorKey: 'source', header: 'Source'},
+];
+
+function CorpusPage() {
+  const corpus = Route.useLoaderData();
+  return (
+    <section>
+      <title>{`${corpus.title} - PoeCor`}</title>
+      <h1>{corpus.title}</h1>
+      <Table data={corpus.poems} columns={columns} defaultSort={[{id: 'title', desc: false}]} />
+    </section>
+  );
+}
+```
+
+The poem view as tabs, the way eltec-frontend builds its text view:
+
+```tsx
+// components/PoemView.tsx (excerpt)
+import {Outlet} from '@tanstack/react-router';
+import IdCopy from '@dracor/react/IdCopy';
+import Tabs from '@dracor/react/Tabs';
+
+<h2>{poem.authors.map((a) => a.name).join(', ')}</h2>
+<h1>{poem.title}</h1>
+<IdCopy uri={poem.uri}>{poem.id}</IdCopy>
+<Tabs data={[{label: 'Analysis', to: '../analysis'}, {label: 'Downloads', to: '../downloads'}]} />
+<Outlet />
+```
+
+What the library does not cover for PoeCor: the analysis tables (PoeCor-specific), and the poem text itself. POSTDATA stores the text as literals in the triple store, not as TEI, so `TEIText` does not apply and the text view would be a small custom component. Charts (e.g. metrical patterns per stanza) would use Recharts directly, as dracor-frontend does.
+
 (dracor-frontend-config)=
 ## Configuration and deployment
 
@@ -298,3 +453,6 @@ Where the components described in D7.1 are now. The link-by-link mapping of all 
 5. **Unused endpoints.** `/dts/*`, `/characters`, `/character/{id}` and `/wikidata/mixnmatch` are not used by the website. Is that worth a sentence ("the API offers more than the website shows"), with a pointer to the notebooks or the textbook?
 6. **Legacy API docs.** `/doc/legacy/api` (v0) will go away with the v0 shutdown (#15).
 7. **Generate instead of write.** The routes table and the endpoint table can be generated from the code (route files, `loaders.ts`, `DownloadLinks.tsx`, `ToolsTab.tsx`), like `coderefs/`. That would make this page cheap to keep current (#22, #23).
+8. **D7.1 §6.2 wording.** D7.1 says the PoeCor front end "was built based on the DraCor front-end". The code shows a new project in the DraCor style (corpus cards → table → text view) that shares no code with dracor-frontend. Is that worth an Update box in §6.2, pointing to the [sibling section](#dracor-frontend-siblings)?
+9. **Siblings and their version pins.** ELTeC (1.1.0) and EcoCor (1.2.1) predate the generic `CorpusCard` (1.3.0) and Scalar in `ApiDoc` (1.5.0) and still use their own card. Is the migration planned (Carsten)? And should EcoCor and ELTeC appear in the DraCor documentation at all, or only as "other projects using `@dracor/react`"?
+10. **Screenshots** for the home page section (and possibly the siblings: one card each from dracor.org, ecocor.org, eltec.clscor.io).
