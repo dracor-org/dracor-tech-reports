@@ -66,7 +66,7 @@ project:
                 - file: clsinfra-d74/3-6.md
             - file: clsinfra-d74/4.md
             - file: clsinfra-d74/5.md
-    - title: System Documentation
+    - title: System Documentation (Current)
       children:
         - file: docs/index.md
         - title: Front end
