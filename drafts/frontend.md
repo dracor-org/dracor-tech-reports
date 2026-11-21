@@ -94,6 +94,31 @@ DraCor IDs are resolved on the server: `https://dracor.org/id/ger000088` answers
 
 Old play URLs with a tab in the hash (`/ger/lessing-emilia-galotti#network`) are rewritten to the new path form once, on the first page load ([`src/hashRedirect.ts`](https://github.com/dracor-org/dracor-frontend/blob/3.0.0-rc.1/src/hashRedirect.ts)). Links in the reports that use the hash form therefore keep working.
 
+(dracor-frontend-menu)=
+## Menu and footer
+
+<!-- cf. D7.1 §5.6 intro (Fig. 11, 12; fn. 154–166) -->
+
+Every page has the top navigation ([`TopNav.tsx`](https://github.com/dracor-org/dracor-frontend/blob/3.0.0-rc.1/src/components/TopNav.tsx) → `NavBar` from `@dracor/react`) and the footer ([`Footer.tsx`](https://github.com/dracor-org/dracor-frontend/blob/3.0.0-rc.1/src/components/Footer.tsx)).
+
+**The menu is no longer part of the front-end code.** It is read from a site map ([`sitemap.json`](https://staging.dracor.org/doc/sitemap.json), from `VITE_SITEMAP_URL`), which lives in dracor-docs together with the documentation pages. Only the "Corpora" drop-down is filled by the front end itself, from `/corpora`. Changing the menu therefore means editing dracor-docs, not releasing a new front end. On staging (2026-11-21) the menu has:
+
+| Menu | Items |
+|---|---|
+| About | What Is DraCor?, Corpus Registry, Credits, Get in Touch, DraCor Moments, DraCor Summit 2025, Merch, Media Kit, Imprint |
+| Corpora | one entry per corpus (from the API) |
+| Documentation | API, API v0 (legacy), Encoding Guidelines (ODD), FAQs, Tutorials, DraCor Textbook |
+| Tools | pydracor, rdracor, SPARQL, ezlinavis |
+| Research | Research Bibliography, Posters, Card Games, DraCor in Science Communication |
+
+Compared with D7.1 (Fig. 11): "How To" has become "Documentation" and "Research"; the API documentation moved from "Tools" to "Documentation" (and is rendered with Scalar instead of Swagger UI); Shiny DraCor is no longer in the menu, the API libraries are. <!-- Shiny DraCor: check whether it is intentionally gone. --> A "Rahtz Prize 2022" badge can be switched on with `VITE_WITH_RAHTZ_PRIZE=yes`.
+
+**The footer** has, as in D7.1, how to cite DraCor (BibTeX and RIS downloads and the DH2019 paper, [doi:10.5281/zenodo.4284002](https://doi.org/10.5281/zenodo.4284002)), the licence of the data (CC0), and version information from `/info`. The versions are now shown as small "pills": the front end (linked to its GitHub release), the API (linked to its release) and eXist-db.
+
+:::{note} Screenshots needed
+The open "About" menu and the footer, 2.7.2 and 3.0 (cf. D7.1 Fig. 11 and 12).
+:::
+
 (dracor-frontend-home)=
 ## The home page
 
@@ -118,6 +143,35 @@ Fig. B: the same page in 3.0 (staging.dracor.org), wide screen, default order.
 Optional Fig. C: phone width, to show that the cards stack.
 
 D7.1 Fig. 13 shows the carousel version; a caption could make the comparison explicit.
+:::
+
+(dracor-frontend-corpus)=
+## The corpus page
+
+<!-- cf. D7.1 §5.6.2 (Fig. 14, 15; fn. 169–173) -->
+
+Selecting a corpus (`/{corpus}`, e.g. [`/tat`](https://staging.dracor.org/tat)) shows its contents. The route loads `/corpora/{corpus}` and renders it with [`Corpus.tsx`](https://github.com/dracor-org/dracor-frontend/blob/3.0.0-rc.1/src/components/Corpus.tsx) and [`CorpusIndex.tsx`](https://github.com/dracor-org/dracor-frontend/blob/3.0.0-rc.1/src/components/CorpusIndex.tsx). An unknown corpus name now gives a "No such corpus" page (the API's 404 is turned into the router's not-found state).
+
+From top to bottom, the page has:
+
+1. **A corpus label** (`CorpusLabel`, new in 3.0): the corpus acronym as a small badge ("Tat DraCor") on the dark band below the menu, linking back to the corpus. The play pages show the same label.
+2. **The title**, then **the description** from `corpus.xml` (rendered from Markdown), **the licence** of the corpus with a link, and **the Git commit** of the corpus version the API serves (`Commit`, linked to the repository; added in 2.3.0, June 2024).
+3. **The two metadata downloads**, JSON and CSV, linking to `/corpora/{corpus}/metadata` and `/corpora/{corpus}/metadata/csv`, as in D7.1 Fig. 15.
+4. **The table of plays** (`Table` from `@dracor/react`), sorted by normalized year, with a search field and these columns:
+
+| Column | Shows | The search also finds (not visible in the cell) |
+|---|---|---|
+| Authors | names, Wikidata links (`IdLink`), translators as "transl. …" (since 2.7.0, July 2026) | author IDs (Wikidata etc.), alternative names (`alsoKnownAs`), translator names |
+| Title | title (linked to the play), subtitle, Wikidata link of the play | the Wikidata ID |
+| Year (normalized) | the normalized year, below it written / premiered / printed (`Years`); the info icon links to the FAQ entry on the normalized year | all four years |
+| Network Size | number of characters in the network | |
+| Source | the digital source (linked), and the "TEI version" link to `/corpora/{corpus}/plays/{play}/tei` | the source name |
+| ID | the DraCor ID | |
+
+What changed since D7.1 (front end 1.5.0, November 2022): the content of the page is largely the same. New are the Git commit of the corpus version (2.3.0), the translators (2.7.0) and the corpus label (3.0). In 3.0 the table is no longer `react-bootstrap-table-next` but the library's `Table` (TanStack Table), and the TEI link uses the plural path `/plays/` of API v1. <!-- D7.1 fn. 172 has /play/ (v0) -->
+
+:::{note} Screenshots needed
+The TatDraCor corpus page in 3.0, as in D7.1 Fig. 14, and the download links (Fig. 15). A larger corpus (e.g. GerDraCor) with a search term entered would show the filter.
 :::
 
 ## Data flow
