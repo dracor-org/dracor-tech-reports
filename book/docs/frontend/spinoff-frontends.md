@@ -42,10 +42,49 @@ How the code travelled:
 
 So the components move in both directions. Something is written for one project, proves itself, moves into `@dracor/react`, and then the other projects pick it up when they upgrade.
 
+(spinoff-frontends-checklist)=
+## Checklist: building a spin-off front end
+
+For people and coding agents starting a new spin-off front end. Details and examples are in the [PoeCor example](#spinoff-frontends-poecor-example) below.
+
+1. **Start from eltec-frontend, not from dracor-frontend.** [eltec-frontend](https://github.com/clscor-io/eltec-frontend/blob/ee13aca9ff56583b4f85ff1c9a8b0572b8b38274/src/loaders.ts#L1-L33) is the newest and smallest spin-off front end (about 650 lines) and already has corpus list, corpus table and a text view with tabs. dracor-frontend carries everything drama-specific (networks, speech distribution, segments).
+2. **Stack:** Vite, React 19, TypeScript, TanStack Router (file-based routes, `@tanstack/router-plugin`), Tailwind CSS 4.
+3. **Install `@dracor/react` 1.11.0 or later** and only the optional peers of the components you use (see the [component table](#dracor-frontend)): `@tanstack/react-router` (`NavBar`, `Tabs`, `CorpusCard`), `@tanstack/react-table` (`Table`), Font Awesome and Headless UI (`NavBar`, `IdCopy`, `Commit`), CETEIcean (`TEIText`), `@scalar/api-reference-react` (`ApiDoc`).
+4. **CSS:** in the app's main CSS file, `@import 'tailwindcss';`, `@import '@dracor/react/dracor.css';` (and `tei.css` for `TEIText`), and `@source '../node_modules/@dracor/react';` so that Tailwind generates the classes the components use. Without the `@source` line most of the components' styling is missing.
+5. **Respect the library's division of labour.** The components only display what they get as props: no data fetching, no global state ([CLAUDE.md of `@dracor/react`](https://github.com/dracor-org/dracor-react/blob/ffda3e07484b2eda1d0f312760ff12e787a682ed/CLAUDE.md#L27-L30)). Routing and loading are the app's job: one typed `loaders.ts` with a function per endpoint, called from route loaders (as in [dracor-frontend](https://github.com/dracor-org/dracor-frontend/blob/700071e9725b073303f10f801dd53b0ef4ac3ee1/src/loaders.ts#L1-L156) and [eltec-frontend](https://github.com/clscor-io/eltec-frontend/blob/ee13aca9ff56583b4f85ff1c9a8b0572b8b38274/src/loaders.ts#L1-L33)).
+6. **Generic, not DraCor-specific components.** `CorpusCard` + `CorpusCardRow` (1.3.0 or later), not `DracorCorpusCard`; `TEIText` only for TEI.
+7. **Links:** full route IDs with `params`, no relative paths (see the warning in the example).
+8. **API base URL from an environment variable** (`VITE_…_API`), so that the same build runs against a local, staging or production API.
+9. **Develop against mock data** when the API isn't ready: a mock service worker as in poecor-frontend and ecocor-frontend ([`handlers.ts`](https://github.com/dracor-org/poecor-frontend/blob/62f707ba8d89986e013dca5a8be2b94572fbbf5c/src/mocks/handlers.ts#L1-L40)), or a small Vite middleware that serves JSON files.
+10. **Check with** `tsc` (type check), `vite build`, and a look at every page in the browser (console free of errors).
+
+(spinoff-frontends-api)=
+## What the front end expects from the API
+
+A spin-off front end needs an API that answers a small set of requests. The three spin-offs and DraCor ask for nearly the same things, with different names:
+
+| Purpose | DraCor (API v1) | ELTeC | EcoCor | PoeCor (2022) |
+|---|---|---|---|---|
+| API name and version (footer) | `/info` | `/` | `/info` | – |
+| list of corpora, with counts for the cards | `/corpora?include=metrics` | `/corpora` | `/corpora` | `/corpora` |
+| one corpus (title, description, licence, repository, commit) | `/corpora/{corpus}` | `/corpora/{corpus}` | `/corpora/{corpus}` | `/corpora/{corpus}` |
+| the texts of a corpus, for the table | in `/corpora/{corpus}` (`plays`) | `/corpora/{corpus}/texts` | `/corpora/{corpus}/texts` | in `/corpora/{corpus}` (`poems`) |
+| one text: metadata and computed values | `/corpora/{corpus}/plays/{play}` | `/corpora/{corpus}/texts/{text}` | `/corpora/{corpus}/texts/{text}` | `/corpora/{corpus}/poem/{poem}` |
+| the text as TEI (full text, download) | `…/plays/{play}/tei` | `…/texts/{text}/tei` | `…/texts/{text}/tei` | – |
+| the text as plain text (download, tools) | `…/plays/{play}/txt` | `…/texts/{text}/plaintext` | `…/texts/{text}/plaintext` | – |
+| domain-specific data | metrics, network data, characters, … | – | `…/entities`, `/corpora/{corpus}/entities` | analysis inside the text record |
+| OpenAPI specification (`ApiDoc`) | `/api/v1/openapi.yaml` | `/api/v1/openapi.yaml` | `/api/openapi.yaml` | – |
+
+Sources: [dracor-frontend `loaders.ts`](https://github.com/dracor-org/dracor-frontend/blob/700071e9725b073303f10f801dd53b0ef4ac3ee1/src/loaders.ts#L1-L156), [eltec-frontend `loaders.ts`](https://github.com/clscor-io/eltec-frontend/blob/ee13aca9ff56583b4f85ff1c9a8b0572b8b38274/src/loaders.ts#L1-L33), [ecocor-frontend `api.ts`](https://github.com/EcoCor/ecocor-frontend/blob/c515890f85369917ba02b53a85edbe7dc26bef07/src/api.ts#L1-L84), [poecor-frontend `api.ts`](https://github.com/dracor-org/poecor-frontend/blob/62f707ba8d89986e013dca5a8be2b94572fbbf5c/src/api.ts#L1-L49).
+
+For a new spin-off: use plural nouns (`texts`, as ELTeC and EcoCor do; DraCor switched from `/play/` to `/plays/` with API 1.0.0), give every corpus the fields the cards and the corpus page show (`name`, `title`, `acronym`, `description`, `licence`, `licenceUrl`, `repository`, `commit`, `updated`, `metrics`), and give every text a short `name` for its URL and an `id`. Offer TEI and plain text, and an OpenAPI specification for `ApiDoc`.
+
+<!-- Not checked: whether the ELTeC and EcoCor APIs are derived from dracor-api (both report an eXist-db version in /info, like dracor-api). -->
+
 (spinoff-frontends-poecor-example)=
 ## Example: a PoeCor front end with `@dracor/react` in 2026
 
-PoeCor (D7.1 §6.2) showed that the DraCor approach carries over to poetry. Its front end listed the corpora, the poems of a corpus and, for a single poem, its metadata and POSTDATA's analysis results. This section shows how that front end would be built today, as an example of adapting DraCor's front end to a different kind of corpus. It is a sketch, not a tutorial. The code has not been run.
+PoeCor (D7.1 §6.2) showed that the DraCor approach carries over to poetry. Its front end listed the corpora, the poems of a corpus and, for a single poem, its metadata and POSTDATA's analysis results. This section shows how that front end would be built today, as an example of adapting DraCor's front end to a different kind of corpus. It is a sketch, not a tutorial. The three code examples below were tested (21 November 2026) in a minimal app with `@dracor/react` 1.11.0, React 19.3, TanStack Router 1.170, TanStack Table 8.21, Vite 8 and Tailwind 4.3, against PoeCor's archived mock data: they type-check, build and run.
 
 ### General approach
 
@@ -75,7 +114,7 @@ PoeCor (D7.1 §6.2) showed that the DraCor approach carries over to poetry. Its 
 The corpus card, with PoeCor's metrics as rows:
 
 ```tsx
-// routes/corpora/index.tsx (excerpt)
+// routes/corpora/index.tsx (excerpt; corpora come from the route loader)
 import CorpusCard, {CorpusCardRow} from '@dracor/react/CorpusCard';
 
 <CorpusCard title={corpus.title} to={`/corpora/${corpus.name}`}>
@@ -87,7 +126,7 @@ import CorpusCard, {CorpusCardRow} from '@dracor/react/CorpusCard';
 </CorpusCard>
 ```
 
-The list of poems: a loader fetches the corpus, `Table` renders it.
+The list of poems: a loader fetches the corpus, `Table` renders it with a search field and sortable columns. The columns are built from the corpus name, so that the links to the poems can name both route parameters (dracor-frontend does the same in `buildColumns`).
 
 ```tsx
 // routes/corpora/$corpusId/index.tsx
@@ -102,19 +141,25 @@ export const Route = createFileRoute('/corpora/$corpusId/')({
   component: CorpusPage,
 });
 
-const columns: ColumnDef<Poem>[] = [
-  {
-    accessorKey: 'title',
-    header: 'Title',
-    cell: ({row}) => <Link to="./$poemId" params={{poemId: row.original.name}}>{row.original.title}</Link>,
-  },
-  {
-    id: 'authors',
-    header: 'Author',
-    accessorFn: (p) => p.authors.map((a) => a.name).join(', '),
-  },
-  {accessorKey: 'source', header: 'Source'},
-];
+function buildColumns(corpusId: string): ColumnDef<Poem>[] {
+  return [
+    {
+      accessorKey: 'title',
+      header: 'Title',
+      cell: ({row}) => (
+        <Link to="/corpora/$corpusId/$poemId" params={{corpusId, poemId: row.original.name}}>
+          {row.original.title}
+        </Link>
+      ),
+    },
+    {
+      id: 'authors',
+      header: 'Author',
+      accessorFn: (p) => p.authors.map((a) => a.name).join(', '),
+    },
+    {accessorKey: 'source', header: 'Source'},
+  ];
+}
 
 function CorpusPage() {
   const corpus = Route.useLoaderData();
@@ -122,26 +167,42 @@ function CorpusPage() {
     <section>
       <title>{`${corpus.title} - PoeCor`}</title>
       <h1>{corpus.title}</h1>
-      <Table data={corpus.poems} columns={columns} defaultSort={[{id: 'title', desc: false}]} />
+      <Table data={corpus.poems} columns={buildColumns(corpus.name)} defaultSort={[{id: 'title', desc: false}]} />
     </section>
   );
 }
 ```
 
-The poem view as tabs, the way eltec-frontend builds its text view:
+The poem view with tabs. The layout route `routes/corpora/$corpusId/$poemId/route.tsx` loads the poem and renders this component; each tab is a child route (`analysis.tsx`, `downloads.tsx`). `params: (prev) => prev` keeps the current corpus and poem in the tab links. This needs `@dracor/react` 1.11.0 or later; older versions drop `params` (dracor-react#87).
 
 ```tsx
-// components/PoemView.tsx (excerpt)
+// components/PoemView.tsx
 import {Outlet} from '@tanstack/react-router';
 import IdCopy from '@dracor/react/IdCopy';
 import Tabs from '@dracor/react/Tabs';
+import type {Poem} from '../types';
 
-<h2>{poem.authors.map((a) => a.name).join(', ')}</h2>
-<h1>{poem.title}</h1>
-<IdCopy uri={poem.uri}>{poem.id}</IdCopy>
-<Tabs data={[{label: 'Analysis', to: '../analysis'}, {label: 'Downloads', to: '../downloads'}]} />
-<Outlet />
+export default function PoemView({poem}: {poem: Poem}) {
+  return (
+    <section>
+      <h2>{poem.authors.map((a) => a.name).join(', ')}</h2>
+      <h1>{poem.title}</h1>
+      <IdCopy uri={poem.uri}>{poem.id}</IdCopy>
+      <Tabs
+        data={[
+          {label: 'Analysis', to: '/corpora/$corpusId/$poemId/analysis', params: (prev) => prev},
+          {label: 'Downloads', to: '/corpora/$corpusId/$poemId/downloads', params: (prev) => prev},
+        ]}
+      />
+      <Outlet />
+    </section>
+  );
+}
 ```
+
+:::{warning} Relative links do not type-check
+Relative targets such as `to="./$poemId"` or `to: '../analysis'` work at runtime, but TanStack Router's types reject them. eltec-frontend silences this with `// @ts-expect-error`. Use the full route ID with `params`, as above.
+:::
 
 What the library does not cover for PoeCor: the analysis tables (PoeCor-specific), and the poem text itself. POSTDATA stores the text as literals in the triple store, not as TEI, so `TEIText` does not apply and the text view would be a small custom component. Charts (e.g. metrical patterns per stanza) would use Recharts directly, as dracor-frontend does.
 
