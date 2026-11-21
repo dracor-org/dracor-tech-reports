@@ -7,13 +7,6 @@ project:
   license: CC-BY-4.0
   toc:
     - file: index.md
-    - title: System Documentation
-      children:
-        - file: docs/index.md
-        - title: Front end
-          children:
-            - file: docs/frontend/dracor-frontend.md
-            - file: docs/frontend/spinoff-frontends.md
     - title: Reports (CLS INFRA, 2023–2025)
       children:
         - file: clsinfra-d71/index.md
@@ -73,6 +66,13 @@ project:
                 - file: clsinfra-d74/3-6.md
             - file: clsinfra-d74/4.md
             - file: clsinfra-d74/5.md
+    - title: System Documentation
+      children:
+        - file: docs/index.md
+        - title: Front end
+          children:
+            - file: docs/frontend/dracor-frontend.md
+            - file: docs/frontend/spinoff-frontends.md
 site:
   template: book-theme
   parts:
