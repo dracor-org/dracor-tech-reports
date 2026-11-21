@@ -19,4 +19,4 @@ This part documents the **current** DraCor system. Unlike the [CLS INFRA reports
 
 For learning to use DraCor, see the [DraCor Textbook](https://dracor-org.github.io/dracor-textbook/); for hands-on code, the [DraCor Notebooks](https://github.com/dracor-org/dracor-notebooks).
 
-How to build a new DraCor spin-off (API, frontend, deployment) is described in a separate section: [Building Spin-offs](#spinoffs).
+How to build a new DraCor Spin-off (API, frontend, deployment) is described in a separate section: [Building DraCor Spin-offs](#spinoffs).

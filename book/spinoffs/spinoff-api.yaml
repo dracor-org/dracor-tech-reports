@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: DraCor spin-off API (minimal)
+  title: DraCor Spin-off API (minimal)
   version: 0.1.0
   summary: The smallest API a DraCor-style corpus platform should offer.
   description: |
@@ -9,7 +9,7 @@ info:
     the operations they share, under the names EcoCor and ELTeC use
     (`texts`, `plaintext`, `numOf…` metrics).
 
-    A spin-off adds its own endpoints and fields (e.g. DraCor's networks,
+    A DraCor Spin-off adds its own endpoints and fields (e.g. DraCor's networks,
     EcoCor's entities). Read operations are public; write operations
     (loading and changing data) require authentication.
 
@@ -427,7 +427,7 @@ components:
     CorpusMetrics:
       type: object
       description: |
-        Counts for the corpus card. `numOfTexts` is required; spin-offs add their
+        Counts for the corpus card. `numOfTexts` is required; DraCor Spin-offs add their
         own counts (e.g. `numOfAnimals` in EcoCor, `numOfStanzas` for poetry) as
         further `numOf…` fields.
       required: [numOfTexts]
@@ -459,7 +459,7 @@ components:
 
     TextMetrics:
       type: object
-      description: Counts for one text; spin-offs add their own `numOf…` fields.
+      description: Counts for one text; DraCor Spin-offs add their own `numOf…` fields.
       properties:
         numOfWords: {type: integer, minimum: 0}
       additionalProperties: {type: number}

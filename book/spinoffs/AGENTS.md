@@ -1,6 +1,6 @@
-# Guide for coding agents: build a DraCor spin-off
+# Guide for coding agents: build a DraCor Spin-off
 
-You are helping a person build a **DraCor spin-off**: a corpus of TEI files,
+You are helping a person build a **DraCor Spin-off**: a corpus of TEI files,
 an API that makes it programmable, and a website to browse it, in the way
 DraCor, EcoCor and ELTeC are built. Work through the steps below in order.
 Each step ends with a check; do not start the next step before it passes.
@@ -44,7 +44,7 @@ Find out, in a normal conversation (not a questionnaire):
 1. **The texts.** What kind (novels, plays, poems, letters, …), how many, which
    language(s). Where the TEI files are (ideally a Git repository, one file per
    text). Look at two or three files together with the person.
-2. **The name** of the spin-off and of its first corpus (short, lowercase, e.g. `eng`).
+2. **The name** of the DraCor Spin-off and of its first corpus (short, lowercase, e.g. `eng`).
 3. **What to count** for the corpus cards and the table: always texts, authors,
    words; plus what matters for this kind of text (stanzas, chapters, letters
    per correspondent, …). These become extra `numOf…` metrics.
@@ -64,7 +64,7 @@ Read the API page. Then choose the implementation with the person:
 
 - **eXist-db and XQuery, starting from [eltec-api](https://github.com/clscor-io/eltec-api)**:
   the way EcoCor and ELTeC are built, and closest to the specification. Adapt
-  names and fields to the spin-off; note that eltec-api uploads texts with
+  names and fields to the DraCor Spin-off; note that eltec-api uploads texts with
   `PUT …/texts/{textname}`, the specification with `PUT …/texts/{textname}/tei`.
 - **A small server in another language** (e.g. Python with FastAPI, TEI files on
   disk): quicker for a prototype; the specification was tested with such a server.
@@ -100,7 +100,7 @@ type check).
 Pages: corpus cards (`CorpusCard` with the metrics from Step 0), the table of
 texts (`Table`), the text view with tabs (`Tabs`): full text (`TEIText` on
 `…/tei`), downloads (`DownloadButton` for TEI and plain text), and an API page
-(`ApiDoc` on the specification of the spin-off).
+(`ApiDoc` on the specification of the DraCor Spin-off).
 
 **Check:** `tsc` without errors, `vite build`, and every page in the browser
 against the running API from Step 1, with an empty console.
@@ -110,7 +110,7 @@ against the running API from Step 1, with an empty console.
 Read the Deployment page. For the EOSC EU Node, use
 [dracor-eosc-eu-node-deploy](https://github.com/dracor-org/dracor-eosc-eu-node-deploy)
 as the template: its AGENTS.md covers booking, the web console, the Secret
-and the manifests. Replace the DraCor images with the spin-off's (built so
+and the manifests. Replace the DraCor images with the DraCor Spin-off's (built so
 that they run under a random user ID, web servers on port 8080, pinned by
 digest), keep the platform steps. Load the corpus with `POST /corpora` and
 `POST /corpora/{corpusname}`.
@@ -120,7 +120,7 @@ Schemathesis check from Step 1 passes against the public address.
 
 ## At the end
 
-- A README for each repository: what the spin-off is, how to run it, where it
+- A README for each repository: what the DraCor Spin-off is, how to run it, where it
   runs; a licence (code) and the licence of the texts; a `CITATION.cff`.
 - Tell the person what works, what was not tested, and what you would do next.
 - Offer to draft feedback on this guide (what was missing, where you got stuck)

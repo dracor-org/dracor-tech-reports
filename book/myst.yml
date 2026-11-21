@@ -70,7 +70,7 @@ project:
       children:
         - file: docs/index.md
         - file: docs/frontend/dracor-frontend.md
-    - title: Building Spin-offs
+    - title: Building DraCor Spin-offs
       children:
         - file: spinoffs/index.md
         - file: spinoffs/api.md

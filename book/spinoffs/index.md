@@ -1,54 +1,54 @@
 ---
-title: Building Spin-offs
-subtitle: How the DraCor spin-offs were built, and how to build a new one
+title: Building DraCor Spin-offs
+subtitle: How the DraCor Spin-offs were built, and how to build a new one
 short_title: Overview
 label: spinoffs
 ---
 
 <!--
-DRAFT 2026-11-21. Section set up at Ingo's request ("instructions on how spin-offs were built and how to do it").
+DRAFT 2026-11-21. Section set up at Ingo's request ("instructions on how DraCor Spin-offs were built and how to do it").
 DraCorOS: this documentation is the delivery instead of a configurable "generic DraCor" (Ingo's decision 2026-11-21).
 -->
 
 :::{note} Draft
 :class: editorial
-This section is a draft. It is based on the code of the existing spin-offs (as of November 2026); the API specification and the code examples were tested.
+This section is a draft. It is based on the code of the existing DraCor Spin-offs (as of November 2026); the API specification and the code examples were tested.
 :::
 
-A **spin-off** applies the DraCor approach to another kind of text: a corpus of TEI files, an API that makes it programmable, and a website to browse it. Three spin-offs exist so far:
+A **DraCor Spin-off** applies the DraCor approach to another kind of text: a corpus of TEI files, an API that makes it programmable, and a website to browse it. Three DraCor Spin-offs exist so far:
 
-| Spin-off | Texts | Website | API | Since |
+| DraCor Spin-off | Texts | Website | API | Since |
 |---|---|---|---|---|
 | PoeCor | Spanish poetry (POSTDATA) | poecor.org (offline since November 2026, [archived](https://github.com/dracor-org/poecor-frontend)) | Python, on the POSTDATA knowledge graph | 2022 |
 | EcoCor | ecocritically relevant narrative texts | [ecocor.org](https://ecocor.org) | [ecocor-api](https://github.com/EcoCor/ecocor-api) (eXist-db, XQuery) | 2023 |
 | ELTeC | European novels (ELTeC) | [eltec.clscor.io](https://eltec.clscor.io) | [eltec-api](https://github.com/clscor-io/eltec-api) (eXist-db, XQuery) | 2025 |
 
-Instead of one configurable "generic DraCor", the spin-offs share **parts**: an API with the same basic structure, the component library [`@dracor/react`](#dracor-frontend) for the website, and the same way of deploying. This section describes these parts in the order in which a new spin-off is built:
+Instead of one configurable "generic DraCor", the DraCor Spin-offs share **parts**: an API with the same basic structure, the component library [`@dracor/react`](#dracor-frontend) for the website, and the same way of deploying. This section describes these parts in the order in which a new DraCor Spin-off is built:
 
-1. [**API**](#spinoffs-api): a minimal OpenAPI specification that every spin-off API should implement (read access, loading data, DTS).
+1. [**API**](#spinoffs-api): a minimal OpenAPI specification that every DraCor Spin-off API should implement (read access, loading data, DTS).
 2. [**Frontend**](#spinoffs-frontend): the website, built with `@dracor/react` against that API.
 3. [**Deployment**](#spinoffs-deploy): running both on the EOSC EU Node.
 
 The pages are written for people and for coding agents: each has a checklist or a specification that can be followed step by step, and all code examples were tested.
 
-**For coding agents:** [`AGENTS.md`](https://dracor-org.github.io/dracor-tech-reports/spinoffs/AGENTS.md) is a guide that an agent (e.g. Claude Code) follows to build a spin-off together with a person: a conversation about the texts first, then API, website and deployment, each step with a check that has to pass. Put it into an empty project folder and start the agent there. It has not yet been run from start to finish.
+**For coding agents:** [`AGENTS.md`](https://dracor-org.github.io/dracor-tech-reports/spinoffs/AGENTS.md) is a guide that an agent (e.g. Claude Code) follows to build a DraCor Spin-off together with a person: a conversation about the texts first, then API, website and deployment, each step with a check that has to pass. Put it into an empty project folder and start the agent there. It has not yet been run from start to finish.
 
 (spinoffs-history)=
-## How the spin-offs were built
+## How the DraCor Spin-offs were built
 
 (spinoffs-history-apis)=
 ### APIs
 
 - **PoeCor (2022/23)** was a demonstrator in CLS INFRA ([D7.1 §6.2](#clsinfra-d71-6-2)): a Python API on top of the POSTDATA knowledge graph, designed after the DraCor API (corpora, a list of poems, single poems). It had no admin operations; the data came from the triple store.
-- **EcoCor (2023)** got a new eXist-db application in XQuery, like the DraCor API: [ecocor-api](https://github.com/EcoCor/ecocor-api) (first commit May 2023). It introduced the names that the later spin-offs kept: `texts` instead of `plays`, `plaintext`, metrics named `numOf…`.
+- **EcoCor (2023)** got a new eXist-db application in XQuery, like the DraCor API: [ecocor-api](https://github.com/EcoCor/ecocor-api) (first commit May 2023). It introduced the names that the later DraCor Spin-offs kept: `texts` instead of `plays`, `plaintext`, metrics named `numOf…`.
 - **ELTeC (2025)** started from a copy of the EcoCor API ([eltec-api](https://github.com/clscor-io/eltec-api), second commit: "Copy adjust files from ecocor-api") and added DTS and a search endpoint.
 
-So EcoCor and ELTeC share almost all basic operations, under the same names. The [spin-off API](#spinoffs-api) writes these shared operations down as a specification.
+So EcoCor and ELTeC share almost all basic operations, under the same names. The [DraCor Spin-off API](#spinoffs-api) writes these shared operations down as a specification.
 
 (spinoffs-history-frontends)=
 ### Front ends
 
-The spin-offs and two DraCor tools, Einakter and ezlinavis, share DraCor's look and, increasingly, its code through the component library `@dracor/react`. None of them is a fork of dracor-frontend: they share no Git history with it.
+The DraCor Spin-offs and two DraCor tools, Einakter and ezlinavis, share DraCor's look and, increasingly, its code through the component library `@dracor/react`. None of them is a fork of dracor-frontend: they share no Git history with it.
 
 | Front end | Site | Started | Stack today | `@dracor/react` (resolved) | From the library |
 |---|---|---|---|---|---|

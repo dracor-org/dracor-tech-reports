@@ -1,28 +1,28 @@
 ---
 title: "Step 2: Frontend"
-subtitle: Building the website of a spin-off with `@dracor/react`
+subtitle: Building the website of a DraCor Spin-off with `@dracor/react`
 short_title: "2. Frontend"
 label: spinoffs-frontend
 ---
 
 <!--
-DRAFT 2026-11-21 (Ingo: own section "Building Spin-offs"). Code links are permalinks (SHA + lines).
+DRAFT 2026-11-21 (Ingo: own section "Building DraCor Spin-offs"). Code links are permalinks (SHA + lines).
 The examples were tested in scratchpad poecor-poc and spinoff-poc (see the API page for the chain test).
 -->
 
 :::{note} Draft
 :class: editorial
-How to build the website of a spin-off with the DraCor component library [`@dracor/react`](#dracor-frontend), against an API that follows the [spin-off API](#spinoffs-api). The DraCor front end itself is described in [System Documentation › Frontend](#dracor-frontend).
+How to build the website of a DraCor Spin-off with the DraCor component library [`@dracor/react`](#dracor-frontend), against an API that follows the [DraCor Spin-off API](#spinoffs-api). The DraCor front end itself is described in [System Documentation › Frontend](#dracor-frontend).
 :::
 
 (spinoffs-frontend-checklist)=
 ## Checklist
 
-For people and coding agents starting a new spin-off front end. Details and examples are in the [PoeCor example](#spinoffs-frontend-example) below.
+For people and coding agents starting a new DraCor Spin-off front end. Details and examples are in the [PoeCor example](#spinoffs-frontend-example) below.
 
-0. **The API comes first.** The front end is written against the [spin-off API](#spinoffs-api) (Step 1): its types (`Corpus`, `Text`, …) follow the schemas in [`spinoff-api.yaml`](./spinoff-api.yaml).
+0. **The API comes first.** The front end is written against the [DraCor Spin-off API](#spinoffs-api) (Step 1): its types (`Corpus`, `Text`, …) follow the schemas in [`spinoff-api.yaml`](./spinoff-api.yaml).
 
-1. **Start from eltec-frontend, not from dracor-frontend.** [eltec-frontend](https://github.com/clscor-io/eltec-frontend/blob/ee13aca9ff56583b4f85ff1c9a8b0572b8b38274/src/loaders.ts#L1-L33) is the newest and smallest spin-off front end (about 650 lines) and already has corpus list, corpus table and a text view with tabs. dracor-frontend carries everything drama-specific (networks, speech distribution, segments).
+1. **Start from eltec-frontend, not from dracor-frontend.** [eltec-frontend](https://github.com/clscor-io/eltec-frontend/blob/ee13aca9ff56583b4f85ff1c9a8b0572b8b38274/src/loaders.ts#L1-L33) is the newest and smallest DraCor Spin-off front end (about 650 lines) and already has corpus list, corpus table and a text view with tabs. dracor-frontend carries everything drama-specific (networks, speech distribution, segments).
 2. **Stack:** Vite, React 19, TypeScript, TanStack Router (file-based routes, `@tanstack/router-plugin`), Tailwind CSS 4.
 3. **Install `@dracor/react` 1.11.0 or later** and only the optional peers of the components you use (see the [component table](#dracor-frontend)): `@tanstack/react-router` (`NavBar`, `Tabs`, `CorpusCard`), `@tanstack/react-table` (`Table`), Font Awesome and Headless UI (`NavBar`, `IdCopy`, `Commit`), CETEIcean (`TEIText`), `@scalar/api-reference-react` (`ApiDoc`).
 4. **CSS:** in the app's main CSS file, `@import 'tailwindcss';`, `@import '@dracor/react/dracor.css';` (and `tei.css` for `TEIText`), and `@source '../node_modules/@dracor/react';` so that Tailwind generates the classes the components use. Without the `@source` line most of the components' styling is missing.
@@ -162,5 +162,5 @@ What the library does not cover for PoeCor: the analysis tables (PoeCor-specific
 
 <!-- for Ingo / Carsten, not for publication -->
 
-1. **D7.1 §6.2 wording.** D7.1 says the PoeCor front end "was built based on the DraCor front-end". The code shows a new project in the DraCor style (corpus cards → table → text view) that shares no code with dracor-frontend. Is that worth an Update box in §6.2, pointing to the [overview of the spin-offs](#spinoffs)?
+1. **D7.1 §6.2 wording.** D7.1 says the PoeCor front end "was built based on the DraCor front-end". The code shows a new project in the DraCor style (corpus cards → table → text view) that shares no code with dracor-frontend. Is that worth an Update box in §6.2, pointing to the [overview of the DraCor Spin-offs](#spinoffs)?
 2. **Version pins.** ELTeC (1.1.0) and EcoCor (1.2.1) predate the generic `CorpusCard` (1.3.0) and Scalar in `ApiDoc` (1.5.0) and still use their own card. Is the migration planned (Carsten)? And should EcoCor and ELTeC appear in the DraCor documentation at all, or only as "other projects using `@dracor/react`"?
