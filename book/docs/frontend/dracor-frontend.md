@@ -333,7 +333,7 @@ To develop a component of `@dracor/react` together with the front end, build the
 
 ## From D7.1 §5.6 to front end 3
 
-Where the components described in D7.1 are now. The link-by-link mapping of all 97 front-end code references in D7.1 is in `coderefs/code-links.csv` in the repository.
+Where the components described in D7.1 are now. The link-by-link mapping of all 97 front-end code references in D7.1 is in [`coderefs/code-links.csv`](https://github.com/dracor-org/dracor-tech-reports/blob/b5b8ffff42100d4a420f6b4499ad29d714119cd8/coderefs/code-links.csv).
 
 | D7.1 | Then (1.5.0, November 2022, `.js`) | Now (3.0.0-rc.1) |
 |---|---|---|
