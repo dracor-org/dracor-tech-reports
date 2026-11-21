@@ -5,12 +5,6 @@ short_title: "1. API"
 label: spinoffs-api
 ---
 
-<!--
-DRAFT 2026-11-21. Spec abstracted from dracor-api 1.5.0-rc.1, ecocor-api 1.0.1, eltec-api 1.0.0, poecor-api 2026-11-16-archive.
-Tested: openapi-spec-validator (OK); test server (scratchpad spinoff-server, FastAPI) checked with Schemathesis 4.33
-(all GET operations, 470 generated requests, no issues); admin operations by hand; front end (scratchpad spinoff-poc) on top.
--->
-
 :::{note} Draft
 :class: editorial
 A recommendation for new DraCor Spin-offs, not a standard that existing ones have to follow. Download: [`spinoff-api.yaml`](./spinoff-api.yaml); stable address: `https://dracor-org.github.io/dracor-tech-reports/spinoffs/spinoff-api.yaml`.

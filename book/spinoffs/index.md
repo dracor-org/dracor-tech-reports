@@ -5,11 +5,6 @@ short_title: Overview
 label: spinoffs
 ---
 
-<!--
-DRAFT 2026-11-21. Section set up at Ingo's request ("instructions on how DraCor Spin-offs were built and how to do it").
-DraCorOS: this documentation is the delivery instead of a configurable "generic DraCor" (Ingo's decision 2026-11-21).
--->
-
 :::{note} Draft
 :class: editorial
 This section is a draft. It is based on the code of the existing DraCor Spin-offs (as of November 2026); the API specification and the code examples were tested.
@@ -58,8 +53,6 @@ The DraCor Spin-offs and two DraCor tools, Einakter and ezlinavis, share DraCor'
 | [poecor-frontend](https://github.com/dracor-org/poecor-frontend) (archived) | poecor.org (offline) | Dec. 2022 | Create React App, React 18, React Router 6, Tailwind 3 | none (predates it) | none |
 | [ecocor-frontend](https://github.com/EcoCor/ecocor-frontend) | ecocor.org | Dec. 2022 (from PoeCor) | Vite, React 19, TanStack Router, Tailwind 4 | ^1.2.1 (1.2.1) | `NavBar`, `Table`, `Tabs`, `TEIText`, `DocPage`, `ApiDoc`, `DownloadButton`, `AuthorInfo`, `IdCopy`, `IdLink`, `Commit` |
 | [eltec-frontend](https://github.com/clscor-io/eltec-frontend) | eltec.clscor.io | May 2025 | Vite, React 19, TanStack Router, Tailwind 4 | ^1.1.0 (1.1.0) | `NavBar`, `Table`, `Tabs`, `TEIText`, `DocPage`, `ApiDoc`, `DownloadButton`, `AuthorInfo`, `IdCopy`, `IdLink`, `Commit` |
-
-<!-- "Started" = first commit of the repo. Resolved versions from pnpm-lock.yaml on main (2026-11-20). -->
 
 How the code travelled:
 

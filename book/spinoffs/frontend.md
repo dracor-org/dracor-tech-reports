@@ -5,11 +5,6 @@ short_title: "2. Frontend"
 label: spinoffs-frontend
 ---
 
-<!--
-DRAFT 2026-11-21 (Ingo: own section "Building DraCor Spin-offs"). Code links are permalinks (SHA + lines).
-The examples were tested in scratchpad poecor-poc and spinoff-poc (see the API page for the chain test).
--->
-
 :::{note} Draft
 :class: editorial
 How to build the website of a DraCor Spin-off with the DraCor component library [`@dracor/react`](#dracor-frontend), against an API that follows the [DraCor Spin-off API](#spinoffs-api). The DraCor front end itself is described in [System Documentation › Frontend](#dracor-frontend).
@@ -157,10 +152,3 @@ Relative targets such as `to="./$poemId"` or `to: '../analysis'` work at runtime
 :::
 
 What the library does not cover for PoeCor: the analysis tables (PoeCor-specific), and the poem text itself. POSTDATA stores the text as literals in the triple store, not as TEI, so `TEIText` does not apply and the text view would be a small custom component. Charts (e.g. metrical patterns per stanza) would use Recharts directly, as dracor-frontend does.
-
-## Open questions
-
-<!-- for Ingo / Carsten, not for publication -->
-
-1. **D7.1 §6.2 wording.** D7.1 says the PoeCor front end "was built based on the DraCor front-end". The code shows a new project in the DraCor style (corpus cards → table → text view) that shares no code with dracor-frontend. Is that worth an Update box in §6.2, pointing to the [overview of the DraCor Spin-offs](#spinoffs)?
-2. **Version pins.** ELTeC (1.1.0) and EcoCor (1.2.1) predate the generic `CorpusCard` (1.3.0) and Scalar in `ApiDoc` (1.5.0) and still use their own card. Is the migration planned (Carsten)? And should EcoCor and ELTeC appear in the DraCor documentation at all, or only as "other projects using `@dracor/react`"?

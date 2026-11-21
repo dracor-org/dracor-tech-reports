@@ -5,12 +5,6 @@ short_title: "3. Deployment"
 label: spinoffs-deploy
 ---
 
-<!--
-DRAFT 2026-11-21. Based on dracor-org/dracor-eosc-eu-node-deploy (main 02c74f1, 2026-10-23; tested 20–22 October 2026).
-Not tested for a DraCor Spin-off yet: the steps below are the adaptation of the DraCor guide. EcoCor has its own
-EOSC deployment repository (EcoCor/ecocor-eosc-deployment), which is not public.
--->
-
 :::{note} Draft
 :class: editorial
 This page adapts the tested DraCor deployment guide to DraCor Spin-offs. A DraCor Spin-off has not been deployed this way yet.

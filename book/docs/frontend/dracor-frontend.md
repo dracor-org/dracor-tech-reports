@@ -5,17 +5,6 @@ short_title: Frontend
 label: dracor-frontend
 ---
 
-<!--
-DRAFT (2026-11-20), written autonomously by Claude from the code, for Ingo to review.
-Since 2026-11-21 in book/docs/frontend/ (group "Documentation", on branch frontend-docs-draft).
-Intended for 2.0.0 ("Current documentation", #9/#11): replaces the code-level parts of
-D7.1 §5.6 for the current state; the user-facing walkthrough is in DraCor Textbook ch. 4.
-Based on: dracor-frontend 3.0.0-rc.1 (700071e, 2026-10-31; main bead72a differs only in
-deploy workflows), `@dracor/react` 1.11.0 (ffda3e0, 2026-10-24), dracor-api 1.5.0-rc.1.
-All code links are permalinks (full commit SHA + line range), made with scratchpad permalinks.py. Check everything again when 3.0.0 is released.
-Open questions for Ingo/Carsten are collected at the end.
--->
-
 :::{note} Draft
 :class: editorial
 This page describes the front end as of **dracor-frontend 3.0.0-rc.1** (release candidate, 31 October 2026, running on [staging.dracor.org](https://staging.dracor.org)) and **`@dracor/react` 1.11.0**. It updates the description in [D7.1 §5.6](#clsinfra-d71-5-6), which documents front end 1.x (JavaScript; 1.5.0, November 2022). For a guided tour of the website from a user's point of view, see [DraCor Textbook, ch. 4](https://textbook.dracor.org/chapters/04-front-end-navigating-dracor.html).
@@ -97,8 +86,6 @@ Old play URLs with a tab in the hash (`/ger/lessing-emilia-galotti#network`) are
 (dracor-frontend-menu)=
 ## Menu and footer
 
-<!-- cf. D7.1 §5.6 intro (Fig. 11, 12; fn. 154–166) -->
-
 Every page has the top navigation ([`TopNav.tsx`](https://github.com/dracor-org/dracor-frontend/blob/700071e9725b073303f10f801dd53b0ef4ac3ee1/src/components/TopNav.tsx#L90-L114) → `NavBar` from `@dracor/react`) and the footer ([`Footer.tsx`](https://github.com/dracor-org/dracor-frontend/blob/700071e9725b073303f10f801dd53b0ef4ac3ee1/src/components/Footer.tsx#L15-L135)).
 
 **The menu is no longer part of the front-end code.** It is read from a site map ([`sitemap.json`](https://staging.dracor.org/doc/sitemap.json), from `VITE_SITEMAP_URL`), which lives in dracor-docs together with the documentation pages. Only the "Corpora" drop-down is filled by the front end itself, from `/corpora`. Changing the menu therefore means editing dracor-docs, not releasing a new front end. On staging (2026-11-21) the menu has:
@@ -111,7 +98,7 @@ Every page has the top navigation ([`TopNav.tsx`](https://github.com/dracor-org/
 | Tools | pydracor, rdracor, SPARQL, ezlinavis |
 | Research | Research Bibliography, Posters, Card Games, DraCor in Science Communication |
 
-Compared with D7.1 (Fig. 11): "How To" has become "Documentation" and "Research"; the API documentation moved from "Tools" to "Documentation" (and is rendered with Scalar instead of Swagger UI); Shiny DraCor is no longer in the menu, the API libraries are. <!-- Shiny DraCor: check whether it is intentionally gone. --> A "Rahtz Prize 2022" badge can be switched on with `VITE_WITH_RAHTZ_PRIZE=yes`.
+Compared with D7.1 (Fig. 11): "How To" has become "Documentation" and "Research"; the API documentation moved from "Tools" to "Documentation" (and is rendered with Scalar instead of Swagger UI); Shiny DraCor is no longer in the menu, the API libraries are. A "Rahtz Prize 2022" badge can be switched on with `VITE_WITH_RAHTZ_PRIZE=yes`.
 
 **The footer** has, as in D7.1, how to cite DraCor (BibTeX and RIS downloads and the DH2019 paper, [doi:10.5281/zenodo.4284002](https://doi.org/10.5281/zenodo.4284002)), the licence of the data (CC0), and version information from `/info`. The versions are now shown as small "pills": the front end (linked to its GitHub release), the API (linked to its release) and eXist-db.
 
@@ -121,8 +108,6 @@ The open "About" menu and the footer, 2.7.2 and 3.0 (cf. D7.1 Fig. 11 and 12).
 
 (dracor-frontend-home)=
 ## The home page
-
-<!-- PLACEHOLDER section (Ingo, 2026-11-21): concrete description with before/after screenshots. Facts below are from the code; screenshots still to be taken. -->
 
 The home page lists the published corpora as corpus cards. The way they are shown changed with 3.0.
 
@@ -148,8 +133,6 @@ D7.1 Fig. 13 shows the carousel version; a caption could make the comparison exp
 (dracor-frontend-corpus)=
 ## The corpus page
 
-<!-- cf. D7.1 §5.6.2 (Fig. 14, 15; fn. 169–173) -->
-
 Selecting a corpus (`/{corpus}`, e.g. [`/tat`](https://staging.dracor.org/tat)) shows its contents. The route loads `/corpora/{corpus}` and renders it with [`Corpus.tsx`](https://github.com/dracor-org/dracor-frontend/blob/700071e9725b073303f10f801dd53b0ef4ac3ee1/src/components/Corpus.tsx#L11-L28) and [`CorpusIndex.tsx`](https://github.com/dracor-org/dracor-frontend/blob/700071e9725b073303f10f801dd53b0ef4ac3ee1/src/components/CorpusIndex.tsx#L230-L288). An unknown corpus name now gives a "No such corpus" page (the API's 404 is turned into the router's not-found state).
 
 From top to bottom, the page has:
@@ -168,8 +151,7 @@ From top to bottom, the page has:
 | Source | the digital source (linked), and the "TEI version" link to `/corpora/{corpus}/plays/{play}/tei` | the source name |
 | ID | the DraCor ID | |
 
-What changed since D7.1 (front end 1.5.0, November 2022): the content of the page is largely the same. New are the Git commit of the corpus version (2.3.0), the translators (2.7.0) and the corpus label (3.0). In 3.0 the table is no longer `react-bootstrap-table-next` but the library's `Table` (TanStack Table), and the TEI link uses the plural path `/plays/` of API v1. <!-- D7.1 fn. 172 has /play/ (v0) -->
-
+What changed since D7.1 (front end 1.5.0, November 2022): the content of the page is largely the same. New are the Git commit of the corpus version (2.3.0), the translators (2.7.0) and the corpus label (3.0). In 3.0 the table is no longer `react-bootstrap-table-next` but the library's `Table` (TanStack Table), and the TEI link uses the plural path `/plays/` of API v1.
 :::{note} Screenshots needed
 The TatDraCor corpus page in 3.0, as in D7.1 Fig. 14, and the download links (Fig. 15). A larger corpus (e.g. GerDraCor) with a search term entered would show the filter.
 :::
@@ -223,8 +205,6 @@ This table replaces D7.1, Tab. 06, for front end 3.0.0-rc.1 and API 1.5.0-rc.1. 
 | `/wikidata/author/{id}` | | | fetched (author portrait) | | | | |
 | `/id/{id}` | | | | | | | (resolved on the server) |
 | `/characters`, `/character/{id}`, `/wikidata/mixnmatch`, `/dts/*` | not used | | | | | | |
-
-<!-- TODO: generate this table from the code (grep of loaders.ts, DownloadLinks.tsx, ToolsTab.tsx, CorpusIndex.tsx, Play.tsx) as part of the drift check (#23), like coderefs/ -->
 
 The external tools on the "Tools" tab are [Voyant Tools](https://voyant-tools.org), the [CLARIN Language Resource Switchboard](https://switchboard.clarin.eu) and [Gephi Lite](https://gephi.org/gephi-lite/). They load the data directly from the API, so the tab only offers them when the API is publicly reachable (its host name contains `dracor.org`).
 
@@ -334,8 +314,6 @@ All three use the shared workflow `deployment.yml`, which syncs the build to the
 - the website documents in `/doc/` (`*.md`, `sitemap.json`), from [dracor-docs](https://github.com/dracor-org/dracor-docs);
 - the ODD (`odd*.html`) and the schema files (`schema.rng`, `dracor.sch`).
 
-<!-- assumption: dracor-docs deploys /doc/ itself (not verified) -->
-
 Before November 2025 the documents lived in `public/doc/` of the front-end repository (commit [047250f](https://github.com/dracor-org/dracor-frontend/commit/047250f2b92fd40e8854d6039355b5194ca6f801)).
 
 ## Development
@@ -355,7 +333,7 @@ To develop a component of `@dracor/react` together with the front end, build the
 
 ## From D7.1 §5.6 to front end 3
 
-Where the components described in D7.1 are now. The link-by-link mapping of all 97 front-end code references in D7.1 is in `coderefs/code-links.csv` <!-- link once branch coderefs-1.5 is merged -->.
+Where the components described in D7.1 are now. The link-by-link mapping of all 97 front-end code references in D7.1 is in `coderefs/code-links.csv` in the repository.
 
 | D7.1 | Then (1.5.0, November 2022, `.js`) | Now (3.0.0-rc.1) |
 |---|---|---|
@@ -370,16 +348,3 @@ Where the components described in D7.1 are now. The link-by-link mapping of all 
 | §5.6.3.5 Downloads | [`DownloadLinks.js`](https://github.com/dracor-org/dracor-frontend/blob/148756743ee7a26a9556464aed9fc861cfbd8869/src/components/DownloadLinks.js#L18-L154) | [`DownloadLinks.tsx`](https://github.com/dracor-org/dracor-frontend/blob/700071e9725b073303f10f801dd53b0ef4ac3ee1/src/components/DownloadLinks.tsx#L5-L132) → `DownloadButton` (`@dracor/react`); external tools moved to a new "Tools" tab |
 | Tab. 06 | endpoints × components | [this page](#dracor-frontend-endpoints) |
 | play tabs as `#hash` | | path segments, old hashes redirected |
-
-## Open questions
-
-<!-- for Ingo / Carsten, not for publication -->
-
-1. **Scope.** Should this page sit in the 2.0.0 documentation (#9/#11) or become a 1.x appendix to D7.1 §5.6? Should D7.1 §5.6 then get a short "Update" box pointing here (cf. #19)?
-2. **Release.** All facts are from 3.0.0-rc.1. When 3.0.0 is out: repin the links, recheck the routes and env variables, and update the Swagger deep links (#14).
-3. **Tab workaround.** [`PlayDetailsNav.tsx`](https://github.com/dracor-org/dracor-frontend/blob/700071e9725b073303f10f801dd53b0ef4ac3ee1/src/components/PlayDetailsNav.tsx#L15-L33) still works around `Tabs` dropping `params`. The fix (dracor-react#87) was merged on 2026-09-12 and is in 1.11.0, so the workaround can probably go. Ask Carsten whether that is intended.
-4. **Repo CLAUDE.md.** The front end's `CLAUDE.md` mentions chart.js next to Recharts for the speech distribution, but only Recharts is a dependency. It also says the docs are in `public/doc/`, but they are in dracor-docs. Small things to mention to Carsten.
-5. **Unused endpoints.** `/dts/*`, `/characters`, `/character/{id}` and `/wikidata/mixnmatch` are not used by the website. Is that worth a sentence ("the API offers more than the website shows"), with a pointer to the notebooks or the textbook?
-6. **Legacy API docs.** `/doc/legacy/api` (v0) will go away with the v0 shutdown (#15).
-7. **Generate instead of write.** The routes table and the endpoint table can be generated from the code (route files, `loaders.ts`, `DownloadLinks.tsx`, `ToolsTab.tsx`), like `coderefs/`. That would make this page cheap to keep current (#22, #23).
-8. **Screenshots** for the menu, home page and corpus page sections.

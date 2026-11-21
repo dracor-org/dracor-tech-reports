@@ -4,8 +4,6 @@ short_title: About
 label: docs-index
 ---
 
-<!-- 2026-11-21: group set up at Ingo's request. Order follows the layers of the DraCor system (D7.1 Fig. 08). Topics without a page are listed here only, not in the menu. -->
-
 This part documents the **current** DraCor system. Unlike the [CLS INFRA reports](../index.md), which are reproduced as published, these pages are kept up to date with DraCor releases. Each page names the release it describes and the report sections it updates.
 
 | Topic | Contents | Updates | Status |
