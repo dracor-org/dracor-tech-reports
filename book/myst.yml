@@ -69,7 +69,7 @@ project:
     - title: System Documentation (Current)
       children:
         - file: docs/index.md
-        - title: Front end
+        - title: Frontends
           children:
             - file: docs/frontend/dracor-frontend.md
             - file: docs/frontend/spinoff-frontends.md
