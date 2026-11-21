@@ -1,7 +1,7 @@
 ---
 title: Front ends of the spin-offs
 subtitle: PoeCor, EcoCor, ELTeC and the reuse of the DraCor front end
-short_title: Spin-off front ends
+short_title: Spin-off Frontends
 label: spinoff-frontends
 ---
 

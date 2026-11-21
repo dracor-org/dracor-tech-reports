@@ -1,7 +1,7 @@
 ---
 title: The DraCor front end
 subtitle: dracor-frontend 3 and the DraCor React component library
-short_title: Front end
+short_title: DraCor Frontend
 label: dracor-frontend
 ---
 
