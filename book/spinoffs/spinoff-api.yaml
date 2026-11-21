@@ -1,0 +1,523 @@
+openapi: 3.1.0
+info:
+  title: DraCor Spin-off API (minimal)
+  version: 0.1.0
+  summary: The smallest API a DraCor-style corpus platform should offer.
+  description: |
+    A recommendation, not a standard. Abstracted on 2026-11-21 from the APIs of
+    DraCor (1.5.0-rc.1), EcoCor (1.0.1), ELTeC (1.0.0) and PoeCor (2023):
+    the operations they share, under the names EcoCor and ELTeC use
+    (`texts`, `plaintext`, `numOf…` metrics).
+
+    A DraCor Spin-off adds its own endpoints and fields (e.g. DraCor's networks,
+    EcoCor's entities). Read operations are public; write operations
+    (loading and changing data) require authentication.
+
+    Documentation: https://dracor-org.github.io/dracor-tech-reports/spinoffs/api/
+  license:
+    name: CC0 1.0
+    url: https://creativecommons.org/publicdomain/zero/1.0/
+externalDocs:
+  description: Documentation of this specification
+  url: https://dracor-org.github.io/dracor-tech-reports/spinoffs/api/
+servers:
+  - url: http://localhost:8088/api/v1
+    description: local development
+tags:
+  - name: public
+    description: Read access, no authentication.
+  - name: admin
+    description: Loading and changing data; HTTP Basic authentication.
+  - name: dts
+    description: |
+      Optional: Distributed Text Services (DTS) 1.0. Requests and responses are
+      defined by the DTS specification; this file only lists the endpoints and
+      their parameters. Collections are the corpora, resources are the texts.
+    externalDocs:
+      description: DTS 1.0 specification
+      url: https://dtsapi.org/specifications/versions/v1.0/
+
+paths:
+  /info:
+    get:
+      tags: [public]
+      operationId: get-info
+      summary: Name and version of the API
+      responses:
+        '200':
+          description: API information
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Info'}
+
+  /corpora:
+    get:
+      tags: [public]
+      operationId: list-corpora
+      summary: List all corpora, with their metrics
+      responses:
+        '200':
+          description: The corpora
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {$ref: '#/components/schemas/Corpus'}
+    post:
+      tags: [admin]
+      operationId: add-corpus
+      summary: Add a new, empty corpus
+      description: |
+        Send either a JSON object with name, title and (optionally) the Git
+        repository, or the corpus description as a TEI document (`corpus.xml`).
+        Use `POST /corpora/{corpusname}` afterwards to load its texts.
+      security: [{basicAuth: []}]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/NewCorpus'}
+          application/tei+xml:
+            schema: {type: string}
+      responses:
+        '200':
+          description: Corpus added
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Corpus'}
+        '400': {$ref: '#/components/responses/BadRequest'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '409':
+          description: A corpus with this name exists already
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Error'}
+
+  /corpora/{corpusname}:
+    parameters:
+      - $ref: '#/components/parameters/corpusname'
+    get:
+      tags: [public]
+      operationId: get-corpus
+      summary: Metadata and metrics of one corpus
+      responses:
+        '200':
+          description: The corpus
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Corpus'}
+        '404': {$ref: '#/components/responses/NotFound'}
+    put:
+      tags: [admin]
+      operationId: update-corpus
+      summary: Replace the corpus description (corpus.xml)
+      security: [{basicAuth: []}]
+      requestBody:
+        required: true
+        content:
+          application/tei+xml:
+            schema: {type: string}
+      responses:
+        '200':
+          description: Corpus description updated
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Corpus'}
+        '400': {$ref: '#/components/responses/BadRequest'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '404': {$ref: '#/components/responses/NotFound'}
+    post:
+      tags: [admin]
+      operationId: load-corpus
+      summary: Load (or reload) all texts of the corpus from its repository
+      description: Loading runs in the background; the response only confirms that it has started.
+      security: [{basicAuth: []}]
+      responses:
+        '202':
+          description: Loading started
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Message'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409':
+          description: The corpus is being loaded already
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Error'}
+    delete:
+      tags: [admin]
+      operationId: delete-corpus
+      summary: Remove the corpus and all its texts
+      security: [{basicAuth: []}]
+      responses:
+        '200':
+          description: Corpus removed
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Message'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '404': {$ref: '#/components/responses/NotFound'}
+
+  /corpora/{corpusname}/texts:
+    parameters:
+      - $ref: '#/components/parameters/corpusname'
+    get:
+      tags: [public]
+      operationId: list-texts
+      summary: The texts of a corpus, with their metadata
+      responses:
+        '200':
+          description: The texts
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {$ref: '#/components/schemas/Text'}
+        '404': {$ref: '#/components/responses/NotFound'}
+
+  /corpora/{corpusname}/texts/{textname}:
+    parameters:
+      - $ref: '#/components/parameters/corpusname'
+      - $ref: '#/components/parameters/textname'
+    get:
+      tags: [public]
+      operationId: get-text
+      summary: Metadata and metrics of one text
+      responses:
+        '200':
+          description: The text
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Text'}
+        '404': {$ref: '#/components/responses/NotFound'}
+    delete:
+      tags: [admin]
+      operationId: delete-text
+      summary: Remove one text from the corpus
+      security: [{basicAuth: []}]
+      responses:
+        '200':
+          description: Text removed
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Message'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '404': {$ref: '#/components/responses/NotFound'}
+
+  /corpora/{corpusname}/texts/{textname}/tei:
+    parameters:
+      - $ref: '#/components/parameters/corpusname'
+      - $ref: '#/components/parameters/textname'
+    get:
+      tags: [public]
+      operationId: get-text-tei
+      summary: The text as TEI
+      responses:
+        '200':
+          description: The TEI document
+          content:
+            application/tei+xml:
+              schema: {type: string}
+        '404': {$ref: '#/components/responses/NotFound'}
+    put:
+      tags: [admin]
+      operationId: put-text-tei
+      summary: Add a new text or replace an existing one
+      description: The text is stored under `textname` from the URL; its `id` comes from the TEI (`TEI/@xml:id`).
+      security: [{basicAuth: []}]
+      requestBody:
+        required: true
+        content:
+          application/tei+xml:
+            schema: {type: string}
+      responses:
+        '200':
+          description: Text stored
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Text'}
+        '400': {$ref: '#/components/responses/BadRequest'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '404': {$ref: '#/components/responses/NotFound'}
+
+  /corpora/{corpusname}/texts/{textname}/plaintext:
+    parameters:
+      - $ref: '#/components/parameters/corpusname'
+      - $ref: '#/components/parameters/textname'
+    get:
+      tags: [public]
+      operationId: get-text-plaintext
+      summary: The text as plain text
+      responses:
+        '200':
+          description: The text without markup
+          content:
+            text/plain:
+              schema: {type: string}
+        '404': {$ref: '#/components/responses/NotFound'}
+
+  /dts:
+    get:
+      tags: [dts]
+      operationId: dts-entry-point
+      summary: DTS entry point (URI templates of the other DTS endpoints)
+      responses:
+        '200':
+          description: DTS entry point
+          content:
+            application/ld+json:
+              schema: {$ref: '#/components/schemas/DtsJsonLd'}
+
+  /dts/collection:
+    get:
+      tags: [dts]
+      operationId: dts-collection
+      summary: DTS collection endpoint (root collection, corpora, texts)
+      parameters:
+        - {name: id, in: query, schema: {type: string}, description: 'Collection or resource identifier; without it, the root collection (all corpora)'}
+        - {name: nav, in: query, schema: {type: string, enum: [children, parents], default: children}}
+        - {name: page, in: query, schema: {type: integer, minimum: 1}}
+      responses:
+        '200':
+          description: The collection or resource with its members
+          content:
+            application/ld+json:
+              schema: {$ref: '#/components/schemas/DtsJsonLd'}
+        '400': {$ref: '#/components/responses/BadRequest'}
+        '404': {$ref: '#/components/responses/NotFound'}
+
+  /dts/navigation:
+    get:
+      tags: [dts]
+      operationId: dts-navigation
+      summary: DTS navigation endpoint (citation tree of a text)
+      parameters:
+        - {$ref: '#/components/parameters/dtsResource'}
+        - {$ref: '#/components/parameters/dtsRef'}
+        - {$ref: '#/components/parameters/dtsStart'}
+        - {$ref: '#/components/parameters/dtsEnd'}
+        - {name: down, in: query, schema: {type: integer, minimum: -1}, description: 'Depth of citable units to return; -1 for all'}
+        - {$ref: '#/components/parameters/dtsTree'}
+        - {name: page, in: query, schema: {type: integer, minimum: 1}}
+      responses:
+        '200':
+          description: Citable units
+          content:
+            application/ld+json:
+              schema: {$ref: '#/components/schemas/DtsJsonLd'}
+        '400': {$ref: '#/components/responses/BadRequest'}
+        '404': {$ref: '#/components/responses/NotFound'}
+
+  /dts/document:
+    get:
+      tags: [dts]
+      operationId: dts-document
+      summary: DTS document endpoint (the whole text or a citable unit)
+      parameters:
+        - {$ref: '#/components/parameters/dtsResource'}
+        - {$ref: '#/components/parameters/dtsRef'}
+        - {$ref: '#/components/parameters/dtsStart'}
+        - {$ref: '#/components/parameters/dtsEnd'}
+        - {$ref: '#/components/parameters/dtsTree'}
+        - {name: mediaType, in: query, schema: {type: string}, description: 'e.g. `text/plain`; default is TEI'}
+      responses:
+        '200':
+          description: The document or the requested part, wrapped as the DTS specification requires
+          content:
+            application/tei+xml:
+              schema: {type: string}
+            text/plain:
+              schema: {type: string}
+        '400': {$ref: '#/components/responses/BadRequest'}
+        '404': {$ref: '#/components/responses/NotFound'}
+
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication with a user that has write access.
+
+  parameters:
+    corpusname:
+      name: corpusname
+      in: path
+      required: true
+      description: Short name of the corpus, e.g. `eng`
+      schema: {type: string, pattern: '^[a-z0-9-]+$'}
+    textname:
+      name: textname
+      in: path
+      required: true
+      description: Short name (URL slug) of the text, e.g. `austen-emma`
+      schema: {type: string, pattern: '^[a-z0-9_-]+$'}
+
+    dtsResource:
+      name: resource
+      in: query
+      required: true
+      description: Identifier of the text (as given in the collection response)
+      schema: {type: string}
+    dtsRef:
+      name: ref
+      in: query
+      description: Identifier of a single citable unit (not together with start/end)
+      schema: {type: string}
+    dtsStart:
+      name: start
+      in: query
+      description: First citable unit of a range (together with end)
+      schema: {type: string}
+    dtsEnd:
+      name: end
+      in: query
+      description: Last citable unit of a range (together with start)
+      schema: {type: string}
+    dtsTree:
+      name: tree
+      in: query
+      description: Which citation tree to use, if the text has more than one
+      schema: {type: string}
+
+  responses:
+    NotFound:
+      description: No such corpus or text
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+    BadRequest:
+      description: The request body is not valid (e.g. not well-formed TEI)
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+    Unauthorized:
+      description: Missing or wrong credentials
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+
+  schemas:
+    Info:
+      type: object
+      required: [name, version]
+      properties:
+        name: {type: string, description: Name of the API, examples: [EcoCor API]}
+        version: {type: string, description: Version of the API software, examples: [1.0.1]}
+        status: {type: string, description: e.g. `stable` or `beta`}
+        base: {type: string, format: uri, description: Base URL of the API}
+
+    Corpus:
+      type: object
+      required: [name, title]
+      properties:
+        name: {type: string, description: Short name, used in URLs}
+        title: {type: string}
+        acronym: {type: string, description: Short label shown on the corpus card, examples: [EngELTeC]}
+        description: {type: string, description: Description in Markdown}
+        repository: {type: string, format: uri, description: Git repository with the TEI files}
+        commit: {type: string, description: Git commit of the loaded corpus version}
+        licence: {type: string}
+        licenceUrl: {type: string, format: uri}
+        updated: {type: string, format: date-time, description: When the corpus was last loaded or its metrics last computed}
+        uri: {type: string, format: uri, description: URL of this corpus resource}
+        textsUrl: {type: string, format: uri, description: URL of the list of texts}
+        metrics: {$ref: '#/components/schemas/CorpusMetrics'}
+
+    CorpusMetrics:
+      type: object
+      description: |
+        Counts for the corpus card. `numOfTexts` is required; DraCor Spin-offs add their
+        own counts (e.g. `numOfAnimals` in EcoCor, `numOfStanzas` for poetry) as
+        further `numOf…` fields.
+      required: [numOfTexts]
+      properties:
+        numOfTexts: {type: integer, minimum: 0}
+        numOfAuthors: {type: integer, minimum: 0}
+        numOfWords: {type: integer, minimum: 0}
+      additionalProperties: {type: number}
+
+    Text:
+      type: object
+      required: [id, name, corpus, title]
+      properties:
+        id: {type: string, description: Stable identifier, e.g. from `TEI/@xml:id`, examples: [ENG18400]}
+        name: {type: string, description: Short name (URL slug)}
+        corpus: {type: string, description: Name of the corpus}
+        title: {type: string}
+        authors:
+          type: array
+          items: {$ref: '#/components/schemas/Author'}
+        refs: {$ref: '#/components/schemas/References'}
+        referenceYear: {type: string, description: The year used for ordering and filtering (e.g. first publication)}
+        sources:
+          type: array
+          items: {$ref: '#/components/schemas/Source'}
+        commit: {type: string, description: Git commit of this version of the text}
+        corpusUrl: {type: string, format: uri}
+        metrics: {$ref: '#/components/schemas/TextMetrics'}
+
+    TextMetrics:
+      type: object
+      description: Counts for one text; DraCor Spin-offs add their own `numOf…` fields.
+      properties:
+        numOfWords: {type: integer, minimum: 0}
+      additionalProperties: {type: number}
+
+    Author:
+      type: object
+      required: [name]
+      properties:
+        name: {type: string}
+        refs: {$ref: '#/components/schemas/References'}
+
+    References:
+      type: array
+      description: |
+        Authority identifiers in prefixed form, as the `IdLink` component of
+        `@dracor/react` expects them: `wikidata:Q1001`, `gnd:118540238`, `viaf:…`.
+        Not URLs: `https://viaf.org/viaf/34551336` must be given as `viaf:34551336`.
+      items: {type: string, pattern: '^[a-z]+:(?!//)\S+$', examples: ['wikidata:Q1001', 'viaf:34551336']}
+
+    Source:
+      type: object
+      description: A source the digital text was made from.
+      properties:
+        bibl: {type: string, description: Bibliographic description as one string}
+        title: {type: string}
+        author: {type: string}
+        year: {type: string}
+        url: {type: string, format: uri}
+
+    NewCorpus:
+      type: object
+      required: [name, title]
+      properties:
+        name: {type: string, pattern: '^[a-z0-9-]+$'}
+        title: {type: string}
+        repository: {type: string, format: uri}
+
+    Message:
+      type: object
+      required: [message]
+      properties:
+        message: {type: string}
+
+    Error:
+      type: object
+      required: [message]
+      properties:
+        message: {type: string}
+
+    DtsJsonLd:
+      type: object
+      description: A JSON-LD document as defined by the DTS 1.0 specification.
+      externalDocs:
+        url: https://dtsapi.org/specifications/versions/v1.0/
+      required: ['@context', '@type']
+      properties:
+        '@context': {}
+        '@id': {type: string}
+        '@type': {type: string}
+        dtsVersion: {type: string, examples: ['1.0']}
+      additionalProperties: true
