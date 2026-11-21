@@ -7,7 +7,7 @@ label: dracor-frontend
 
 <!--
 DRAFT (2026-11-20), written autonomously by Claude from the code, for Ingo to review.
-Not part of the book yet (drafts/ is outside book/ and not in the toc).
+Since 2026-11-21 in book/docs/frontend/ (group "Documentation", on branch frontend-docs-draft).
 Intended for 2.0.0 ("Current documentation", #9/#11): replaces the code-level parts of
 D7.1 §5.6 for the current state; the user-facing walkthrough is in DraCor Textbook ch. 4.
 Based on: dracor-frontend 3.0.0-rc.1 (700071e, 2026-10-31; main bead72a differs only in
@@ -18,7 +18,7 @@ Open questions for Ingo/Carsten are collected at the end.
 
 :::{note} Draft
 :class: editorial
-This page describes the front end as of **dracor-frontend 3.0.0-rc.1** (release candidate, 31 October 2026, running on [staging.dracor.org](https://staging.dracor.org)) and **`@dracor/react` 1.11.0**. It updates the description in [D7.1 §5.6](../book/clsinfra-d71/5-6.md), which documents front end 1.x (JavaScript; 1.5.0, November 2022). For a guided tour of the website from a user's point of view, see [DraCor Textbook, ch. 4](https://textbook.dracor.org/chapters/04-front-end-navigating-dracor.html).
+This page describes the front end as of **dracor-frontend 3.0.0-rc.1** (release candidate, 31 October 2026, running on [staging.dracor.org](https://staging.dracor.org)) and **`@dracor/react` 1.11.0**. It updates the description in [D7.1 §5.6](#clsinfra-d71-5-6), which documents front end 1.x (JavaScript; 1.5.0, November 2022). For a guided tour of the website from a user's point of view, see [DraCor Textbook, ch. 4](https://textbook.dracor.org/chapters/04-front-end-navigating-dracor.html).
 :::
 
 ## Overview
@@ -353,7 +353,7 @@ To develop a component of `@dracor/react` together with the front end, build the
 
 ## From D7.1 §5.6 to front end 3
 
-Where the components described in D7.1 are now. The link-by-link mapping of all 97 front-end code references in D7.1 is in [`coderefs/code-links.csv`](../coderefs/code-links.csv) (branch `coderefs-1.5`, not pushed yet).
+Where the components described in D7.1 are now. The link-by-link mapping of all 97 front-end code references in D7.1 is in `coderefs/code-links.csv` <!-- link once branch coderefs-1.5 is merged -->.
 
 | D7.1 | Then (1.5.0, November 2022, `.js`) | Now (3.0.0-rc.1) |
 |---|---|---|
