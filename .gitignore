@@ -10,3 +10,6 @@ book/**/_frontmatter_raw.md
 
 # internal working notes for Claude Code, not public
 CLAUDE.md
+
+# clones for tools/coderefs.py
+.cache/
