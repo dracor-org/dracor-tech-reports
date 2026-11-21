@@ -69,10 +69,13 @@ project:
     - title: System Documentation (Current)
       children:
         - file: docs/index.md
-        - title: Frontend
-          children:
-            - file: docs/frontend/dracor-frontend.md
-            - file: docs/frontend/spinoff-frontends.md
+        - file: docs/frontend/dracor-frontend.md
+    - title: Building Spin-offs
+      children:
+        - file: spinoffs/index.md
+        - file: spinoffs/api.md
+        - file: spinoffs/frontend.md
+        - file: spinoffs/deploy.md
 site:
   template: book-theme
   parts:

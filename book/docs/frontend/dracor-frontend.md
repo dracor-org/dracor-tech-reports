@@ -1,7 +1,7 @@
 ---
 title: The DraCor front end
 subtitle: dracor-frontend 3 and the DraCor React component library
-short_title: DraCor Frontend
+short_title: Frontend
 label: dracor-frontend
 ---
 
@@ -293,7 +293,7 @@ The library is built one file per component, and every component also has its ow
 
 The component tables in this draft follow the 1.11.0 sources. The Storybook links point to its docs page for each component, with live examples (stories) and a props table. The Storybook always shows the latest release of the library, not 1.11.0. For the current props, the Storybook is authoritative (#22: link the generated documentation instead of restating it). This section should therefore stay at the level of "which component does what, and where DraCor uses it".
 
-The library is also used by the DraCor spin-offs (EcoCor, ELTeC) and other DraCor tools (Einakter, ezlinavis), see [Front ends of the spin-offs](#spinoff-frontends).
+The library is also used by the DraCor spin-offs (EcoCor, ELTeC) and other DraCor tools (Einakter, ezlinavis), see [Building Spin-offs](#spinoffs).
 
 (dracor-frontend-config)=
 ## Configuration and deployment

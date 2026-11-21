@@ -21,6 +21,8 @@ The archived PDFs on Zenodo remain the version of record; please cite them.
 
 The [System Documentation](#docs-index) describes the current DraCor system, building on the reports and updating them. It is being written topic by topic; the first part covers the [front end](#dracor-frontend).
 
+[Building Spin-offs](#spinoffs) describes how the DraCor spin-offs (PoeCor, EcoCor, ELTeC) were built and how to build a new one: API, frontend and deployment.
+
 :::{note} Status: 1.1.0-rc.1, preview with editorial notes
 This preview adds editorial notes to the reviewed edition 1.0.0: boxes marked “Outdated” or “Update” point out where DraCor has changed since a report was written and link to current resources. The report text itself is unchanged. The archived version on Zenodo is 1.0.0.
 

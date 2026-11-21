@@ -42,6 +42,8 @@ jobs:
         run: python tools/inject_css.py book/_build/html
       - name: Redirects from the old report URLs (/reports/d7-N/...)
         run: python tools/make_redirects.py book/_build/html "/${{ github.event.repository.name }}"
+      - name: Spin-off files at stable URLs (MyST publishes them under hashed names)
+        run: cp book/spinoffs/spinoff-api.yaml book/spinoffs/AGENTS.md book/_build/html/spinoffs/
       - uses: actions/upload-pages-artifact@v5
         with:
           path: book/_build/html
