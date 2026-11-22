@@ -58,9 +58,9 @@ flowchart LR
 
 | Component | Repository | Role | Release (Nov. 2026) | Documented in |
 |---|---|---|---|---|
-| corpora | one per corpus, e.g. [gerdracor](https://github.com/dracor-org/gerdracor) | TEI files and corpus description | (Git commits; some corpora have releases with DOIs) | to be written ([D7.1 §5.1–5.2](#clsinfra-d71-5-1), [D7.3](#clsinfra-d73-index)) |
-| encoding guidelines | [dracor-schema](https://github.com/dracor-org/dracor-schema) | ODD, schemas | 1.6.0 (1.7.0-alpha.1) | to be written |
-| corpus registry | [dracor-registry](https://github.com/dracor-org/dracor-registry) | list of all corpora | 1.16.0 | to be written |
+| corpora | one per corpus, e.g. [gerdracor](https://github.com/dracor-org/gerdracor) | TEI files and corpus description | (Git commits; some corpora have releases with DOIs) | [Corpora](#docs-corpora) |
+| encoding guidelines | [dracor-schema](https://github.com/dracor-org/dracor-schema) | ODD, schemas | 1.6.0 (1.7.0-alpha.1) | [ODD](https://dracor.org/doc/odd) |
+| corpus registry | [dracor-registry](https://github.com/dracor-org/dracor-registry) | list of all corpora | 1.16.0 | [Corpora](#docs-corpora-registry) |
 | API | [dracor-api](https://github.com/dracor-org/dracor-api) | loading, storage, endpoints, DTS | 1.4.1 (1.5.0-rc.1) | [API](#dracor-api) |
 | metrics service | [dracor-metrics](https://github.com/dracor-org/dracor-metrics) | network metrics | 1.6.0 | [Metrics service](#dracor-metrics) |
 | triple store | [dracor-fuseki](https://github.com/dracor-org/dracor-fuseki) | RDF, SPARQL | 1.1.3 (2.0.0-rc.1) | to be written ([D7.1 §5.5](#clsinfra-d71-5-5)) |
@@ -102,8 +102,8 @@ The architecture of D7.1's chart still holds: corpora in Git repositories, an XM
 | D7.1 | Topic | Now |
 |---|---|---|
 | ch. 5 intro, Fig. 08 | the system | this page |
-| §5.1 | corpora | to be written |
-| §5.2.1 | GitHub repositories | to be written |
+| §5.1 | corpora | [Corpora](#docs-corpora) (encoding: [ODD](https://dracor.org/doc/odd)) |
+| §5.2.1 | GitHub repositories | [Corpora](#docs-corpora) |
 | §5.2.2 | eXist-db | [API › Architecture](#dracor-api-architecture), [Loading data](#dracor-api-loading) (in part) |
 | §5.3 | API | [API](#dracor-api) |
 | §5.3.4 | API wrappers | to be written (with D7.2) |
