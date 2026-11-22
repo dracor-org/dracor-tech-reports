@@ -94,7 +94,7 @@ Every state of a corpus is a Git commit, and the API records which one it loaded
 Corpus releases with DOIs are new (November 2026) and the procedure is still being discussed among the corpus maintainers. This section describes the current practice.
 :::
 
-Commits identify a corpus state exactly but are not citable in the way a publication is. For citable versions, a corpus can be released on GitHub and archived on [Zenodo](https://zenodo.org), where every release gets a DOI.
+For Living Corpora, which keep changing, citing the commit is the most precise way to refer to the data used: it identifies the exact version ([D7.3](#clsinfra-d73-index)). This practice, however, is not widely adopted; resources are commonly cited by a DOI. We therefore encourage corpus maintainers to release selected versions of their corpora on GitHub and to archive them on [Zenodo](https://zenodo.org) for the long term, where every release gets a DOI.
 
 **How it works.** The GitHub–Zenodo integration is switched on for repositories of dracor-org by an administrator of the organisation; maintainers of a corpus cannot switch it on themselves. Then every GitHub release (including pre-releases) is archived on Zenodo automatically. The records belong in the Zenodo community [DraCor](https://zenodo.org/communities/dracor), which also holds the releases of the DraCor software and publications. Examples: [GerShDraCor 1.0.0](https://zenodo.org/records/24313493) and [ArDraCor 1.0.0](https://zenodo.org/records/19498450).
 
