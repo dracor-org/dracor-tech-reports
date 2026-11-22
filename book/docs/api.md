@@ -116,6 +116,57 @@ Data gets into the API in three ways. All write operations require HTTP Basic au
 
 The segments (scenes) that the network is computed from are taken from the play's `refsDecl/citeStructure` or the corpus description, if present (since 1.4.0), and otherwise determined from the TEI structure ([`dutil:get-segments`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/util.xqm#L461-L495)).
 
+(dracor-api-values)=
+## The values the API computes
+
+Most of what the API returns is taken from the TEI as it is (titles, authors, years, characters). Some values, however, are computed by the API itself: counts, word counts, a few derived values, and the corpus metrics. The network metrics come from the [metrics service](#dracor-metrics-values) and are listed there. The table gives, for each computed value, how it is computed, where in the code, where the API returns it, and its feature name in the specification (`x-dracor-feature`) and in D7.1 (Tab. 01, 02, 04).
+
+**Corpus** (`/corpora?include=metrics`, schema `CorpusMetrics`; computed on each request by [`dutil:get-corpus-metrics`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/util.xqm#L801-L834))
+
+| API field | How it is computed | Feature | D7.1 |
+|---|---|---|---|
+| `plays` | number of TEI documents in the corpus | `corpus_num_of_plays` | C9 |
+| `characters` | number of `person` and `personGrp` in the `listPerson`s of all plays (speaking or not) | `corpus_num_of_characters` | C10 |
+| `male`, `female` | the same, with `@sex="MALE"` or `"FEMALE"` | `corpus_num_of_characters_male`, `…_female` | C11, C12 |
+| `text` | number of `tei:text` elements | `corpus_num_of_tei_text_elements` | C13 |
+| `sp`, `stage` | number of speeches and stage directions | `corpus_num_of_sp`, `corpus_num_of_stage` | C14, C15 |
+| `wordcount.text`, `.sp`, `.stage` | sums of the word counts of the plays (below) | `corpus_num_of_word_tokens_in_text_elements`, `…_in_sp`, `…_in_stage` | C16–C18 |
+| `updated` | latest calculation date of the plays' `metrics.xml` | `corpus_metrics_date_updated` | C19 |
+
+**Play** (`/corpora/{corpusname}/metadata` and `…/csv`, schema `PlayMetadata`, [`dutil:get-corpus-meta-data`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/util.xqm#L866-L1003); some also in `/plays/{playname}`)
+
+| API field | How it is computed | Code | Feature | D7.1 |
+|---|---|---|---|---|
+| `wordCountText`, `wordCountSp`, `wordCountStage` | words (split at non-word characters) in the `text`, in all `sp` and in all `stage` elements; computed when the play is stored and kept in [`metrics.xml`](#dracor-metrics-stored) | [`metrics:calculate`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/metrics.xqm#L167-L186) | `play_num_of_word_tokens_in_text_elements`, `…_in_sp`, `…_in_stage` | P41–P43 |
+| `numOfSegments` | number of segments (scenes, or the units of `refsDecl/citeStructure`) | [L968](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/util.xqm#L968) | `play_num_of_segments` | P37 |
+| `numOfActs`, `numOfScenes` | number of `div[@type="act"]` and `div[@type="scene"]` in the body | [L969–970](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/util.xqm#L969-L970) | `play_num_of_acts`; `numOfScenes` has none | P38 |
+| `numOfSpeakers` | number of different IDs in `sp/@who` | [L886](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/util.xqm#L886) | `play_num_of_speakers` | P45 |
+| `numOfSpeakersMale`, `…Female`, `…Unknown` | number of characters in the `listPerson` with that `@sex`, **including characters who do not speak** | [L887–894](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/util.xqm#L887-L894) | `play_num_of_speakers_sex_male`, `…_female`, `…_unknown` | P46–P48 (`…_gender_…`) |
+| `numOfPersonGroups` | number of `personGrp` | [L895](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/util.xqm#L895) | `play_num_of_person_groups` | P49 |
+| `numOfP`, `numOfL` | prose paragraphs and verse lines in speeches; a verse split between speakers (`@part`) counts once | [L896–900](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/util.xqm#L896-L900) | `play_num_of_paragraphs`, `play_num_of_verse_lines` | P39, P40 |
+| `numOfCoAuthors` | number of authors minus one | [L958–962](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/util.xqm#L958-L962) | `play_num_of_co_authors` | P21 |
+| `wikipediaLinkCount` | number of Wikipedia articles on the play, from Wikidata; fetched when the play is stored and kept in `sitelinks.xml` | [`dutil:count-sitelinks`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/util.xqm#L668-L682), [`metrics:update-sitelinks`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/metrics.xqm#L42-L55) | `play_num_of_wikipedia_links` | P35 |
+| `yearNormalized` | one year per play: the earlier of premiere and print year; but the year of writing if that is more than ten years earlier (see the [FAQ](https://dracor.org/doc/faq#normalized-year)) | [`dutil:get-normalized-year`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/util.xqm#L630-L666) | `play_year_normalized` | P27 |
+| `normalizedGenre`, `libretto` | the first `textClass` keyword that is not "Libretto"; `libretto` is true if one of them is | [`dutil:get-genre`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/util.xqm#L852-L864), [L949–950](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/util.xqm#L949-L950) | `play_genre_normalized`, `play_is_libretto` | P22, P23 |
+| `allInSegment`, `allInIndex` (only in `/plays/{playname}`) | the first segment in which the last character to enter speaks, and that number divided by the number of segments: how late in the play all characters have appeared | [`dutil:get-play-info`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/util.xqm#L1467-L1468) | `play_all_in_segment`, `play_all_in_index` | P50, P51 |
+
+**Character** (`…/plays/{playname}/characters` and `…/csv`, schema `Character`, [`dutil:characters-info`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/util.xqm#L1683-L1726))
+
+| API field | How it is computed | Feature | D7.1 |
+|---|---|---|---|
+| `numOfScenes` | number of segments in which the character speaks | `character_num_of_segments` | Ch11 |
+| `numOfSpeechActs` | number of speeches by the character alone (speeches with several speakers in `@who` are not counted) | `character_num_of_sp` | Ch12 |
+| `numOfWords` | words in the character's speeches, without stage directions and notes; counts `w` elements if the play has them; words of joint speeches count for every speaker | `character_num_of_word_tokens` | Ch13 |
+
+**API status** (`/info`): `lastModified` is the time of the latest change in the corpora ([L97–105](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/api.xqm#L97-L105)), `activeLoads` lists running corpus loads ([L108–115](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/api.xqm#L108-L115)); features `service_last_modified`, `service_active_loads`.
+
+### Details that matter when comparing values
+
+- **Word counts are counted in two ways.** The play's `wordCountSp` counts everything inside `sp`, including speaker labels and stage directions within speeches; a character's `numOfWords` excludes both. The sum of the characters' `numOfWords` is therefore not the play's `wordCountSp`.
+- **Speakers by sex** count characters in the cast list, not speakers: a character who never speaks is included in `numOfSpeakersMale`, but not in `numOfSpeakers`.
+- **`maxDegreeIds` in the corpus metadata** is a string: up to three IDs joined with `|`, and "several characters" if four or more characters share the highest degree. In `…/metrics` it is a list.
+- **Corpus metrics are computed on each request**, the play values partly when a play is stored (word counts, Wikipedia links, network metrics) and partly on each request (all other counts).
+
 (dracor-api-services)=
 ## Services used by the API
 
