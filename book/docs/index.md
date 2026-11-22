@@ -11,6 +11,7 @@ This part documents the **current** DraCor system. Unlike the [CLS INFRA reports
 | Overview | the components of the system and how they connect | D7.1 Fig. 08, ch. 5 | planned |
 | Corpora and encoding | TEI encoding, ODD, corpus registry, corpus versions and DOIs | D7.1 §5.1–5.2, D7.3 | planned |
 | [API](#dracor-api) | architecture, endpoints, versions, loading data, services, DTS, specification and tests | D7.1 §5.3–5.5, D7.4 §3.2–3.4 | draft |
+| [Metrics service](#dracor-metrics) | the service that computes the network metrics; networkx versions; mapping to the API fields and features | D7.1 §5.4 | draft |
 | [Frontend](#dracor-frontend) | the DraCor website and the component library `@dracor/react` | D7.1 §5.6 | draft |
 | Libraries and tools | pydracor, rdracor, DraCor Notebooks | D7.1 §5.3.4, D7.2 | planned |
 | Agents and Linked Data | MCP server, DraCor Open Knowledge Graph | D7.1 §5.5, D7.4 | planned |
