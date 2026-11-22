@@ -69,6 +69,7 @@ project:
     - title: System Documentation (Current)
       children:
         - file: docs/index.md
+        - file: docs/overview.md
         - file: docs/api.md
         - file: docs/metrics.md
         - file: docs/frontend/dracor-frontend.md
