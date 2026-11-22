@@ -21,6 +21,8 @@ The plays are encoded in TEI following the DraCor encoding guidelines, a customi
 - the source, the schemas generated from it and the releases: [dracor-schema](https://github.com/dracor-org/dracor-schema) (1.6.0; pre-release 1.7.0-alpha.1);
 - their development is discussed in the [issues of dracor-schema](https://github.com/dracor-org/dracor-schema/issues).
 
+For an introduction, see the [DraCor Textbook](https://textbook.dracor.org): chapter 2, [Corpus Building in DraCor](https://textbook.dracor.org/chapters/02-corpus-building-in-dracor.html), on how corpora are compiled and prepared, and chapter 3, [TEI Encoding: Preparing Texts for Programmable Corpora](https://textbook.dracor.org/chapters/03-tei-encoding-preparing-texts-for-programmable-corpora.html), on the encoding of plays for DraCor, both with exercises.
+
 (docs-corpora-repository)=
 ## A corpus repository
 

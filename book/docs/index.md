@@ -16,6 +16,6 @@ This part documents the **current** DraCor system. Unlike the [CLS INFRA reports
 | Libraries and tools | pydracor, rdracor, DraCor Notebooks | D7.1 §5.3.4, D7.2 | planned |
 | Agents and Linked Data | MCP server, DraCor Open Knowledge Graph | D7.1 §5.5, D7.4 | planned |
 
-For learning to use DraCor, see the [DraCor Textbook](https://dracor-org.github.io/dracor-textbook/); for hands-on code, the [DraCor Notebooks](https://github.com/dracor-org/dracor-notebooks).
+For learning to use DraCor, see the [DraCor Textbook](https://textbook.dracor.org/); for hands-on code, the [DraCor Notebooks](https://github.com/dracor-org/dracor-notebooks).
 
 How to build a new DraCor Spin-off (API, frontend, deployment) is described in a separate section: [Building DraCor Spin-offs](#spinoffs).
