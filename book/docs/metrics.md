@@ -26,8 +26,39 @@ flowchart LR
 
 1. When a play is stored, the API's database trigger calls [`metrics:update`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/metrics.xqm#L188-L201) (see [API › Loading data](#dracor-api-loading)).
 2. [`metrics:get-network-metrics`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/metrics.xqm#L88-L165) takes the segments of the play ([`dutil:get-segments`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/util.xqm#L461-L495): scenes, or the units defined in `refsDecl/citeStructure`) and, for each segment, the IDs of the characters who speak in it ([`dutil:distinct-speakers`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/util.xqm#L157-L169): every ID in `sp/@who`), and posts them to the service. A play without any `sp/@who` gets size 0 without a call.
-3. The answer is stored as `metrics.xml` next to the play, together with the word counts that the API computes itself. If the service fails, the play gets no network metrics; the failure is only logged.
-4. All requests to the API are answered from `metrics.xml`; the service is never called on a request. It is not reachable from outside.
+3. The answer is stored in the play's `metrics.xml` ([see below](#dracor-metrics-stored)), together with the word counts that the API computes itself. If the service fails, the play gets no network metrics; the failure is only logged.
+4. API requests that return network metrics (e.g. `…/metrics`, `…/characters`, the corpus metadata) are based on the values stored in `metrics.xml`; the metrics service itself is only called when a play is stored. The service is not reachable from outside.
+
+(dracor-metrics-stored)=
+### Where the values are stored: `metrics.xml`
+
+`metrics.xml` is a small XML file that exists for every play in the API's database (eXist-db) once its metrics have been calculated, i.e. after the play was stored and the metrics service was called. It is not part of the corpus repository on GitHub. Each play has a collection in the database that holds its TEI and the data derived from it, e.g. for *Emilia Galotti*:
+
+```
+/db/dracor/corpora/ger/lessing-emilia-galotti/
+    tei.xml         the play, as loaded from the corpus repository
+    metrics.xml     word counts and network metrics
+    rdf.xml         the play as RDF
+    git.xml         commit SHA of this version of the play
+    sitelinks.xml   number of Wikipedia articles on the play
+```
+
+`metrics.xml` is written by [`metrics:calculate`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/metrics.xqm#L167-L186). It contains the word counts computed by the API (`text`, `stage`, `sp`) and, under `network`, the answer of the metrics service, one element per value and one `node` element per character:
+
+```xml
+<metrics updated="…">
+  <text>…</text> <stage>…</stage> <sp>…</sp>
+  <network>
+    <size>13</size> <density>…</density> <diameter>3</diameter> …
+    <maxDegreeIds>marinelli</maxDegreeIds>
+    <nodes>
+      <node id="marinelli"><degree>9</degree> <betweenness>…</betweenness> …</node>
+    </nodes>
+  </network>
+</metrics>
+```
+
+The file itself is not available through the API; its values reach users through the endpoints listed [below](#dracor-metrics-values).
 
 (dracor-metrics-interface)=
 ## Interface

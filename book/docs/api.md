@@ -104,12 +104,12 @@ Data gets into the API in three ways. All write operations require HTTP Basic au
 2. **A single play.** `PUT /corpora/{corpusname}/plays/{playname}/tei` adds or replaces one play ([`api:play-tei-put`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/api.xqm#L857-L918)). Because the data no longer matches a commit, the stored SHAs are removed.
 3. **Automatically on every push.** The GitHub webhook ([`webhook:github`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/webhook.xqm#L104-L201)) checks the signature, the branch (`main`) and the repository, stores the delivery and schedules a job that fetches the changed files a minute later.
 
-**What happens when a play is stored.** A database trigger ([`trigger.xqm`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/trigger.xqm#L13-L31), registered in [`data.xconf`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/data.xconf#L13-L17)) computes the derived data and stores it next to the TEI, so that requests are answered from precomputed files:
+**What happens when a play is stored.** A database trigger ([`trigger.xqm`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/trigger.xqm#L13-L31), registered in [`data.xconf`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/data.xconf#L13-L17)) computes the derived data and stores it in the play's collection next to the TEI, so that the endpoints can use precomputed values instead of computing them on every request:
 
 | File | Content | Computed by |
 |---|---|---|
 | `tei.xml` | the play | (stored as received) |
-| `metrics.xml` | word counts and network metrics | [`metrics:update`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/metrics.xqm#L188-L201), which sends the segments and speakers to the metrics service |
+| `metrics.xml` | word counts and network metrics ([details](#dracor-metrics-stored)) | [`metrics:update`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/metrics.xqm#L188-L201), which sends the segments and speakers to the metrics service |
 | `sitelinks.xml` | number of Wikipedia articles on the play | [`metrics:update-sitelinks`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/metrics.xqm#L42-L55) (Wikidata) |
 | `rdf.xml` | the play as RDF; also sent to Fuseki | [`drdf:update-play`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/rdf.xqm#L466-L482) |
 | `git.xml` | commit SHA of this version of the play | the loader |
