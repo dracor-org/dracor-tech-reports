@@ -49,7 +49,7 @@ flowchart LR
 ```
 
 1. **Corpora.** Each corpus is a Git repository with one TEI file per play and a corpus description (`corpus.xml`). The TEI follows the DraCor encoding guidelines ([dracor-schema](https://github.com/dracor-org/dracor-schema): ODD and schemas); a GitHub Action ([dracor-validate-action](https://github.com/dracor-org/dracor-validate-action)) checks the changed files on every push and pull request. The [registry](https://github.com/dracor-org/dracor-registry) lists all corpora, published and planned.
-2. **API.** The [DraCor API](#dracor-api) is an eXist-db application. It loads a corpus from its repository (as a ZIP archive of a given commit, or file by file after a push), stores each play together with the data derived from it, and offers everything through its REST endpoints and DTS ([API › Loading data](#dracor-api-loading)).
+2. **API.** The [DraCor API](#dracor-api) is an eXist-db application. It loads a corpus from its repository (as a ZIP archive of a given commit, or, where a webhook is set up, file by file after each push), stores each play together with the data derived from it, and offers everything through its REST endpoints and DTS ([API › Loading data](#dracor-api-loading)).
 3. **Services.** When a play is stored, the API asks the [metrics service](#dracor-metrics) for the network metrics, Wikidata for the number of Wikipedia articles, and sends the play's RDF to the triple store (Fuseki), which offers a SPARQL endpoint.
 4. **Using the API.** The [front end](#dracor-frontend) on dracor.org is one client of the API among others: the libraries [pydracor](https://github.com/dracor-org/pydracor) and [rdracor](https://github.com/dracor-org/rdracor), the [DraCor Notebooks](https://github.com/dracor-org/dracor-notebooks), an [MCP server](https://github.com/dracor-org/dracor-mcp) that lets AI assistants use the API (pre-release), and external tools linked from the front end (Voyant, the CLARIN Switchboard, Gephi Lite; [D7.4 §3.6](#clsinfra-d74-3-6)).
 
@@ -77,8 +77,8 @@ Versions in brackets are the newest pre-releases. The API, the metrics service, 
 
 | Server | Purpose | API (checked 22 Nov. 2026) | Front end |
 |---|---|---|---|
-| [dracor.org](https://dracor.org) | production; the published corpora (24) | 1.4.1 | 2.x |
-| [staging.dracor.org](https://staging.dracor.org) | the next release, updated on every change to `main`; also draft corpora (31 in all) | development state after 1.5.0-rc.1 | 3.0.0-rc.1 |
+| [dracor.org](https://dracor.org) | production; the published corpora (24), updated by loading them explicitly (no webhook) | 1.4.1 | 2.x |
+| [staging.dracor.org](https://staging.dracor.org) | the next release: the software is updated on every change to `main`, the corpora on every push to their repositories (webhook); also draft corpora (31 in all) | development state after 1.5.0-rc.1 | 3.0.0-rc.1 |
 | [dev.dracor.org](https://dev.dracor.org) | development, deployed by hand | development state after 1.5.0-rc.1 | |
 
 Which version a server runs is reported by `/api/v1/info` ([API › Versions](#dracor-api-versions)). Anyone can run their own DraCor: locally with the compose file of the API, or in the cloud, e.g. with the [guide for the EOSC EU Node](https://github.com/dracor-org/dracor-eosc-eu-node-deploy).
@@ -90,7 +90,7 @@ The architecture of D7.1's chart still holds: corpora in Git repositories, an XM
 
 - the API has a **versioned interface** (`/api/v1`, since 1.0.0; the legacy API v0 will be shut down) and implements **DTS 1.0** ([API](#dracor-api));
 - every play is stored with the **Git commit** it was loaded from, so that data can be traced to a corpus version ([D7.3](#clsinfra-d73-index));
-- corpora are **updated automatically** on every push (GitHub webhook);
+- corpora can be **updated automatically** on every push (GitHub webhook); this is set up for staging and dev, while production is updated by loading a corpus explicitly;
 - the values in the API responses carry **feature names** in the API specification ([API › Specification](#dracor-api-docs), [D7.4 §3.3](#clsinfra-d74-3-3));
 - the **front end** is built on a shared component library, which the DraCor Spin-offs use as well ([Frontend](#dracor-frontend), [Building DraCor Spin-offs](#spinoffs));
 - **new clients:** the MCP server for AI assistants, the DraCor Notebooks, the API libraries in new versions;
