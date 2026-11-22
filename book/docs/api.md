@@ -135,6 +135,28 @@ The API implements the [Distributed Text Services](https://dtsapi.org/specificat
 
 A worked example of DTS with DraCor is in the [DraCor Notebooks](https://github.com/dracor-org/dracor-notebooks/blob/08482eb4febaf1dd0d72faae9ba9fbcaeffb5c51/dts/dts.ipynb) (written against the earlier draft version).
 
+(dracor-api-fundocs)=
+## Function documentation in eXist-db
+
+The XQuery functions are documented in the code: each has a comment in xqDoc format (`(:~ … :)`, with `@param` and `@return`) above its declaration, as in the example in [D7.1 §5.3.1](#clsinfra-d71-5-3-1). eXist-db can render these comments as browsable documentation with its app **XQuery Function Documentation** ("fundocs"), which is installed in the DraCor Docker image (fundocs 1.2.1). eXist-db's own web interface is not reachable on dracor.org, so this works on a local instance (or on your own, see [Deployment](#spinoffs-deploy)).
+
+1. **Start the API locally**, e.g. from the official image, reachable only from your own machine:
+
+   ```sh
+   docker run --rm -p 127.0.0.1:8080:8080 -e EXIST_PASSWORD= dracor/api:1.5.0-rc.1
+   ```
+
+   The empty admin password is accepted only because the image runs in development mode by default; never use it on a server. With the repository, `docker compose up` does the same (see [Architecture](#dracor-api-architecture)).
+2. **Log in as `admin`** in eXist-db's dashboard: <http://localhost:8080/exist/apps/dashboard/>. Only members of the `dba` group may generate the documentation.
+3. **Generate the documentation:** open <http://localhost:8080/exist/apps/fundocs/> and click **Generate** (after installing a new version of the API: **Regenerate**). This scans all XQuery modules in the database, including the DraCor modules in `/db/apps/dracor-v1/modules/`, and takes a few seconds. Without a browser: `curl -u admin: http://localhost:8080/exist/apps/fundocs/modules/reindex.xql`.
+4. **Find a function:** search by name (e.g. `play-tei`), signature or description. Or open the page of a module directly; for the endpoint module:
+
+   <http://localhost:8080/exist/apps/fundocs/view.html?uri=http://dracor.org/ns/exist/v1/api&location=/db/apps/dracor-v1/modules/api.xqm&details=true>
+
+   For the other modules, replace `api` in both places with the module name (`util`, `dts`, `metrics`, `rdf`, `load`, `webhook`, `wikidata`, `github`, `config`); the namespace of every module is `http://dracor.org/ns/exist/v1/<module>`.
+
+The documentation contains the public functions of each module (tested with 1.5.0-rc.1: 47 in `api`, 61 in `util`, 1 to 7 in the smaller modules); private helper functions are left out. The DraCor modules do not appear in the "Browse" list of this fundocs version, but the search and the module pages find them. The same information is available as XML from any XQuery, e.g. in eXide: `inspect:inspect-module(xs:anyURI("/db/apps/dracor-v1/modules/api.xqm"))`, which is the function fundocs itself uses.
+
 (dracor-api-docs)=
 ## Specification and tests
 
