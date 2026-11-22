@@ -3,7 +3,7 @@
 The report text stays as published; notes are added as clearly marked boxes
 (class "editorial"). They are recorded in alignment/<id>_notes.json:
 
-  [{"file": "3-2.md", "after": "<label>" | "top", "kind": "outdated" | "update",
+  [{"file": "3-2.md", "after": "<label>" | "top", "kind": "outdated" | "update" | "correction",
     "checked": "2026-11", "text": "Markdown text of the note"}, ...]
 
 "after" names a MyST label (a heading or a paragraph label "<section>-pN"); the
@@ -21,7 +21,8 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
-KINDS = {"outdated": ("warning", "Outdated"), "update": ("note", "Update")}
+KINDS = {"outdated": ("warning", "Outdated"), "update": ("note", "Update"),
+         "correction": ("important", "Correction")}
 LABEL = re.compile(r"^\((clsinfra-[a-z0-9-]+)\)=$")
 
 notes = json.loads(Path(sys.argv[1]).read_text(encoding="utf8"))
