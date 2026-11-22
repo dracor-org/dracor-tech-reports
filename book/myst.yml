@@ -73,6 +73,7 @@ project:
         - file: docs/corpora.md
         - file: docs/api.md
         - file: docs/metrics.md
+        - file: docs/libraries.md
         - file: docs/frontend/dracor-frontend.md
     - title: Building DraCor Spin-offs
       children:

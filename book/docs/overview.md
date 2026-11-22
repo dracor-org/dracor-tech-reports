@@ -67,7 +67,7 @@ flowchart LR
 | front end | [dracor-frontend](https://github.com/dracor-org/dracor-frontend) | the website | 2.7.2 (3.0.0-rc.1) | [Frontend](#dracor-frontend) |
 | component library | [dracor-react](https://github.com/dracor-org/dracor-react) | React components of the website and the DraCor Spin-offs | 1.11.0 | [Frontend](#dracor-frontend), [Building DraCor Spin-offs](#spinoffs) |
 | website texts | [dracor-docs](https://github.com/dracor-org/dracor-docs) | documentation pages and menu of dracor.org | (no releases) | [Frontend](#dracor-frontend-menu) |
-| API libraries | [pydracor](https://github.com/dracor-org/pydracor), [rdracor](https://github.com/dracor-org/rdracor) | access to the API from Python and R | pydracor 3.0.2; rdracor 1.1.0 (CRAN) | to be written ([D7.1 §5.3.4](#clsinfra-d71-5-3-4), [D7.2](#clsinfra-d72-index)) |
+| API libraries | [pydracor](https://github.com/dracor-org/pydracor), [rdracor](https://github.com/dracor-org/rdracor) | access to the API from Python and R | pydracor 3.0.2; rdracor 1.1.0 (CRAN) | [API libraries](#docs-libraries) |
 | MCP server | [dracor-mcp](https://github.com/dracor-org/dracor-mcp) | access for AI assistants | 1.0.0-beta.2 | to be written |
 
 Versions in brackets are the newest pre-releases. The API, the metrics service, Fuseki and the front end are published as Docker images; the compose file in the API repository starts all four in matching versions (for 1.5.0-rc.1: API 1.5.0-rc.1, Fuseki 2.0.0-rc.1, metrics 1.6.0, front end 3.0.0-rc.1; [API › Architecture](#dracor-api-architecture)).
@@ -106,7 +106,7 @@ The architecture of D7.1's chart still holds: corpora in Git repositories, an XM
 | §5.2.1 | GitHub repositories | [Corpora](#docs-corpora) |
 | §5.2.2 | eXist-db | [API › Architecture](#dracor-api-architecture), [Loading data](#dracor-api-loading) (in part) |
 | §5.3 | API | [API](#dracor-api) |
-| §5.3.4 | API wrappers | to be written (with D7.2) |
+| §5.3.4 | API wrappers | [API libraries](#docs-libraries) |
 | §5.4 | metrics service | [Metrics service](#dracor-metrics) |
 | §5.5 | SPARQL endpoint | to be written |
 | §5.6 | front end | [Frontend](#dracor-frontend); the speech-distribution charts are explained in the [D7.1 excursus](#clsinfra-d71-excursus) |
