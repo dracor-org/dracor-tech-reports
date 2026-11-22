@@ -116,7 +116,37 @@ For GerShDraCor, the concept DOI is [10.5281/zenodo.24313492](https://hdl.handle
 (docs-corpora-database)=
 ## In the database
 
-When a corpus is loaded, the API stores `corpus.xml` in `/db/dracor/corpora/{corpusname}/` and every play in its own collection below it, together with the data derived from it (`tei.xml`, `metrics.xml`, `rdf.xml`, `git.xml`, `sitelinks.xml`; see [Metrics service › `metrics.xml`](#dracor-metrics-stored)). This replaces the layout described in D7.1 §5.2.2, where each kind of data had its own collection (`/db/data/dracor/tei/{corpus}`, `/db/data/dracor/metrics/{corpus}`, …); the change came with API 1.1.0. Full-text indexes on speeches and stage directions are defined in the API's [`data.xconf`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/data.xconf#L5-L11).
+When a corpus is loaded, the API stores it in its database (eXist-db) in one collection per corpus, and within it one collection per play. Each play collection holds the TEI of the play and the files derived from it, always under the same names ([`dutil:filepaths`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/util.xqm#L43-L87)). For the German Drama Corpus and *Emilia Galotti*:
+
+```
+/db/dracor/
+    corpora/
+        ger/                           one collection per corpus
+            corpus.xml                 the corpus description from the repository
+            git.xml                    commit of the corpus (only if all plays come from the same commit)
+            lessing-emilia-galotti/    one collection per play (the file name in tei/)
+                tei.xml                the play, as loaded from the repository
+                metrics.xml            word counts and network metrics
+                rdf.xml                the play as RDF (also sent to the triple store)
+                sitelinks.xml          number of Wikipedia articles on the play
+                git.xml                commit of the play
+            …
+    webhook/                           webhook deliveries waiting to be processed
+```
+
+| File | Content | Written |
+|---|---|---|
+| `corpus.xml` | the corpus description, as in the repository | when the corpus is created or loaded |
+| `git.xml` (corpus) | the commit SHA of the corpus; returned by the API as the corpus's `commit` | after loading, only if all plays share one commit; removed otherwise ([`dutil:get-corpus-sha`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/util.xqm#L2094-L2110)) |
+| `tei.xml` | the TEI of the play, unchanged | when the play is loaded, uploaded or changed via the webhook |
+| `metrics.xml` | word counts (`text`, `sp`, `stage`) and the network metrics from the metrics service ([details](#dracor-metrics-stored)) | by the database trigger, whenever `tei.xml` is stored |
+| `rdf.xml` | the play as RDF; the same data is sent to the triple store (Fuseki) | by the trigger |
+| `sitelinks.xml` | the number of Wikipedia articles on the play, from Wikidata | by the trigger |
+| `git.xml` (play) | the commit SHA the play was loaded from; returned as the play's `commit` | when the play is loaded from the repository; removed if the play is uploaded by hand |
+
+The API answers all requests from these files: the TEI for texts and structure, the derived files for metrics, RDF and Wikipedia counts ([API › Loading data](#dracor-api-loading)). The full-text indexes on speeches and stage directions are defined in [`data.xconf`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/data.xconf#L5-L11).
+
+**Before API 1.1.0** (the layout described in D7.1 §5.2.2), the database was organised by kind of data rather than by play: one collection per kind (`tei`, `metrics`, `rdf`, `sitelinks`, `webhook`) under `/db/data/dracor/`, each with a collection per corpus and one file per play, e.g. `/db/data/dracor/tei/ger/lessing-emilia-galotti.xml` and `/db/data/dracor/metrics/ger/lessing-emilia-galotti.xml`. The current layout was introduced in February 2024 (commit [4446437](https://github.com/dracor-org/dracor-api/commit/4446437a4fbced7718f93d97a3ec2a76021d2332), "Restructure file hierarchy") and released with API 1.1.0 (July 2025); D7.4 §3.3 already shows a `metrics.xml` stored in a play collection.
 
 (docs-corpora-reports)=
 ## From D7.1 to this page
