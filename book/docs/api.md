@@ -133,7 +133,7 @@ The API implements the [Distributed Text Services](https://dtsapi.org/specificat
 - **Citation tree:** `front`, `body`, `back`; below them the nested `div`s (usually acts and scenes; their `@type` becomes the cite type); below those the speeches, stage directions, settings, cast list and title page. References are path-like (`body/div[2]/sp[3]`); `@xml:id`s are accepted as well. The tree is derived from the TEI structure of each play (not from `refsDecl/citeStructure`, which is used only for the network segments).
 - **Formats:** TEI and plain text.
 
-A worked example of DTS with DraCor is in the [DraCor Notebooks](https://github.com/dracor-org/dracor-notebooks/blob/08482eb4febaf1dd0d72faae9ba9fbcaeffb5c51/dts/dts.ipynb) (written against the earlier draft version).
+A worked example is the DTS notebook in the [DraCor Notebooks](https://github.com/dracor-org/dracor-notebooks/blob/1c922c1d0804329cc3e9c87a51d9b40b1e5bccc3/dts/dts.ipynb): it demonstrates the Collection, Navigation and Document endpoints and compares DTS with the regular DraCor API. Since November 2026 it targets DTS 1.0 (API 1.5; until 1.5 is released it runs against the staging server); its [README](https://github.com/dracor-org/dracor-notebooks/blob/1c922c1d0804329cc3e9c87a51d9b40b1e5bccc3/dts/README.md) lists the changes from DTS "unstable". The earlier version, the executable form of D7.4 §3.4, is archived under the tag `2026-11-15-baseline` ([doi:10.5281/zenodo.24237155](https://hdl.handle.net/10.5281/zenodo.24237155)).
 
 (dracor-api-fundocs)=
 ## Function documentation in eXist-db
