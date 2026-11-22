@@ -10,7 +10,7 @@ label: docs-overview
 This page describes the DraCor system as of November 2026. It updates the overview in [D7.1 ch. 5](#clsinfra-d71-5) and its system chart (Fig. 08).
 :::
 
-DraCor is a **programmable corpus** ([D7.1](#clsinfra-d71-index)): a collection of drama corpora that can not only be read on a website but also be queried, analysed and reused through an API. The system consists of separate components, each in its own repository on GitHub ([dracor-org](https://github.com/dracor-org)) with its own releases. This page shows how they fit together; the pages listed in the table below describe each component.
+DraCor implements the concept of **Programmable Corpora** ([D7.1](#clsinfra-d71-index)): its drama corpora can not only be read on a website but also be queried, analysed and reused through an API. The system consists of separate components, each in its own repository on GitHub ([dracor-org](https://github.com/dracor-org)) with its own releases. This page shows how they fit together; the pages listed in the table below describe each component.
 
 (docs-overview-chart)=
 ## The system at a glance
