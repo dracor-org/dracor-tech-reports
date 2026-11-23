@@ -44,6 +44,7 @@ flowchart LR
 | [`api.xqm`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/api.xqm#L1-L1638) | `api` | all endpoints except DTS and the webhook (50 functions) |
 | [`util.xqm`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/util.xqm#L1-L2440) | `dutil` | the logic behind the endpoints: play and corpus information, segments, text extraction, networks, creating corpora (79 functions) |
 | [`dts.xqm`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/dts.xqm#L1-L1254) | `ddts` | Distributed Text Services 1.0 |
+| [`oaipmh.xqm`](https://github.com/dracor-org/dracor-api/blob/8d4836fb9e8892916f5766370ec28e2676346402/modules/oaipmh.xqm#L1-L1021) | `dpmh` | OAI-PMH 2.0 (after 1.5.0-rc.1; link to the merge commit) |
 | [`metrics.xqm`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/metrics.xqm#L1-L211) | `metrics` | word counts, call to the metrics service, Wikipedia sitelinks |
 | [`rdf.xqm`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/rdf.xqm#L1-L631) | `drdf` | RDF of each play and synchronisation with Fuseki |
 | [`load.xqm`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/load.xqm#L1-L137) | `load` | loading a corpus from a ZIP archive |
@@ -68,6 +69,7 @@ The 36 operations of the specification, grouped as in the interactive documentat
 | across corpora | `/id/{id}`, `/characters` (experimental), `/character/{id}` | [`api:id-to-url`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/api.xqm#L213-L236), [`api:plays-with-character`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/api.xqm#L1576-L1594) |
 | Wikidata | `/wikidata/author/{id}`, `/wikidata/mixnmatch` | [`api:authorInfo`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/api.xqm#L1596-L1619), [`api:wikidata-mixnmatch`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/api.xqm#L1621-L1638) |
 | DTS | `/dts`, `/dts/collection`, `/dts/navigation`, `/dts/document` | [`dts.xqm`](#dracor-api-dts) |
+| OAI-PMH (after 1.5.0-rc.1) | `/oai` | [`oaipmh.xqm`](#dracor-api-oai-pmh) |
 | admin | `POST /corpora`, `POST`/`DELETE /corpora/{corpusname}`, `PUT …/tei`, `DELETE …/plays/{playname}` | see [Loading data](#dracor-api-loading) |
 | webhook | `POST /webhook/github` | [`webhook:github`](https://github.com/dracor-org/dracor-api/blob/e93400b16e793b3600f4a91dca22790e9c12d868/modules/webhook.xqm#L104-L201) |
 
@@ -185,6 +187,18 @@ The API implements the [Distributed Text Services](https://dtsapi.org/specificat
 - **Formats:** TEI and plain text.
 
 A worked example is the DTS notebook in the [DraCor Notebooks](https://github.com/dracor-org/dracor-notebooks/blob/1c922c1d0804329cc3e9c87a51d9b40b1e5bccc3/dts/dts.ipynb): it demonstrates the Collection, Navigation and Document endpoints and compares DTS with the regular DraCor API. Since November 2026 it targets DTS 1.0 (API 1.5; until 1.5 is released it runs against the staging server); its [README](https://github.com/dracor-org/dracor-notebooks/blob/1c922c1d0804329cc3e9c87a51d9b40b1e5bccc3/dts/README.md) lists the changes from DTS "unstable". The earlier version, the executable form of D7.4 §3.4, is archived under the tag `2026-11-15-baseline` ([doi:10.5281/zenodo.24237155](https://hdl.handle.net/10.5281/zenodo.24237155)).
+
+(dracor-api-oai-pmh)=
+## OAI-PMH
+
+Since the development state after 1.5.0-rc.1 (on [staging](https://staging.dracor.org/api/v1/oai?verb=Identify); part of 1.5.0), the API offers its corpus metadata for harvesting through the [Open Archives Initiative Protocol for Metadata Harvesting](https://www.openarchives.org/OAI/openarchivesprotocol.html) (OAI-PMH 2.0), so that aggregators such as the CLARIN Virtual Language Observatory can list the DraCor corpora ([dracor-api#419](https://github.com/dracor-org/dracor-api/issues/419)). The module is [`oaipmh.xqm`](https://github.com/dracor-org/dracor-api/blob/8d4836fb9e8892916f5766370ec28e2676346402/modules/oaipmh.xqm#L1-L1021); the endpoint is `GET` or `POST /oai` ([`dpmh` handler](https://github.com/dracor-org/dracor-api/blob/8d4836fb9e8892916f5766370ec28e2676346402/modules/oaipmh.xqm#L956-L1021)).
+
+- **Records:** one per corpus, identified as `oai:dracor.org:{corpusname}` (e.g. `oai:dracor.org:ger`). The middle part is the host of the instance, so another server uses its own name (`oai:staging.dracor.org:ger`). Plays are not harvested separately; they are reachable from the corpus.
+- **Formats:** Dublin Core (`oai_dc`) and CMDI 1.2 (`cmdi`) with the CLARIN collection profile (`clarin.eu:cr1:p_1345561703620`). The records are built from `corpus.xml` and the plays of the loaded corpus: title, description, licence, languages, temporal coverage (earliest and latest `yearNormalized`), links to the landing page, the API and the repository, and the corpus DOI if `corpus.xml` contains one ([Corpora](#docs-corpora); proposal dracor-schema#207).
+- **Version:** each record names the Git commit the corpus was loaded from and links the repository at that commit (CMDI: the ZIP archive of that commit), so a harvested record points to an exact state of a Living Corpus ([D7.3](#clsinfra-d73-index)). The datestamp is the time the corpus was last loaded; harvesters use it for incremental updates (`from`, `until`).
+- **Not supported:** sets and deleted records (`ListSets` answers `noSetHierarchy`). As the protocol requires, errors are reported in the XML response with status 200.
+
+The endpoint passes the official [OAI-PMH validator](https://www.openarchives.org/Register/ValidateSite?log=J33IL8VD) (40 tests, no warnings). The corpus URIs used as identifiers in the records (`https://dracor.org/id/{corpusname}`) do not resolve yet; the [ID resolver](#dracor-api-endpoints) handles only plays ([dracor-api#245](https://github.com/dracor-org/dracor-api/issues/245)).
 
 (dracor-api-fundocs)=
 ## Function documentation in eXist-db
