@@ -13,3 +13,6 @@ CLAUDE.md
 
 # clones for tools/coderefs.py
 .cache/
+
+# local working files (Ingo), not public
+tmp/

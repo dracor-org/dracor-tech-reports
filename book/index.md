@@ -23,8 +23,10 @@ The [System Documentation](#docs-index) describes the current DraCor system, bui
 
 [Building DraCor Spin-offs](#spinoffs) describes how the DraCor Spin-offs (PoeCor, EcoCor, ELTeC) were built and how to build a new one: API, frontend and deployment.
 
-:::{note} Status: 2.0.0-rc.1 (preview)
-This preview of version 2.0.0 extends the reviewed edition 1.0.0 in three ways: editorial notes in the reports (boxes marked “Outdated”, “Update” or “Correction” point out where DraCor has changed since a report was written or where a report is wrong; the report text itself is unchanged), the beginning of a *System Documentation* of the current DraCor system, and a guide to *Building DraCor Spin-offs*. The preview is published as a website only; the archived version on Zenodo is 1.0.0.
+:::{note} Status: 1.5.0-rc.1 (preview)
+This preview of version 1.5.0 extends the reviewed edition 1.0.0 in three ways: editorial notes in the reports (boxes marked “Outdated”, “Update” or “Correction” point out where DraCor has changed since a report was written or where a report is wrong; the report text itself is unchanged), the beginning of a *System Documentation* of the current DraCor system, and a guide to *Building DraCor Spin-offs*. The preview is published as a website only; the archived version on Zenodo is 1.0.0.
+
+From 1.5.0 on, the version number follows the DraCor API: 1.5.x describes DraCor API 1.5. The last digit counts our own corrections and does not refer to an API patch release.
 
 All four reports were converted from their original sources and checked page by page against the published PDFs (text, footnote numbering, formatting, figures, tables, code and links). Every deviation from the sources is recorded in the repository.
 
